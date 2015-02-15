@@ -1,0 +1,4 @@
+name: "BloodMoon"
+version: "0.25"
+main: "uk.co.jacekk.bukkit.bloodmoon.BloodMoon"
+load: startup
