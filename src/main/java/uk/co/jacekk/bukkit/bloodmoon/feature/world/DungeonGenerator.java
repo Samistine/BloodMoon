@@ -271,7 +271,8 @@ public class DungeonGenerator extends BlockPopulator {
 					//item.setAmount(Math.min(type.getMaxStackSize(), rand.nextInt(worldConfig.getInt(Config.FEATURE_DUNGEONS_MAX_STACK_SIZE))));
 					int low = worldConfig.getInt(Config.FEATURE_DUNGEONS_MIN_STACK_SIZE);
 					int high = worldConfig.getInt(Config.FEATURE_DUNGEONS_MAX_STACK_SIZE);
-					int randomInt = rand.nextInt(high - low) + low;
+					Random randomSam = new Random();
+					int randomInt = randomSam.nextInt((high+1) - low) + low;
 					item.setAmount(randomInt);
 					
 					
