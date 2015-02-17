@@ -17,7 +17,17 @@
 		<baseplugin.package>13</baseplugin.package>
 	</properties>
 	
-
+	<repositories>
+		<repository>
+			<id>bukkit-repo</id>
+			<url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+		</repository>
+		
+		<repository>
+			<id>jacekk-repo</id>
+			<url>http://bukkit.jacekk.co.uk:8000/plugin/repository/everything/</url>
+		</repository>
+	</repositories>
 	
 	<dependencies>
 		<dependency>
