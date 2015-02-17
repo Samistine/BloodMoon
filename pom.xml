@@ -29,18 +29,6 @@
 			<url>http://bukkit.jacekk.co.uk:8000/plugin/repository/everything/</url>
 		</repository>
 
-
-		<repository>
-			<id>local</id>
-			<url>/root/.m2/repository/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-
 	</repositories>
 
 	<dependencies>
@@ -69,7 +57,8 @@
 			<groupId>org.bukkit</groupId>
 			<artifactId>craftbukkit</artifactId>
 			<version>1.8-R0.1-SNAPSHOT</version>
-			<scope>compile</scope>
+			<systemPath>/root/.m2/repository/org/bukkit/craftbukkit/1.8-R0.1-SNAPSHOT/craftbukkit-1.8-R0.1-SNAPSHOT.jar</systemPath>
+			<scope>system</scope>
 		</dependency>
 	</dependencies>
 
