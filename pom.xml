@@ -57,8 +57,7 @@
 			<groupId>org.bukkit</groupId>
 			<artifactId>craftbukkit</artifactId>
 			<version>1.8-R0.1-SNAPSHOT</version>
-			<systemPath>/root/.m2/repository/org/bukkit/craftbukkit/1.8-R0.1-SNAPSHOT/craftbukkit-1.8-R0.1-SNAPSHOT.jar</systemPath>
-			<scope>system</scope>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 
