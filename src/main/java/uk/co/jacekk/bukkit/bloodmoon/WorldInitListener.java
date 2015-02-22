@@ -25,22 +25,22 @@ public class WorldInitListener extends BaseListener<BloodMoon> {
 		
 		plugin.createConfig(world);
 		
-//		if (plugin.isFeatureEnabled(world.getName(), Feature.SPAWN_CONTROL)){
-//			WorldServer worldServer = ((CraftWorld) world).getHandle();
-//			
-//			try{
-//				IChunkLoader chunkLoader = ReflectionUtils.getFieldValue(net.minecraft.server.v1_8_R1.ChunkProviderServer.class, "chunkLoader", IChunkLoader.class, worldServer.chunkProviderServer);
-//				
-//				ChunkProviderServer newProvider = new ChunkProviderServer(this.plugin, worldServer, chunkLoader, worldServer.chunkProviderServer.chunkProvider);
-//				
-//				newProvider.chunks = worldServer.chunkProviderServer.chunks;
-//				newProvider.forceChunkLoad = worldServer.chunkProviderServer.forceChunkLoad;
-//				
-//				worldServer.chunkProviderServer = newProvider;
-//			}catch (NoSuchFieldException e){
-//				e.printStackTrace();
-//			}
-//		}
+		if (plugin.isFeatureEnabled(world.getName(), Feature.SPAWN_CONTROL)){
+			WorldServer worldServer = ((CraftWorld) world).getHandle();
+			
+			try{
+				IChunkLoader chunkLoader = ReflectionUtils.getFieldValue(net.minecraft.server.v1_8_R1.ChunkProviderServer.class, "chunkLoader", IChunkLoader.class, worldServer.chunkProviderServer);
+				
+				ChunkProviderServer newProvider = new ChunkProviderServer(this.plugin, worldServer, chunkLoader, worldServer.chunkProviderServer.chunkProvider);
+				
+				newProvider.chunks = worldServer.chunkProviderServer.chunks;
+				newProvider.forceChunkLoad = worldServer.chunkProviderServer.forceChunkLoad;
+				
+				worldServer.chunkProviderServer = newProvider;
+			}catch (NoSuchFieldException e){
+				e.printStackTrace();
+			}
+		}
 	}
 	
 }
