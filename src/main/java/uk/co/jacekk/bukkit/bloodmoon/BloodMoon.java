@@ -32,11 +32,12 @@ public class BloodMoon extends BasePlugin {
 		
 		this.worldConfig = new HashMap<String, PluginConfig>();
 		
-		try{
-			BloodMoonEntityType.registerEntities();
-		}catch (EntityRegistrationException e){
-			e.printStackTrace();
-		}
+		//try{
+			//BloodMoonEntityType.registerEntities();
+                    System.err.println("Disabling that");
+		//}catch (EntityRegistrationException e){
+		//	e.printStackTrace();
+		//}
 		
 		this.permissionManager.registerPermissions(Permission.class);
 		this.commandManager.registerCommandExecutor(new BloodMoonExecuter(this));
