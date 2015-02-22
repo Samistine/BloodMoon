@@ -25,7 +25,7 @@ public class WorldInitListener extends BaseListener<BloodMoon> {
 		
 		plugin.createConfig(world);
 		
-		if (plugin.isFeatureEnabled(world.getName(), Feature.SPAWN_CONTROL)){
+		/*if (plugin.isFeatureEnabled(world.getName(), Feature.SPAWN_CONTROL)){
 			WorldServer worldServer = ((CraftWorld) world).getHandle();
 			
 			try{
@@ -40,7 +40,7 @@ public class WorldInitListener extends BaseListener<BloodMoon> {
 			}catch (NoSuchFieldException e){
 				e.printStackTrace();
 			}
-		}
+		}*/
 	}
 	
 }
