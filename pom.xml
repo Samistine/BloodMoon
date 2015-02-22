@@ -1,34 +1,36 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>uk.co.jacekk.bukkit</groupId>
 	<artifactId>bloodmoon</artifactId>
 	<name>BloodMoon</name>
-	<version>0.25-SNAPSHOT</version>
+	<version>0.30</version>
 	<packaging>jar</packaging>
 	<url>http://dev.bukkit.org/bukkit-plugins/bloodmoon/</url>
-	
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
+
 		<upload.dbo.category>bukkit-plugins</upload.dbo.category>
 		<upload.dbo.slug>bloodmoon</upload.dbo.slug>
-		
+
 		<baseplugin.version>13</baseplugin.version>
 		<baseplugin.package>13</baseplugin.package>
 	</properties>
-	
+
 	<repositories>
 		<repository>
 			<id>bukkit-repo</id>
 			<url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
 		</repository>
-		
+
 		<repository>
 			<id>jacekk-repo</id>
 			<url>http://bukkit.jacekk.co.uk:8000/plugin/repository/everything/</url>
 		</repository>
+
 	</repositories>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -36,7 +38,7 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>uk.co.jacekk.bukkit</groupId>
 			<artifactId>baseplugin</artifactId>
@@ -44,13 +46,13 @@
 			<scope>compile</scope>
 		</dependency>
 
-                <dependency>
-                        <groupId>org.bukkit</groupId>
-                        <artifactId>bukkit</artifactId>
-                        <version>1.8-R0.1-SNAPSHOT</version>
-                        <scope>compile</scope>
-                </dependency>
-		
+		<dependency>
+			<groupId>org.bukkit</groupId>
+			<artifactId>bukkit</artifactId>
+			<version>1.8-R0.1-SNAPSHOT</version>
+			<scope>compile</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>org.bukkit</groupId>
 			<artifactId>craftbukkit</artifactId>
@@ -58,12 +60,12 @@
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<defaultGoal>install</defaultGoal>
 		<directory>${basedir}/target</directory>
 		<finalName>${project.name}</finalName>
-		
+
 		<resources>
 			<resource>
 				<targetPath>.</targetPath>
@@ -74,7 +76,7 @@
 				</includes>
 			</resource>
 		</resources>
-		
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -103,7 +105,7 @@
 					</relocations>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -113,7 +115,7 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
