@@ -11,8 +11,8 @@ import java.util.List;
 
 public class ChunkProviderServer extends net.minecraft.server.v1_8_R1.ChunkProviderServer {
 	
-	private BloodMoon plugin;
-	private List<BiomeMeta> bloodMoonMobs;
+	private final BloodMoon plugin;
+	private final List<BiomeMeta> bloodMoonMobs;
 	
 	public ChunkProviderServer(BloodMoon plugin, WorldServer worldserver, IChunkLoader ichunkloader, IChunkProvider ichunkprovider){
 		super(worldserver, ichunkloader, ichunkprovider);

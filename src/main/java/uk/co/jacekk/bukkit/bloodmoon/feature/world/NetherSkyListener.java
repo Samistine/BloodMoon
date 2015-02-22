@@ -51,7 +51,7 @@ public class NetherSkyListener extends BaseListener<BloodMoon> {
 			}
 		}
 		
-		player.updateInventory();
+		//player.updateInventory(); Possibly no longer needed
 	}
 	
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)

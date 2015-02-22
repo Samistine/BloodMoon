@@ -25,7 +25,7 @@ import uk.co.jacekk.bukkit.bloodmoon.Feature;
 
 public class SpawnOnKillListener extends BaseListener<BloodMoon> {
 	
-	private Random random;
+	private final Random random;
 	private ArrayList<DamageCause> playerCauses;
 	
 	public SpawnOnKillListener(BloodMoon plugin){

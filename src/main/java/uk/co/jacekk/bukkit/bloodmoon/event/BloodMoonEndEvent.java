@@ -11,7 +11,7 @@ public class BloodMoonEndEvent extends Event implements Cancellable {
 	
 	private boolean isCancelled = false;
 	
-	private World world;
+	private final World world;
 	
 	public BloodMoonEndEvent(World world){
 		this.world = world;

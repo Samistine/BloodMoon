@@ -26,7 +26,7 @@ import java.util.Random;
 
 public class DungeonGenerator extends BlockPopulator {
 	
-	private BloodMoon plugin;
+	private final BloodMoon plugin;
 	
 	public DungeonGenerator(BloodMoon plugin){
 		this.plugin = plugin;

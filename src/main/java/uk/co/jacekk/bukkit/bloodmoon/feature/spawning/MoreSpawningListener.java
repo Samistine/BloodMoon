@@ -21,11 +21,10 @@ import uk.co.jacekk.bukkit.bloodmoon.entity.BloodMoonEntityType;
 
 public class MoreSpawningListener extends BaseListener<BloodMoon> {
 	
-	private Random random;
+	private final Random random;
 	
 	public MoreSpawningListener(BloodMoon plugin){
 		super(plugin);
-		
 		this.random = new Random();
 	}
 	

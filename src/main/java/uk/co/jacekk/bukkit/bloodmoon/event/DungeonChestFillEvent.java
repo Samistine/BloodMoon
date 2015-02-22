@@ -8,7 +8,7 @@ public class DungeonChestFillEvent extends Event {
 	
 	private static final HandlerList handlers = new HandlerList();
 	
-	private Chest chest;
+	private final Chest chest; //Might undo final if issues arise
 	
 	public DungeonChestFillEvent(Chest chest){
 		this.chest = chest;

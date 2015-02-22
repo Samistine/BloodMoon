@@ -20,11 +20,10 @@ import uk.co.jacekk.bukkit.bloodmoon.Feature;
 
 public class SwordDamageListener extends BaseListener<BloodMoon> {
 	
-	private Random random;
+	private final Random random;
 	
 	public SwordDamageListener(BloodMoon plugin){
 		super(plugin);
-		
 		this.random = new Random();
 	}
 	

@@ -14,8 +14,8 @@ import java.util.Random;
 
 public class GiantsTask extends BaseTask<BloodMoon> {
 	
-	private CraftWorld world;
-	private Random random;
+	private final CraftWorld world;
+	private final Random random;
 	
 	public GiantsTask(BloodMoon plugin, CraftWorld world){
 		super(plugin);
