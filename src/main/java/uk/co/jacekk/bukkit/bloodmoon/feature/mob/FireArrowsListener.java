@@ -1,8 +1,13 @@
 package uk.co.jacekk.bukkit.bloodmoon.feature.mob;
 
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.craftbukkit.v1_8_R1.entity.CraftEntity;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Projectile;
+import org.bukkit.entity.Skeleton;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.ProjectileHitEvent;
@@ -11,6 +16,7 @@ import uk.co.jacekk.bukkit.baseplugin.event.BaseListener;
 import uk.co.jacekk.bukkit.bloodmoon.BloodMoon;
 import uk.co.jacekk.bukkit.bloodmoon.Config;
 import uk.co.jacekk.bukkit.bloodmoon.Feature;
+import uk.co.jacekk.bukkit.bloodmoon.nms.EntitySkeleton;
 
 public class FireArrowsListener extends BaseListener<BloodMoon> {
 	
@@ -27,14 +33,16 @@ public class FireArrowsListener extends BaseListener<BloodMoon> {
 		if (entity instanceof Projectile && plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.FIRE_ARROWS) && worldConfig.getBoolean(Config.FEATURE_FIRE_ARROWS_IGNITE_TARGET)){
 			Projectile projectile = (Projectile) entity;
 			LivingEntity shooter = (LivingEntity) projectile.getShooter();
+                        if (shooter.getType() == EntityType.SKELETON) return;
 
-//			if (shooter != null && ((CraftEntity) shooter).getHandle() instanceof EntitySkeleton && projectile.getFireTicks() > 0){
-//				Block block = projectile.getWorld().getBlockAt(projectile.getLocation());
-//
-//				if (block.getType() == Material.AIR){
-//					block.setType(Material.FIRE);
-//				}
-//			}
+			if (shooter != null && ((CraftEntity) shooter).getHandle() instanceof EntitySkeleton && projectile.getFireTicks() > 0){
+                        //if (shooter != null && ((CraftEntity)shooter).getHandle() instanceof EntitySkeleton && projectile.getFireTicks() > 0){
+				Block block = projectile.getWorld().getBlockAt(projectile.getLocation());
+
+				if (block.getType() == Material.AIR){
+					block.setType(Material.FIRE);
+				}
+			}
 		}
 	}
 	

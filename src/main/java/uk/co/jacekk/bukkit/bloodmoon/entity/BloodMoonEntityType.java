@@ -15,7 +15,7 @@ public enum BloodMoonEntityType {
 	
 	CREEPER("Creeper", 50, EntityType.CREEPER, net.minecraft.server.v1_8_R1.EntityCreeper.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityCreeper.class),
 	ENDERMAN("Enderman", 58, EntityType.ENDERMAN, net.minecraft.server.v1_8_R1.EntityEnderman.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityEnderman.class),
-	//SKELETON("Skeleton", 51, EntityType.SKELETON, net.minecraft.server.v1_8_R1.EntitySkeleton.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntitySkeleton.class),
+	SKELETON("Skeleton", 51, EntityType.SKELETON, net.minecraft.server.v1_8_R1.EntitySkeleton.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntitySkeleton.class),
 	SPIDER("Spider", 52, EntityType.SPIDER, net.minecraft.server.v1_8_R1.EntitySpider.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntitySpider.class),
 	ZOMBIE("Zombie", 54, EntityType.ZOMBIE, net.minecraft.server.v1_8_R1.EntityZombie.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityZombie.class),
 	GHAST("Ghast", 56, EntityType.GHAST, net.minecraft.server.v1_8_R1.EntityGhast.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityGhast.class),
