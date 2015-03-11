@@ -1,6 +1,7 @@
 package uk.co.jacekk.bukkit.bloodmoon.feature.mob;
 
 import java.util.Random;
+import org.bukkit.Bukkit;
 
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_8_R1.entity.CraftLivingEntity;
@@ -40,8 +41,8 @@ public class MovementSpeedListener extends BaseListener<BloodMoon> {
 					try{
 						BloodMoonEntityLiving bloodMoonEntity = BloodMoonEntityLiving.getBloodMoonEntity(((CraftLivingEntity) entity).getHandle());
 						double multiplier = worldConfig.getDouble((this.random.nextInt(100) < worldConfig.getInt(Config.FEATURE_MOVEMENT_SPEED_FAST_CHANCE)) ? Config.FEATURE_MOVEMENT_SPEED_FAST_MULTIPLIER : Config.FEATURE_MOVEMENT_SPEED_MULTIPLIER);
-						
-						bloodMoonEntity.setSpeedMultiplier(multiplier);
+						Bukkit.broadcastMessage(multiplier + "");
+						bloodMoonEntity.setSpeedMultiplier(1.0);
 					}catch (IllegalArgumentException e){
 						// This means the entity is not supported *shrug*
 					}
@@ -78,8 +79,8 @@ public class MovementSpeedListener extends BaseListener<BloodMoon> {
 				try{
 					BloodMoonEntityLiving bloodMoonEntity = BloodMoonEntityLiving.getBloodMoonEntity(((CraftLivingEntity) entity).getHandle());
 					double multiplier = worldConfig.getDouble((this.random.nextInt(100) < worldConfig.getInt(Config.FEATURE_MOVEMENT_SPEED_FAST_CHANCE)) ? Config.FEATURE_MOVEMENT_SPEED_FAST_MULTIPLIER : Config.FEATURE_MOVEMENT_SPEED_MULTIPLIER);
-					
-					bloodMoonEntity.setSpeedMultiplier(multiplier);
+					Bukkit.broadcastMessage(multiplier + "");
+					bloodMoonEntity.setSpeedMultiplier((Double)1.0);
 				}catch (IllegalArgumentException e){
 					// This means the entity is not supported *shrug*
 				}

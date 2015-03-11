@@ -107,12 +107,12 @@ public class EntitySkeleton extends net.minecraft.server.v1_8_R1.EntitySkeleton 
 //	}
 //	@Override
     public void a(net.minecraft.server.v1_8_R1.EntityLiving entityLiving, float f) {
-        EntityArrow entityarrow = new EntityArrow(this.world, this, entityLiving, 1.6F, 14 - this.world.difficulty.a() * 4);
+        //EntityArrow entityarrow = new EntityArrow(this.world, this, entityLiving, 1.6F, 14 - this.world.difficulty.a() * 4);
 
         int i = EnchantmentManager.getEnchantmentLevel(Enchantment.ARROW_DAMAGE.id, bz());//assumming bz()
         int j = EnchantmentManager.getEnchantmentLevel(Enchantment.ARROW_KNOCKBACK.id, bz()); //assumming bz()
 
-        entityarrow.b(f * 2.0F + this.random.nextGaussian() * 0.25D + this.world.difficulty.a() * 0.11F);
+        //entityarrow.b(f * 2.0F + this.random.nextGaussian() * 0.25D + this.world.difficulty.a() * 0.11F);
 
         if (i > 0) {
             //entityarrow.b(entityarrow.e() + i * 0.5D + 0.5D);
@@ -120,18 +120,18 @@ public class EntitySkeleton extends net.minecraft.server.v1_8_R1.EntitySkeleton 
         }
 
         if (j > 0) {
-            entityarrow.setKnockbackStrength(j);
+            //entityarrow.setKnockbackStrength(j);
         }
 
         String worldName = this.world.worldData.getName();
         PluginConfig worldConfig = plugin.getConfig(worldName);
 
         if (EnchantmentManager.getEnchantmentLevel(Enchantment.ARROW_FIRE.id, this.bz()) > 0 || getSkeletonType() == 1 || (plugin.isActive(worldName) && worldConfig.getBoolean(Config.FEATURE_FIRE_ARROWS_ENABLED) && (this.random.nextInt(100) < worldConfig.getInt(Config.FEATURE_FIRE_ARROWS_CHANCE)))) {
-            entityarrow.setOnFire(1024);
+            //entityarrow.setOnFire(1024);
         }
 
         //this.world.makeSound(this, "random.bow", 1.0F, 1.0F / (this.aI().nextFloat() * 0.4F + 0.8F));
         world.makeSound(this, "random.bow", 1.0F, 1.0F / (random.nextFloat() * 0.4F + 0.8F));
-        this.world.addEntity(entityarrow);
+        //this.world.addEntity(entityarrow);
     }
 }
