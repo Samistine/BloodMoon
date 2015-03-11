@@ -49,45 +49,45 @@ public abstract class BloodMoonEntityLiving {
 		AttributeInstance attributes = this.nmsEntity.getAttributeInstance(GenericAttributes.b);
 		AttributeModifier modifier = new AttributeModifier(followRangeUID, "BloodMoon follow range multiplier", multiplier, 1);
 		
+		attributes.c(modifier);
 		attributes.b(modifier);
-		attributes.a(modifier);
 	}
 	
 	public void clearFollowRangeMultiplier(){
 		AttributeInstance attributes = this.nmsEntity.getAttributeInstance(GenericAttributes.b);
 		AttributeModifier modifier = new AttributeModifier(followRangeUID, "BloodMoon follow range multiplier", 1.0d, 1);
 		
-		attributes.b(modifier);
+		attributes.c(modifier);
 	}
 	
 	public void setKnockbackResistanceMultiplier(double multiplier){
 		AttributeInstance attributes = this.nmsEntity.getAttributeInstance(GenericAttributes.c);
 		AttributeModifier modifier = new AttributeModifier(knockbackResistanceUID, "BloodMoon knockback resistance multiplier", multiplier, 1);
 		
+		attributes.c(modifier);
 		attributes.b(modifier);
-		attributes.a(modifier);
 	}
 	
 	public void clearKnockbackResistanceMultiplier(){
 		AttributeInstance attributes = this.nmsEntity.getAttributeInstance(GenericAttributes.c);
 		AttributeModifier modifier = new AttributeModifier(knockbackResistanceUID, "BloodMoon knockback resistance multiplier", 1.0d, 1);
 		
-		attributes.b(modifier);
+		attributes.c(modifier);
 	}
 	
 	public void setSpeedMultiplier(double multiplier){
 		AttributeInstance attributes = this.nmsEntity.getAttributeInstance(GenericAttributes.d);
 		AttributeModifier modifier = new AttributeModifier(movementSpeedUID, "BloodMoon movement speed multiplier", multiplier, 1);
 		
+		attributes.c(modifier);
 		attributes.b(modifier);
-		attributes.a(modifier);
 	}
 	
 	public void clearSpeedMultiplier(){
 		AttributeInstance attributes = this.nmsEntity.getAttributeInstance(GenericAttributes.d);
 		AttributeModifier modifier = new AttributeModifier(movementSpeedUID, "BloodMoon movement speed multiplier", 1.0d, 1);
 		
-		attributes.b(modifier);
+		attributes.c(modifier);
 	}
 	
 	public abstract void onTick();
