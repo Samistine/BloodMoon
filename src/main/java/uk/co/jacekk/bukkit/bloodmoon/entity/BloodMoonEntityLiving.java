@@ -76,11 +76,26 @@ public abstract class BloodMoonEntityLiving {
 	}
 	
 	public void setSpeedMultiplier(double multiplier){
-		AttributeInstance attributes = this.nmsEntity.getAttributeInstance(GenericAttributes.d);
-		AttributeModifier modifier = new AttributeModifier(movementSpeedUID, "BloodMoon movement speed multiplier", multiplier, 1);
+            try {
+                AttributeInstance theAttribute = this.nmsEntity.getAttributeInstance(GenericAttributes.d);
+                if (theAttribute == null) {
+                    System.err.println("That was null, wierd");
+                    return;
+                }
+                double oldValue = theAttribute.getValue();
+                theAttribute.setValue(oldValue * multiplier);
+                if (plugin.debug) {
+                    System.err.println("Set speed attribute for mob " + this.nmsEntity.getName() + " was " + oldValue + " and is now " + theAttribute.getValue());
+                }
+            } catch (NullPointerException e) {
+                System.err.println("Null Exception");
+            }
+            
+		//AttributeInstance attributes = this.nmsEntity.getAttributeInstance(GenericAttributes.d);
+		//AttributeModifier modifier = new AttributeModifier(movementSpeedUID, "BloodMoon movement speed multiplier", multiplier, 1);
 		
-		attributes.c(modifier);
-		attributes.b(modifier);
+		//attributes.c(modifier);
+		//attributes.b(modifier);
 	}
 	
 	public void clearSpeedMultiplier(){

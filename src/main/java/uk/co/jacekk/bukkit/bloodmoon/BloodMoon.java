@@ -23,9 +23,12 @@ public class BloodMoon extends BasePlugin {
 	protected ArrayList<String> forceWorlds;
 	
 	protected HashMap<String, PluginConfig> worldConfig;
+        
+        public boolean debug;
 	
 	public void onEnable(){
 		super.onEnable(true);
+                this.debug = false;
 		
 		this.activeWorlds = new ArrayList<String>();
 		this.forceWorlds = new ArrayList<String>();
