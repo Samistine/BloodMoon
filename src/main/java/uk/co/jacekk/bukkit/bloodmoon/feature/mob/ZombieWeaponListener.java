@@ -23,7 +23,7 @@ import uk.co.jacekk.bukkit.bloodmoon.event.BloodMoonStartEvent;
 
 public class ZombieWeaponListener extends BaseListener<BloodMoon> {
 	
-	private Random random;
+	private final Random random;
 	
 	public ZombieWeaponListener(BloodMoon plugin){
 		super(plugin);

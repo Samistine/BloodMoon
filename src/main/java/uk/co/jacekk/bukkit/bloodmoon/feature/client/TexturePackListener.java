@@ -55,7 +55,7 @@ public class TexturePackListener extends BaseListener<BloodMoon> {
 			if (!plugin.isActive(fromName) && plugin.isActive(toName)){
 				player.setResourcePack(worldConfig.getString(Config.FEATURE_TEXTURE_PACK_BLOODMOON));
 			}else if (plugin.isActive(fromName) && !plugin.isActive(toName)){
-				player.setTexturePack(worldConfig.getString(Config.FEATURE_TEXTURE_PACK_NORMAL));
+				player.setResourcePack(worldConfig.getString(Config.FEATURE_TEXTURE_PACK_NORMAL));
 			}
 		}
 	}

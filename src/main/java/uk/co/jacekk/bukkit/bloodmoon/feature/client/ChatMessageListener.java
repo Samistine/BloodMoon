@@ -1,5 +1,6 @@
 package uk.co.jacekk.bukkit.bloodmoon.feature.client;
 
+import java.util.UUID;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -63,14 +64,15 @@ public class ChatMessageListener extends BaseListener<BloodMoon> {
 		PluginConfig worldConfig = plugin.getConfig(worldName);
 		
 		if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.CHAT_MESSAGE)){
-			final String playerName = player.getName();
+			final UUID playerUUID = player.getUniqueId();
 			final String message = worldConfig.getString(Config.FEATURE_CHAT_MESSAGE_START_MESSAGE);
 			
 			if (!message.isEmpty()){
 				plugin.scheduler.scheduleSyncDelayedTask(plugin, new Runnable(){
 					
+                                        @Override
 					public void run(){
-						Player player = plugin.server.getPlayer(playerName);
+						Player player = plugin.server.getPlayer(playerUUID);
 						
 						if (player != null){
 							player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));

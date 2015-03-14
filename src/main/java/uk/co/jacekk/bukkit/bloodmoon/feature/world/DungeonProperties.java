@@ -11,8 +11,8 @@ import uk.co.jacekk.bukkit.bloodmoon.Config;
 
 public class DungeonProperties {
 	
-	private World world;
-	private PluginConfig worldConfig;
+	private final World world;
+	private final PluginConfig worldConfig;
 	private int gridX, gridZ;
 	
 	private int chunkX, chunkZ;

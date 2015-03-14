@@ -36,6 +36,7 @@ public class EntityGiantZombie extends net.minecraft.server.v1_8_R1.EntityGiantZ
 		try{
 			this.bloodMoonEntity.onTick();
 			super.bL();
+                        motY = 10D;
 		}catch (Exception e){
 			plugin.log.warn("Exception caught while ticking entity");
 			e.printStackTrace();

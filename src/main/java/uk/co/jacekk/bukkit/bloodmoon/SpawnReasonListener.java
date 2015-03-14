@@ -13,7 +13,7 @@ public class SpawnReasonListener extends BaseListener<BloodMoon> {
 		super(plugin);
 	}
 	
-	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
 	public void onCreatureSpawn(CreatureSpawnEvent event){
 		event.getEntity().setMetadata("spawn-reason", new FixedMetadataValue(plugin, event.getSpawnReason()));
 	}

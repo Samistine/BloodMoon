@@ -1,5 +1,6 @@
 package uk.co.jacekk.bukkit.bloodmoon.feature.client;
 
+import java.util.UUID;
 import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -52,13 +53,13 @@ public class PlaySoundListener extends BaseListener<BloodMoon> {
 		final PluginConfig worldConfig = plugin.getConfig(worldName);
 		
 		if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.PLAY_SOUND)){
-			final String playerName = player.getName();
+			final UUID playerUUID = player.getUniqueId();
 			
 			plugin.scheduler.scheduleSyncDelayedTask(plugin, new Runnable(){
 				
                                 @Override
 				public void run(){
-					Player player = plugin.server.getPlayer(playerName);
+					Player player = plugin.server.getPlayer(playerUUID);
 					
 					if (player != null){
 						player.playSound(player.getLocation(), Sound.valueOf(worldConfig.getString(Config.FEATURE_PLAY_SOUND_SOUND)), (float) worldConfig.getDouble(Config.FEATURE_PLAY_SOUND_VOLUME), (float) worldConfig.getDouble(Config.FEATURE_PLAY_SOUND_PITCH));

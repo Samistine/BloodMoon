@@ -62,17 +62,17 @@ public abstract class BloodMoonEntityLiving {
 	
 	public void setKnockbackResistanceMultiplier(double multiplier){
 		AttributeInstance attributes = this.nmsEntity.getAttributeInstance(GenericAttributes.c);
-		AttributeModifier modifier = new AttributeModifier(knockbackResistanceUID, "BloodMoon knockback resistance multiplier", multiplier, 1);
+		//AttributeModifier modifier = new AttributeModifier(knockbackResistanceUID, "BloodMoon knockback resistance multiplier", multiplier, 1);
 		
-		attributes.c(modifier);
+		//attributes.c(modifier);
 		attributes.b(modifier);
 	}
 	
 	public void clearKnockbackResistanceMultiplier(){
 		AttributeInstance attributes = this.nmsEntity.getAttributeInstance(GenericAttributes.c);
-		AttributeModifier modifier = new AttributeModifier(knockbackResistanceUID, "BloodMoon knockback resistance multiplier", 1.0d, 1);
-		
-		attributes.c(modifier);
+		//AttributeModifier modifier = new AttributeModifier(knockbackResistanceUID, "BloodMoon knockback resistance multiplier", , 1);
+		attributes.setValue(1.0d);
+		//attributes.c(modifier);
 	}
 	
 	public void setSpeedMultiplier(double multiplier){

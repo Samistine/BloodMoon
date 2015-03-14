@@ -9,11 +9,10 @@ import uk.co.jacekk.bukkit.baseplugin.scheduler.BaseTask;
 
 public class TimeMonitorTask extends BaseTask<BloodMoon> {
 	
-	private Random random;
+	private final Random random;
 	
 	public TimeMonitorTask(BloodMoon plugin){
 		super(plugin);
-		
 		this.random = new Random();
 	}
 	
