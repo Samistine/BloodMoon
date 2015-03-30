@@ -13,7 +13,6 @@ import uk.co.jacekk.bukkit.baseplugin.command.CommandHandler;
 import uk.co.jacekk.bukkit.baseplugin.command.CommandTabCompletion;
 import uk.co.jacekk.bukkit.baseplugin.command.SubCommandHandler;
 import uk.co.jacekk.bukkit.bloodmoon.BloodMoon;
-import uk.co.jacekk.bukkit.bloodmoon.Permission;
 
 public class BloodMoonExecuter extends BaseCommandExecutor<BloodMoon> {
 	
