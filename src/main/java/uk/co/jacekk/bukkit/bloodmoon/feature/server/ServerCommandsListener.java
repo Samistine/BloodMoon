@@ -31,7 +31,7 @@ public class ServerCommandsListener extends BaseListener<BloodMoon> {
 		if (plugin.isFeatureEnabled(worldName, Feature.SERVER_COMMANDS)){
 			for (String command : worldConfig.getStringList(Config.FEATURE_SERVER_COMMANDS_START_COMMANDS)){
 				if (command.startsWith("(")) {
-					String mydata = "()some with 'the data i want' inside";
+					String mydata = command;
 					Pattern pattern = Pattern.compile("^(\\(([^()]*)\\))");
 					Matcher matcher = pattern.matcher(mydata);
 					if (matcher.find())
