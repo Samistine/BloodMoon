@@ -65,7 +65,7 @@ public abstract class BloodMoonEntityLiving {
 		//AttributeModifier modifier = new AttributeModifier(knockbackResistanceUID, "BloodMoon knockback resistance multiplier", multiplier, 1);
 		
 		//attributes.c(modifier);
-		attributes.b(modifier);
+		//attributes.b(modifier);
 	}
 	
 	public void clearKnockbackResistanceMultiplier(){

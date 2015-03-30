@@ -37,7 +37,7 @@ public class BloodMoon extends BasePlugin {
             e.printStackTrace();
         }
 
-        for (World world : this.server.getWorlds()) {
+        for (World world : this.getServer().getWorlds()) {
             this.createConfig(world);
         }
 
@@ -87,10 +87,10 @@ public class BloodMoon extends BasePlugin {
      * @param worldName The name of the world
      */
     public void forceNextNight(String worldName) {
-        World world = this.server.getWorld(worldName);
+        World world = getServer().getWorld(worldName);
 
         if (world != null) {
-            this.forceWorlds.add(worldName);
+            forceWorlds.add(worldName);
         }
     }
 
@@ -100,7 +100,7 @@ public class BloodMoon extends BasePlugin {
      * @param worldName The name of the world
      */
     public void deactivate(String worldName) {
-        World world = this.server.getWorld(worldName);
+        World world = getServer().getWorld(worldName);
 
         if (world != null || this.isActive(worldName)) {
             BloodMoonEndEvent event = new BloodMoonEndEvent(world);
@@ -119,7 +119,7 @@ public class BloodMoon extends BasePlugin {
      * @return true if a bloodmoon is active false if not
      */
     public boolean isActive(String worldName) {
-        return this.activeWorlds.contains(worldName);
+        return activeWorlds.contains(worldName);
     }
 
     /**
@@ -129,11 +129,11 @@ public class BloodMoon extends BasePlugin {
      * @return true if the bloodmoon is enabled false if not
      */
     public boolean isEnabled(String worldName) {
-        if (!this.worldConfig.containsKey(worldName)) {
+        if (!worldConfig.containsKey(worldName)) {
             return false;
         }
 
-        return this.worldConfig.get(worldName).getBoolean(Config.ENABLED);
+        return worldConfig.get(worldName).getBoolean(Config.ENABLED);
     }
 
     /**
@@ -144,11 +144,11 @@ public class BloodMoon extends BasePlugin {
      * @return true if the feature is enabled false if not
      */
     public boolean isFeatureEnabled(String worldName, Feature feature) {
-        if (!this.worldConfig.containsKey(worldName)) {
+        if (!worldConfig.containsKey(worldName)) {
             return false;
         }
 
-        return this.worldConfig.get(worldName).getBoolean(feature.getEnabledConfigKey());
+        return worldConfig.get(worldName).getBoolean(feature.getEnabledConfigKey());
     }
 
     /**
@@ -162,7 +162,7 @@ public class BloodMoon extends BasePlugin {
     public PluginConfig createConfig(World world) {
         String worldName = world.getName();
 
-        if (!this.worldConfig.containsKey(worldName)) {
+        if (!worldConfig.containsKey(worldName)) {
             PluginConfig worldConfig = new PluginConfig(new File(this.baseDirPath + File.separator + worldName + ".yml"), Config.class, this.log);
 
             this.worldConfig.put(worldName, worldConfig);
@@ -185,7 +185,7 @@ public class BloodMoon extends BasePlugin {
      */
     public PluginConfig getConfig(String worldName) {
         if (!this.worldConfig.containsKey(worldName)) {
-            World world = this.server.getWorld(worldName);
+            World world = getServer().getWorld(worldName);
 
             if (world != null) {
                 return this.createConfig(world);
@@ -199,7 +199,7 @@ public class BloodMoon extends BasePlugin {
      * Reloads all config files.
      */
     public void reloadWorldConfig() {
-        for (PluginConfig config : this.worldConfig.values()) {
+        for (PluginConfig config : worldConfig.values()) {
             config.reload();
         }
     }

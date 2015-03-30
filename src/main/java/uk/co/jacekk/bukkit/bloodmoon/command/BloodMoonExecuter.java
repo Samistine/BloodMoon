@@ -27,16 +27,17 @@ public class BloodMoonExecuter extends BaseCommandExecutor<BloodMoon> {
 		sender.sendMessage(plugin.formatMessage(ChatColor.RED + "Usage: /" + label + " [action] [world_name]"));
 		sender.sendMessage(ChatColor.RED + "Actions:");
 		
-		if (Permission.ADMIN_START.has(sender)){
-			sender.sendMessage(ChatColor.RED + "  start - Forces a bloodmoon to start");
+                
+                if (sender.hasPermission("bloodmoon.admin.start")) {
+                    	sender.sendMessage(ChatColor.RED + "  start - Forces a bloodmoon to start");
 			sender.sendMessage(ChatColor.RED + "  next - Forces a bloodmoon to start at the next night");
-		}
+                }
 		
-		if (Permission.ADMIN_STOP.has(sender)){
+		if (sender.hasPermission("bloodmoon.admin.stop")){
 			sender.sendMessage(ChatColor.RED + "  stop - Stops a bloodmoon");
 		}
 		
-		if (Permission.ADMIN_RELOAD.has(sender)){
+		if (sender.hasPermission("bloodmoon.admin.reload")){
 			sender.sendMessage(ChatColor.RED + "  reload - Reloads the config.");
 		}
 	}
@@ -58,7 +59,7 @@ public class BloodMoonExecuter extends BaseCommandExecutor<BloodMoon> {
 	@SubCommandHandler(parent = "bloodmoon", name = "start")
 	@CommandTabCompletion({"[activeWorldNames]"})
 	public void bloodmoonStart(CommandSender sender, String label, String[] args){
-		if (!Permission.ADMIN_START.has(sender)){
+                if (!sender.hasPermission("bloodmoon.admin.start")) {
 			sender.sendMessage(plugin.formatMessage(ChatColor.RED + "You do not have permission to start a bloodmoon"));
 			return;
 		}
@@ -83,7 +84,7 @@ public class BloodMoonExecuter extends BaseCommandExecutor<BloodMoon> {
 	@SubCommandHandler(parent = "bloodmoon", name = "next")
 	@CommandTabCompletion({"[activeWorldNames]"})
 	public void bloodmoonNext(CommandSender sender, String label, String[] args){
-		if (!Permission.ADMIN_START.has(sender)){
+                if (!sender.hasPermission("bloodmoon.admin.start")) {
 			sender.sendMessage(plugin.formatMessage(ChatColor.RED + "You do not have permission to start a bloodmoon"));
 			return;
 		}
@@ -108,7 +109,7 @@ public class BloodMoonExecuter extends BaseCommandExecutor<BloodMoon> {
 	@SubCommandHandler(parent = "bloodmoon", name = "stop")
 	@CommandTabCompletion({"[activeWorldNames]"})
 	public void bloodmoonStop(CommandSender sender, String label, String[] args){
-		if (!Permission.ADMIN_STOP.has(sender)){
+                if (!sender.hasPermission("bloodmoon.admin.stop")) {
 			sender.sendMessage(plugin.formatMessage(ChatColor.RED + "You do not have permission to stop a bloodmoon"));
 			return;
 		}
@@ -126,19 +127,17 @@ public class BloodMoonExecuter extends BaseCommandExecutor<BloodMoon> {
 		}
 		
 		plugin.deactivate(worldName);
-		
 		sender.sendMessage(ChatColor.GREEN + "Bloodmoon stopped in " + worldName);
 	}
 	
 	@SubCommandHandler(parent = "bloodmoon", name = "reload")
 	public void bloodmoonReload(CommandSender sender, String label, String[] args){
-		if (!Permission.ADMIN_RELOAD.has(sender)){
+                if (sender.hasPermission("bloodmoon.admin.reload")) {
 			sender.sendMessage(plugin.formatMessage(ChatColor.RED + "You do not have permission use this command"));
 			return;
 		}
 		
 		plugin.reloadWorldConfig();
-		
 		sender.sendMessage(ChatColor.GREEN + "Config reloaded for all worlds.");
 	}
 	
