@@ -1,9 +1,7 @@
 package uk.co.jacekk.bukkit.bloodmoon.entity;
 
-import net.minecraft.server.v1_8_R1.EntityMonster;
-
-import org.bukkit.craftbukkit.v1_8_R1.entity.CraftLivingEntity;
-
+import net.minecraft.server.v1_8_R2.EntityMonster;
+import org.bukkit.craftbukkit.v1_8_R2.entity.CraftLivingEntity;
 import uk.co.jacekk.bukkit.bloodmoon.BloodMoon;
 
 public class BloodMoonEntityBlaze extends BloodMoonEntityMonster {

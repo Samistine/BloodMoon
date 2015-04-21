@@ -1,9 +1,9 @@
 package uk.co.jacekk.bukkit.bloodmoon.feature.spawning;
 
-import net.minecraft.server.v1_8_R1.World;
+import net.minecraft.server.v1_8_R2.World;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_8_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_8_R2.CraftWorld;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import uk.co.jacekk.bukkit.baseplugin.scheduler.BaseTask;

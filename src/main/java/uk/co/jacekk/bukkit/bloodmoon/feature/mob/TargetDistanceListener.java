@@ -1,7 +1,7 @@
 package uk.co.jacekk.bukkit.bloodmoon.feature.mob;
 
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_8_R1.entity.CraftLivingEntity;
+import org.bukkit.craftbukkit.v1_8_R2.entity.CraftLivingEntity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

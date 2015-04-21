@@ -1,16 +1,16 @@
 package uk.co.jacekk.bukkit.bloodmoon.nms;
 
-import net.minecraft.server.v1_8_R1.World;
+import net.minecraft.server.v1_8_R2.World;
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_8_R1.CraftServer;
-import org.bukkit.craftbukkit.v1_8_R1.entity.CraftLivingEntity;
-import org.bukkit.craftbukkit.v1_8_R1.entity.CraftWither;
+import org.bukkit.craftbukkit.v1_8_R2.CraftServer;
+import org.bukkit.craftbukkit.v1_8_R2.entity.CraftLivingEntity;
+import org.bukkit.craftbukkit.v1_8_R2.entity.CraftWither;
 import org.bukkit.plugin.Plugin;
 import uk.co.jacekk.bukkit.bloodmoon.BloodMoon;
 import uk.co.jacekk.bukkit.bloodmoon.entity.BloodMoonEntityType;
 import uk.co.jacekk.bukkit.bloodmoon.entity.BloodMoonEntityWither;
 
-public class EntityWither extends net.minecraft.server.v1_8_R1.EntityWither {
+public class EntityWither extends net.minecraft.server.v1_8_R2.EntityWither {
 	
 	private BloodMoon plugin;
 	private BloodMoonEntityWither bloodMoonEntity;
@@ -32,7 +32,7 @@ public class EntityWither extends net.minecraft.server.v1_8_R1.EntityWither {
 	}
 	
 	@Override
-	public boolean bL() {
+	public boolean bM() {
 		try{
 			this.bloodMoonEntity.onTick();
 			super.bL();

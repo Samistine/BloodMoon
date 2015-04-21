@@ -1,16 +1,16 @@
 package uk.co.jacekk.bukkit.bloodmoon.nms;
 
-import net.minecraft.server.v1_8_R1.World;
+import net.minecraft.server.v1_8_R2.World;
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_8_R1.CraftServer;
-import org.bukkit.craftbukkit.v1_8_R1.entity.CraftGiant;
-import org.bukkit.craftbukkit.v1_8_R1.entity.CraftLivingEntity;
+import org.bukkit.craftbukkit.v1_8_R2.CraftServer;
+import org.bukkit.craftbukkit.v1_8_R2.entity.CraftGiant;
+import org.bukkit.craftbukkit.v1_8_R2.entity.CraftLivingEntity;
 import org.bukkit.plugin.Plugin;
 import uk.co.jacekk.bukkit.bloodmoon.BloodMoon;
 import uk.co.jacekk.bukkit.bloodmoon.entity.BloodMoonEntityGiantZombie;
 import uk.co.jacekk.bukkit.bloodmoon.entity.BloodMoonEntityType;
 
-public class EntityGiantZombie extends net.minecraft.server.v1_8_R1.EntityGiantZombie {
+public class EntityGiantZombie extends net.minecraft.server.v1_8_R2.EntityGiantZombie {
 	
 	private BloodMoon plugin;
 	private BloodMoonEntityGiantZombie bloodMoonEntity;
@@ -32,7 +32,7 @@ public class EntityGiantZombie extends net.minecraft.server.v1_8_R1.EntityGiantZ
 	}
 	
 	@Override
-	public boolean bL() {
+	public boolean  bM() {
 		try{
 			this.bloodMoonEntity.onTick();
 			super.bL();
