@@ -32,8 +32,7 @@ public class TargetDistanceListener extends BaseListener<BloodMoon> {
 			for (LivingEntity entity : world.getLivingEntities()){
 				if (worldConfig.getStringList(Config.FEATURE_TARGET_DISTANCE_MOBS).contains(entity.getType().name())){
 					try{
-						//BloodMoonEntityLiving bloodMoonEntity = BloodMoonEntityLiving.getBloodMoonEntity(((CraftLivingEntity) entity).getHandle());
-                                                BloodMoonEntityLiving bloodMoonEntity =(BloodMoonEntityLiving) ((CraftLivingEntity) entity);
+						BloodMoonEntityLiving bloodMoonEntity = BloodMoonEntityLiving.getBloodMoonEntity(((CraftLivingEntity) entity).getHandle());
 						bloodMoonEntity.setFollowRangeMultiplier(worldConfig.getDouble(Config.FEATURE_TARGET_DISTANCE_MULTIPLIER));
 					}catch (IllegalArgumentException e){
 						// This means the entity is not supported *shrug*
@@ -51,9 +50,7 @@ public class TargetDistanceListener extends BaseListener<BloodMoon> {
 		if (plugin.isFeatureEnabled(worldName, Feature.TARGET_DISTANCE)){
 			for (LivingEntity entity : world.getLivingEntities()){
 				try{
-					//BloodMoonEntityLiving.getBloodMoonEntity(((CraftLivingEntity) entity).getHandle()).clearFollowRangeMultiplier();
-                                    BloodMoonEntityLiving bloodMoonEntity =(BloodMoonEntityLiving) ((CraftLivingEntity) entity);
-                                    bloodMoonEntity.clearFollowRangeMultiplier();
+					BloodMoonEntityLiving.getBloodMoonEntity(((CraftLivingEntity) entity).getHandle()).clearFollowRangeMultiplier();
 				}catch (IllegalArgumentException e){
 					// This means the entity is not supported *shrug*
 				}
@@ -71,8 +68,7 @@ public class TargetDistanceListener extends BaseListener<BloodMoon> {
 		if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.TARGET_DISTANCE)){
 			if (worldConfig.getStringList(Config.FEATURE_TARGET_DISTANCE_MOBS).contains(entity.getType().name())){
 				try{
-					//BloodMoonEntityLiving bloodMoonEntity = BloodMoonEntityLiving.getBloodMoonEntity(((CraftLivingEntity) entity).getHandle());
-                                        BloodMoonEntityLiving bloodMoonEntity =(BloodMoonEntityLiving) ((CraftLivingEntity) entity);
+					BloodMoonEntityLiving bloodMoonEntity = BloodMoonEntityLiving.getBloodMoonEntity(((CraftLivingEntity) entity).getHandle());
 					bloodMoonEntity.setFollowRangeMultiplier(worldConfig.getDouble(Config.FEATURE_TARGET_DISTANCE_MULTIPLIER));
 				}catch (IllegalArgumentException e){
 					// This means the entity is not supported *shrug*

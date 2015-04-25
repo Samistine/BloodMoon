@@ -41,8 +41,7 @@ public class MovementSpeedListener extends BaseListener<BloodMoon> {
 			for (LivingEntity entity : world.getLivingEntities()){
 				if (worldConfig.getStringList(Config.FEATURE_MOVEMENT_SPEED_MOBS).contains(entity.getType().name())){
 					try{
-						//BloodMoonEntityLiving bloodMoonEntity = BloodMoonEntityLiving.getBloodMoonEntity(((CraftLivingEntity) entity).getHandle());
-                                                BloodMoonEntityLiving bloodMoonEntity =(BloodMoonEntityLiving) ((CraftLivingEntity) entity);
+						BloodMoonEntityLiving bloodMoonEntity = BloodMoonEntityLiving.getBloodMoonEntity(((CraftLivingEntity) entity).getHandle());
 						double multiplier = worldConfig.getDouble((this.random.nextInt(100) < worldConfig.getInt(Config.FEATURE_MOVEMENT_SPEED_FAST_CHANCE)) ? Config.FEATURE_MOVEMENT_SPEED_FAST_MULTIPLIER : Config.FEATURE_MOVEMENT_SPEED_MULTIPLIER);
 						bloodMoonEntity.setSpeedMultiplier(multiplier);
 					}catch (IllegalArgumentException e){
@@ -61,8 +60,7 @@ public class MovementSpeedListener extends BaseListener<BloodMoon> {
 		if (plugin.isFeatureEnabled(worldName, Feature.MOVEMENT_SPEED)){
 			for (LivingEntity entity : world.getLivingEntities()){
 				try{
-					//BloodMoonEntityLiving.getBloodMoonEntity(((CraftLivingEntity) entity).getHandle()).clearSpeedMultiplier();
-                                    ((BloodMoonEntityLiving) ((CraftLivingEntity) entity)).clearSpeedMultiplier();
+					BloodMoonEntityLiving.getBloodMoonEntity(((CraftLivingEntity) entity).getHandle()).clearSpeedMultiplier();
 				}catch (IllegalArgumentException e){
 					// This means the entity is not supported *shrug*
 				}
@@ -80,8 +78,7 @@ public class MovementSpeedListener extends BaseListener<BloodMoon> {
 		if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.MOVEMENT_SPEED)){
 			if (worldConfig.getStringList(Config.FEATURE_MOVEMENT_SPEED_MOBS).contains(entity.getType().name())){
 				try{
-					//BloodMoonEntityLiving bloodMoonEntity = BloodMoonEntityLiving.getBloodMoonEntity(((CraftLivingEntity) entity).getHandle());
-                                        BloodMoonEntityLiving bloodMoonEntity = (BloodMoonEntityLiving) ((CraftLivingEntity) entity);
+					BloodMoonEntityLiving bloodMoonEntity = BloodMoonEntityLiving.getBloodMoonEntity(((CraftLivingEntity) entity).getHandle());
                                         //EntityInsentient sam = (EntityInsentient)((CraftLivingEntity) entity).getHandle();
                                         //System.err.println(bloodMoonEntity.toString() + "le mob");
 					double multiplier = worldConfig.getDouble((this.random.nextInt(100) < worldConfig.getInt(Config.FEATURE_MOVEMENT_SPEED_FAST_CHANCE)) ? Config.FEATURE_MOVEMENT_SPEED_FAST_MULTIPLIER : Config.FEATURE_MOVEMENT_SPEED_MULTIPLIER);
