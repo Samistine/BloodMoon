@@ -1,14 +1,11 @@
 package uk.co.jacekk.bukkit.bloodmoon.entity;
 
-import net.minecraft.server.v1_8_R2.EntityLiving;
 import net.minecraft.server.v1_8_R2.EntityMonster;
-import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.v1_8_R2.CraftServer;
 import org.bukkit.craftbukkit.v1_8_R2.entity.CraftLivingEntity;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.inventory.ItemStack;
@@ -19,16 +16,12 @@ import uk.co.jacekk.bukkit.bloodmoon.Config;
 public abstract class BloodMoonEntityMonster extends BloodMoonEntityLiving {
 	
 	protected EntityMonster nmsEntity;
-
-    public BloodMoonEntityMonster(CraftServer server, EntityLiving entity) {
-        super(server, entity);
-    }
 	
-	//public BloodMoonEntityMonster(BloodMoon plugin, EntityMonster nmsEntity, CraftLivingEntity bukkitEntity, BloodMoonEntityType type){
-		//super(plugin, nmsEntity, bukkitEntity, type);
-		//super(server, nmsEntity);
-		//this.nmsEntity = nmsEntity;
-	//}
+	public BloodMoonEntityMonster(BloodMoon plugin, EntityMonster nmsEntity, CraftLivingEntity bukkitEntity, BloodMoonEntityType type){
+		super(plugin, nmsEntity, bukkitEntity, type);
+		
+		this.nmsEntity = nmsEntity;
+	}
 	
 	protected Block getBreakableTargetBlock(){
 		Location direction = nmsEntity.getGoalTarget().getBukkitEntity().getLocation().subtract(bukkitEntity.getLocation());
