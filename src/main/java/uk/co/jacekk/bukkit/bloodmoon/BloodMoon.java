@@ -6,7 +6,6 @@ import java.util.HashMap;
 
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
-import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.metadata.MetadataValue;
 
@@ -28,7 +27,6 @@ public class BloodMoon extends BasePlugin {
     @Override
     public void onEnable() {
         super.onEnable(true);
-        API api = new API(this, activeWorlds, forceWorlds, worldConfig);
         this.debug = false;
 
         initArrays();
@@ -62,11 +60,66 @@ public class BloodMoon extends BasePlugin {
         }
     }
 
-    private void initArrays() {
-        this.activeWorlds = new ArrayList<String>();
-        this.forceWorlds = new ArrayList<String>();
+    /**
+     * Starts a bloodmoon in a specific world
+     *
+     * @param worldName The name of the world
+     */
+    public void activate(String worldName) {
+        World world = this.server.getWorld(worldName);
 
-        this.worldConfig = new HashMap<String, PluginConfig>();
+        if (world == null || this.isActive(worldName)) {
+            return;
+        }
+
+        BloodMoonStartEvent event = new BloodMoonStartEvent(world);
+
+        this.pluginManager.callEvent(event);
+
+        if (!event.isCancelled()) {
+            this.activeWorlds.add(worldName);
+        }
+    }
+
+    /**
+     * Starts a bloodmoon the next time night is reached in a specific world
+     *
+     * @param worldName The name of the world
+     */
+    public void forceNextNight(String worldName) {
+        World world = getServer().getWorld(worldName);
+
+        if (world != null) {
+            forceWorlds.add(worldName);
+        }
+    }
+
+    /**
+     * Stops an existing bloodmoon in a world
+     *
+     * @param worldName The name of the world
+     */
+    public void deactivate(String worldName) {
+        World world = getServer().getWorld(worldName);
+
+        if (world != null || this.isActive(worldName)) {
+            BloodMoonEndEvent event = new BloodMoonEndEvent(world);
+            this.pluginManager.callEvent(event);
+
+            if (!event.isCancelled()) {
+                this.activeWorlds.remove(worldName);
+            }
+        }
+    }
+
+    /**
+     * Checks if a bloodmoon is currently active in a world
+     *
+     * @param worldName The name of the world
+     * @return true if a bloodmoon is active false if not
+     */
+    public boolean isActive(String worldName) {
+        return activeWorlds.contains(worldName);
     }
 
     /**
@@ -132,7 +185,7 @@ public class BloodMoon extends BasePlugin {
      */
     public PluginConfig getConfig(String worldName) {
         if (!this.worldConfig.containsKey(worldName)) {
-            World world = server.getWorld(worldName);
+            World world = getServer().getWorld(worldName);
 
             if (world != null) {
                 return this.createConfig(world);
@@ -158,13 +211,21 @@ public class BloodMoon extends BasePlugin {
      * @param entity The entity
      * @return The {@link SpawnReason}
      */
-    public CreatureSpawnEvent.SpawnReason getSpawnReason(Entity entity) {
+    public SpawnReason getSpawnReason(Entity entity) {
         for (MetadataValue value : entity.getMetadata("spawn-reason")) {
             if (value.getOwningPlugin() instanceof BloodMoon) {
-                return (CreatureSpawnEvent.SpawnReason) value.value();
+                return (SpawnReason) value.value();
             }
         }
 
-        return CreatureSpawnEvent.SpawnReason.DEFAULT;
+        return SpawnReason.DEFAULT;
     }
+
+    private void initArrays() {
+        this.activeWorlds = new ArrayList<String>();
+        this.forceWorlds = new ArrayList<String>();
+
+        this.worldConfig = new HashMap<String, PluginConfig>();
+    }
+
 }
