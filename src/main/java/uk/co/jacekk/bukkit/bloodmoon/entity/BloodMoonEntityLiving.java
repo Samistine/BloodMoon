@@ -40,9 +40,6 @@ public abstract class BloodMoonEntityLiving {
 	public static BloodMoonEntityLiving getBloodMoonEntity(EntityLiving nmsEntity){
 		try{
 			return ReflectionUtils.getFieldValue(nmsEntity.getClass(), "bloodMoonEntity", BloodMoonEntityLiving.class, nmsEntity);
-                    String name = nmsEntity.getName();
-                    if (nmsEntity instanceof )
-                        
 		}catch (Exception e){
 			throw new IllegalArgumentException(nmsEntity.getClass().getName() + " not supported");
 		}
