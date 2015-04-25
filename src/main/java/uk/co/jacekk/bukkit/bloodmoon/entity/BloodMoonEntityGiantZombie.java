@@ -1,11 +1,13 @@
 package uk.co.jacekk.bukkit.bloodmoon.entity;
 
+import net.minecraft.server.v1_8_R2.EntityLiving;
 import net.minecraft.server.v1_8_R2.EntityMonster;
 
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.craftbukkit.v1_8_R2.CraftServer;
 import org.bukkit.craftbukkit.v1_8_R2.entity.CraftLivingEntity;
 
 import uk.co.jacekk.bukkit.baseplugin.config.PluginConfig;
@@ -13,10 +15,14 @@ import uk.co.jacekk.bukkit.bloodmoon.BloodMoon;
 import uk.co.jacekk.bukkit.bloodmoon.Config;
 
 public class BloodMoonEntityGiantZombie extends BloodMoonEntityMonster {
+
+    public BloodMoonEntityGiantZombie(CraftServer server, EntityLiving entity) {
+        super(server, entity);
+    }
 	
-	public BloodMoonEntityGiantZombie(BloodMoon plugin, EntityMonster nmsEntity, CraftLivingEntity bukkitEntity, BloodMoonEntityType type){
-		super(plugin, nmsEntity, bukkitEntity, type);
-	}
+//	public BloodMoonEntityGiantZombie(BloodMoon plugin, EntityMonster nmsEntity, CraftLivingEntity bukkitEntity, BloodMoonEntityType type){
+//		super(plugin, nmsEntity, bukkitEntity, type);
+//	}
 	
 	@Override
 	public void onTick(){

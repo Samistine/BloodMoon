@@ -7,13 +7,14 @@ import net.minecraft.server.v1_8_R2.AttributeInstance;
 import net.minecraft.server.v1_8_R2.AttributeModifier;
 import net.minecraft.server.v1_8_R2.EntityLiving;
 import net.minecraft.server.v1_8_R2.GenericAttributes;
+import org.bukkit.craftbukkit.v1_8_R2.CraftServer;
 
 import org.bukkit.craftbukkit.v1_8_R2.entity.CraftLivingEntity;
 
 import uk.co.jacekk.bukkit.baseplugin.util.ReflectionUtils;
 import uk.co.jacekk.bukkit.bloodmoon.BloodMoon;
 
-public abstract class BloodMoonEntityLiving {
+public abstract class BloodMoonEntityLiving extends CraftLivingEntity{
 	
 	private static final UUID maxHealthUID = UUID.fromString("f8b0a945-2d6a-4bdb-9a6f-59c285bf1e5d");
 	private static final UUID followRangeUID = UUID.fromString("1737400d-3c18-41ba-8314-49a158481e1e");
@@ -28,15 +29,16 @@ public abstract class BloodMoonEntityLiving {
 	
 	protected Random rand;
 	
-	public BloodMoonEntityLiving(BloodMoon plugin, EntityLiving nmsEntity, CraftLivingEntity bukkitEntity, BloodMoonEntityType type){
-		this.plugin = plugin;
-		this.nmsEntity = nmsEntity;
-		this.bukkitEntity = bukkitEntity;
-		this.type = type;
-		
-		this.rand = new Random();
-	}
+//	public BloodMoonEntityLiving(BloodMoon plugin, EntityLiving nmsEntity, CraftLivingEntity bukkitEntity, BloodMoonEntityType type){
+//		this.plugin = plugin;
+//		this.nmsEntity = nmsEntity;
+//		this.bukkitEntity = bukkitEntity;
+//		this.type = type;
+//		
+//		this.rand = new Random();
+//	}
 	
+<<<<<<< HEAD
 	public static BloodMoonEntityLiving getBloodMoonEntity(EntityLiving nmsEntity){
 		try{
 			return ReflectionUtils.getFieldValue(nmsEntity.getClass(), "bloodMoonEntity", BloodMoonEntityLiving.class, nmsEntity);
@@ -47,6 +49,19 @@ public abstract class BloodMoonEntityLiving {
 			throw new IllegalArgumentException(nmsEntity.getClass().getName() + " not supported");
 		}
 	}
+=======
+//	public static BloodMoonEntityLiving getBloodMoonEntity(EntityLiving nmsEntity){
+//		try{
+//			return ReflectionUtils.getFieldValue(nmsEntity.getClass(), "bloodMoonEntity", BloodMoonEntityLiving.class, nmsEntity);
+//		}catch (Exception e){
+//			throw new IllegalArgumentException(nmsEntity.getClass().getName() + " not supported");
+//		}
+//	}
+
+    public BloodMoonEntityLiving(CraftServer server, EntityLiving entity) {
+        super(server, entity);
+    }
+>>>>>>> parent of 04ce1ae... Revert "Mess Stuff UP"
 	
 	public void setFollowRangeMultiplier(double multiplier){
 		AttributeInstance attributes = this.nmsEntity.getAttributeInstance(GenericAttributes.b);
