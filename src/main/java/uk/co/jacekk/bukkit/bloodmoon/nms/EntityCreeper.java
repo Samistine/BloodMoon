@@ -28,7 +28,8 @@ public class EntityCreeper extends net.minecraft.server.v1_8_R2.EntityCreeper {
 		this.plugin = (BloodMoon) plugin;
 		
 		this.bukkitEntity = new CraftCreeper((CraftServer) this.plugin.server, this);
-		this.bloodMoonEntity = new BloodMoonEntityCreeper(this.plugin, this, (CraftLivingEntity) this.bukkitEntity, BloodMoonEntityType.CREEPER);
+		//this.bloodMoonEntity = new BloodMoonEntityCreeper(this.plugin, this, (CraftLivingEntity) this.bukkitEntity, BloodMoonEntityType.CREEPER);
+                this.bloodMoonEntity = new BloodMoonEntityCreeper((CraftServer) this.plugin.server, this.bukkitEntity);
 	}
 	
 	@Override
