@@ -19,33 +19,35 @@ import uk.co.jacekk.bukkit.bloodmoon.Feature;
 import uk.co.jacekk.bukkit.bloodmoon.nms.EntitySkeleton;
 
 public class FireArrowsListener implements Listener {
-	
-        private final BloodMoon plugin;
-    
-	public FireArrowsListener(BloodMoon plugin){
-		this.plugin = plugin;
-	}
-	
-	@EventHandler(priority = EventPriority.NORMAL)
-	public void onProjectileHit(ProjectileHitEvent event){
-		Entity entity = event.getEntity();
-		String worldName = entity.getWorld().getName();
-		PluginConfig worldConfig = plugin.getConfig(worldName);
-		
-		if (entity instanceof Projectile && plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.FIRE_ARROWS) && worldConfig.getBoolean(Config.FEATURE_FIRE_ARROWS_IGNITE_TARGET)){
-			Projectile projectile = (Projectile) entity;
-			LivingEntity shooter = (LivingEntity) projectile.getShooter();
-                        if (shooter.getType() == EntityType.SKELETON) return;
 
-			if (shooter != null && ((CraftEntity) shooter).getHandle() instanceof EntitySkeleton && projectile.getFireTicks() > 0){
-                        //if (shooter != null && ((CraftEntity)shooter).getHandle() instanceof EntitySkeleton && projectile.getFireTicks() > 0){
-				Block block = projectile.getWorld().getBlockAt(projectile.getLocation());
+    private final BloodMoon plugin;
 
-				if (block.getType() == Material.AIR){
-					block.setType(Material.FIRE);
-				}
-			}
-		}
-	}
-	
+    public FireArrowsListener(BloodMoon plugin) {
+        this.plugin = plugin;
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onProjectileHit(ProjectileHitEvent event) {
+        Entity entity = event.getEntity();
+        String worldName = entity.getWorld().getName();
+        PluginConfig worldConfig = plugin.getConfig(worldName);
+
+        if (entity instanceof Projectile && plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.FIRE_ARROWS) && worldConfig.getBoolean(Config.FEATURE_FIRE_ARROWS_IGNITE_TARGET)) {
+            Projectile projectile = (Projectile) entity;
+            LivingEntity shooter = (LivingEntity) projectile.getShooter();
+            if (shooter.getType() == EntityType.SKELETON) {
+                return;
+            }
+
+            if (shooter != null && ((CraftEntity) shooter).getHandle() instanceof EntitySkeleton && projectile.getFireTicks() > 0) {
+                //if (shooter != null && ((CraftEntity)shooter).getHandle() instanceof EntitySkeleton && projectile.getFireTicks() > 0){
+                Block block = projectile.getWorld().getBlockAt(projectile.getLocation());
+
+                if (block.getType() == Material.AIR) {
+                    block.setType(Material.FIRE);
+                }
+            }
+        }
+    }
+
 }

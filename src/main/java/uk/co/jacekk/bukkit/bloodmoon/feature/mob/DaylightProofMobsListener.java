@@ -10,21 +10,21 @@ import uk.co.jacekk.bukkit.bloodmoon.BloodMoon;
 import uk.co.jacekk.bukkit.bloodmoon.Feature;
 
 public class DaylightProofMobsListener implements Listener {
-	
-        private final BloodMoon plugin;
-    
-	public DaylightProofMobsListener(BloodMoon plugin){
-		this.plugin = plugin;
-	}
-	
-	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
-	public void onEntityCombust(EntityCombustEvent event){
-		String worldName = event.getEntity().getWorld().getName();
-		EntityType type = event.getEntityType();
-		
-		if ((type == EntityType.ZOMBIE || type == EntityType.SKELETON) && plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.DAYLIGHT_PROOF_MOBS)){
-			event.setCancelled(true);
-		}
-	}
-	
+
+    private final BloodMoon plugin;
+
+    public DaylightProofMobsListener(BloodMoon plugin) {
+        this.plugin = plugin;
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void onEntityCombust(EntityCombustEvent event) {
+        String worldName = event.getEntity().getWorld().getName();
+        EntityType type = event.getEntityType();
+
+        if ((type == EntityType.ZOMBIE || type == EntityType.SKELETON) && plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.DAYLIGHT_PROOF_MOBS)) {
+            event.setCancelled(true);
+        }
+    }
+
 }

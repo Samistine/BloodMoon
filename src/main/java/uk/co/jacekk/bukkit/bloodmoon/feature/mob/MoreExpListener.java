@@ -13,24 +13,25 @@ import uk.co.jacekk.bukkit.bloodmoon.BloodMoon;
 import uk.co.jacekk.bukkit.bloodmoon.Config;
 import uk.co.jacekk.bukkit.bloodmoon.Feature;
 
-public class MoreExpListener implements Listener{
-	
-        private final BloodMoon plugin;
-	public MoreExpListener(BloodMoon plugin){
-		this.plugin = plugin;
-	}
-	
-	@EventHandler(priority = EventPriority.NORMAL)
-	public void onEntityDeath(EntityDeathEvent event){
-		Entity entity = event.getEntity();
-		String worldName = entity.getWorld().getName();
-		PluginConfig worldConfig = plugin.getConfig(worldName);
-		
-		if (entity instanceof Creature && plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.MORE_EXP)){
-			if (!worldConfig.getBoolean(Config.FEATURE_MORE_EXP_IGNORE_SPAWNERS) || plugin.getSpawnReason(entity) != SpawnReason.SPAWNER){
-				event.setDroppedExp(event.getDroppedExp() * Math.max(worldConfig.getInt(Config.FEATURE_MORE_EXP_MULTIPLIER), 0));
-			}
-		}
-	}
-	
+public class MoreExpListener implements Listener {
+
+    private final BloodMoon plugin;
+
+    public MoreExpListener(BloodMoon plugin) {
+        this.plugin = plugin;
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onEntityDeath(EntityDeathEvent event) {
+        Entity entity = event.getEntity();
+        String worldName = entity.getWorld().getName();
+        PluginConfig worldConfig = plugin.getConfig(worldName);
+
+        if (entity instanceof Creature && plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.MORE_EXP)) {
+            if (!worldConfig.getBoolean(Config.FEATURE_MORE_EXP_IGNORE_SPAWNERS) || plugin.getSpawnReason(entity) != SpawnReason.SPAWNER) {
+                event.setDroppedExp(event.getDroppedExp() * Math.max(worldConfig.getInt(Config.FEATURE_MORE_EXP_MULTIPLIER), 0));
+            }
+        }
+    }
+
 }
