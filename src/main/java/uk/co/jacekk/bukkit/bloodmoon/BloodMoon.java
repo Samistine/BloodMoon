@@ -1,5 +1,6 @@
 package uk.co.jacekk.bukkit.bloodmoon;
 
+import uk.co.jacekk.bukkit.bloodmoon.exceptions.EntityRegistrationException;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;

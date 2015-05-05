@@ -1,4 +1,4 @@
-package uk.co.jacekk.bukkit.bloodmoon;
+package uk.co.jacekk.bukkit.bloodmoon.exceptions;
 
 public class EntityRegistrationException extends Exception {
 	

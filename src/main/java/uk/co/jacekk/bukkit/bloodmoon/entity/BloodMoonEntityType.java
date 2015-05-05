@@ -6,7 +6,7 @@ import org.bukkit.craftbukkit.v1_8_R2.CraftWorld;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import uk.co.jacekk.bukkit.baseplugin.util.ReflectionUtils;
-import uk.co.jacekk.bukkit.bloodmoon.EntityRegistrationException;
+import uk.co.jacekk.bukkit.bloodmoon.exceptions.EntityRegistrationException;
 
 import java.util.List;
 import java.util.Map;
