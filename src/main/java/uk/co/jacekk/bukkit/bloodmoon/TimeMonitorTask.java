@@ -1,19 +1,17 @@
 package uk.co.jacekk.bukkit.bloodmoon;
 
 import java.util.Random;
-
 import org.bukkit.World;
-
 import uk.co.jacekk.bukkit.baseplugin.config.PluginConfig;
-import uk.co.jacekk.bukkit.baseplugin.scheduler.BaseTask;
 
-public class TimeMonitorTask extends BaseTask<BloodMoon> {
+public class TimeMonitorTask implements Runnable {
 	
 	private final Random random;
+        private final BloodMoon plugin;
 	
 	public TimeMonitorTask(BloodMoon plugin){
-		super(plugin);
-		this.random = new Random();
+            this.plugin = plugin;
+            this.random = new Random();
 	}
 	
 	@Override
