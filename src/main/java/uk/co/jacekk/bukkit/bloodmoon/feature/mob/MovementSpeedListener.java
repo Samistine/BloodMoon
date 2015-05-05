@@ -10,10 +10,10 @@ import org.bukkit.craftbukkit.v1_8_R2.entity.CraftLivingEntity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 
 import uk.co.jacekk.bukkit.baseplugin.config.PluginConfig;
-import uk.co.jacekk.bukkit.baseplugin.event.BaseListener;
 import uk.co.jacekk.bukkit.bloodmoon.BloodMoon;
 import uk.co.jacekk.bukkit.bloodmoon.Config;
 import uk.co.jacekk.bukkit.bloodmoon.Feature;
@@ -21,13 +21,13 @@ import uk.co.jacekk.bukkit.bloodmoon.entity.BloodMoonEntityLiving;
 import uk.co.jacekk.bukkit.bloodmoon.event.BloodMoonEndEvent;
 import uk.co.jacekk.bukkit.bloodmoon.event.BloodMoonStartEvent;
 
-public class MovementSpeedListener extends BaseListener<BloodMoon> {
+public class MovementSpeedListener implements Listener{
 	
-	private Random random;
+        private final BloodMoon plugin;
+	private final Random random;
 	
 	public MovementSpeedListener(BloodMoon plugin){
-		super(plugin);
-		
+		this.plugin = plugin;
 		this.random = new Random();
 	}
 	

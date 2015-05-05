@@ -4,20 +4,22 @@ import org.bukkit.entity.Creature;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.inventory.ItemStack;
 
 import uk.co.jacekk.bukkit.baseplugin.config.PluginConfig;
-import uk.co.jacekk.bukkit.baseplugin.event.BaseListener;
 import uk.co.jacekk.bukkit.bloodmoon.BloodMoon;
 import uk.co.jacekk.bukkit.bloodmoon.Config;
 import uk.co.jacekk.bukkit.bloodmoon.Feature;
 
-public class MoreDropsListener extends BaseListener<BloodMoon> {
+public class MoreDropsListener implements Listener {
 	
+        private final BloodMoon plugin;
+    
 	public MoreDropsListener(BloodMoon plugin){
-		super(plugin);
+		this.plugin = plugin;
 	}
 	
 	@EventHandler(priority = EventPriority.NORMAL)

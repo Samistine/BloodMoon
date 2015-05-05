@@ -3,16 +3,18 @@ package uk.co.jacekk.bukkit.bloodmoon.feature.mob;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityCombustEvent;
 
-import uk.co.jacekk.bukkit.baseplugin.event.BaseListener;
 import uk.co.jacekk.bukkit.bloodmoon.BloodMoon;
 import uk.co.jacekk.bukkit.bloodmoon.Feature;
 
-public class DaylightProofMobsListener extends BaseListener<BloodMoon> {
+public class DaylightProofMobsListener implements Listener {
 	
+        private final BloodMoon plugin;
+    
 	public DaylightProofMobsListener(BloodMoon plugin){
-		super(plugin);
+		this.plugin = plugin;
 	}
 	
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
