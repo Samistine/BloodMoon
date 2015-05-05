@@ -35,11 +35,11 @@ public class FireArrowsListener implements Listener {
         if (entity instanceof Projectile && plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.FIRE_ARROWS) && worldConfig.getBoolean(Config.FEATURE_FIRE_ARROWS_IGNITE_TARGET)) {
             Projectile projectile = (Projectile) entity;
             LivingEntity shooter = (LivingEntity) projectile.getShooter();
-            if (shooter.getType() == EntityType.SKELETON) {
+            if (shooter.getType() == EntityType.SKELETON) { //Not sure why this is here, or why fire arrows even work with it here
                 return;
             }
 
-            if (shooter != null && ((CraftEntity) shooter).getHandle() instanceof EntitySkeleton && projectile.getFireTicks() > 0) {
+            if (((CraftEntity) shooter).getHandle() instanceof EntitySkeleton && projectile.getFireTicks() > 0) {
                 //if (shooter != null && ((CraftEntity)shooter).getHandle() instanceof EntitySkeleton && projectile.getFireTicks() > 0){
                 Block block = projectile.getWorld().getBlockAt(projectile.getLocation());
 
