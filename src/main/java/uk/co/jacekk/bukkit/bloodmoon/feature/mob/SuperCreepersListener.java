@@ -1,7 +1,7 @@
 package uk.co.jacekk.bukkit.bloodmoon.feature.mob;
 
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_8_R2.entity.CraftCreeper;
+import org.bukkit.entity.Creeper;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
@@ -34,7 +34,7 @@ public class SuperCreepersListener implements Listener {
         if (plugin.isFeatureEnabled(worldName, Feature.SUPER_CREEPERS) && worldConfig.getBoolean(Config.FEATURE_SUPER_CREEPERS_LIGHTNING)) {
             for (LivingEntity entity : world.getLivingEntities()) {
                 if (entity.getType() == EntityType.CREEPER) {
-                    ((CraftCreeper) entity).setPowered(true);
+                    ((Creeper) entity).setPowered(true);
                 }
             }
         }
@@ -49,7 +49,7 @@ public class SuperCreepersListener implements Listener {
         if (plugin.isFeatureEnabled(worldName, Feature.SUPER_CREEPERS) && worldConfig.getBoolean(Config.FEATURE_SUPER_CREEPERS_LIGHTNING)) {
             for (LivingEntity entity : world.getLivingEntities()) {
                 if (entity.getType() == EntityType.CREEPER) {
-                    ((CraftCreeper) entity).setPowered(false);
+                    ((Creeper) entity).setPowered(false);
                 }
             }
         }
@@ -63,7 +63,7 @@ public class SuperCreepersListener implements Listener {
         PluginConfig worldConfig = plugin.getConfig(worldName);
 
         if (entity.getType() == EntityType.CREEPER && plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.SUPER_CREEPERS) && worldConfig.getBoolean(Config.FEATURE_SUPER_CREEPERS_LIGHTNING)) {
-            ((CraftCreeper) entity).setPowered(true);
+            ((Creeper)entity).setPowered(true);
         }
     }
 
