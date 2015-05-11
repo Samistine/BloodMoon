@@ -35,7 +35,7 @@ public class BloodMoon extends BasePlugin {
         try {
             BloodMoonEntityType.registerEntities();
         } catch (EntityRegistrationException e) {
-            e.printStackTrace();
+            e.printStackTrace();//
         }
 
         for (World world : this.getServer().getWorlds()) {
