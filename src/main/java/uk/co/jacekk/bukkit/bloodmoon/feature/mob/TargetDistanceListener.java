@@ -70,6 +70,7 @@ public class TargetDistanceListener implements Listener {
         if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.TARGET_DISTANCE)) {
             if (worldConfig.getStringList(Config.FEATURE_TARGET_DISTANCE_MOBS).contains(entity.getType().name())) {
                 try {
+                    //((CraftLivingEntity)entity).setfol
                     BloodMoonEntityLiving bloodMoonEntity = BloodMoonEntityLiving.getBloodMoonEntity(((CraftLivingEntity) entity).getHandle());
                     bloodMoonEntity.setFollowRangeMultiplier(worldConfig.getDouble(Config.FEATURE_TARGET_DISTANCE_MULTIPLIER));
                 } catch (IllegalArgumentException e) {
