@@ -28,7 +28,7 @@ public class MoreSpawningListener extends BaseListener<BloodMoon> {
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onCreatureSpawn(CreatureSpawnEvent event) {
-        if (event.getSpawnReason() != SpawnReason.NATURAL) {
+        if (event.getSpawnReason() != SpawnReason.NATURAL) { //TODO: Should check for Custom instead of checking against natural?
             return;
         }
 
