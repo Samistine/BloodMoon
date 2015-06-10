@@ -18,14 +18,14 @@ public class EntitySpider extends net.minecraft.server.v1_8_R3.EntitySpider {
 	public EntitySpider(World world){
 		super(world);
 		
-		Plugin plugin = Bukkit.getPluginManager().getPlugin("BloodMoon");
+		Plugin gPlugin = Bukkit.getPluginManager().getPlugin("BloodMoon");
 		
-		if (plugin == null || !(plugin instanceof BloodMoon)){
+		if (gPlugin == null || !(gPlugin instanceof BloodMoon)){
 			this.world.removeEntity(this);
 			return;
 		}
 		
-		this.plugin = (BloodMoon) plugin;
+		this.plugin = (BloodMoon) gPlugin;
 		
 		this.bukkitEntity = new CraftSpider((CraftServer) this.plugin.server, this);
 		this.bloodMoonEntity = new BloodMoonEntitySpider(this.plugin, this, (CraftLivingEntity) this.bukkitEntity, BloodMoonEntityType.SPIDER);
