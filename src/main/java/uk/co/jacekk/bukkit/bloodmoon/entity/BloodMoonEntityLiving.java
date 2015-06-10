@@ -104,6 +104,9 @@ public abstract class BloodMoonEntityLiving {
         attributes.c(modifier);
     }
 
-    public abstract void onTick();
+    //public abstract void onTick();
+    public void onTick() {
+        
+    }
 
 }
