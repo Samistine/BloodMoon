@@ -16,44 +16,44 @@ import uk.co.jacekk.bukkit.bloodmoon.event.BloodMoonEndEvent;
 import uk.co.jacekk.bukkit.bloodmoon.event.BloodMoonStartEvent;
 
 public class GiantsListener extends BaseListener<BloodMoon> {
-	
-	private final HashMap<String, Integer> worldTasks = new HashMap<String, Integer>();
-	
-	public GiantsListener(BloodMoon plugin){
-		super(plugin);
-	}
-	
-	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
-	public void onStart(BloodMoonStartEvent event){
-		CraftWorld world = (CraftWorld) event.getWorld();
-		String worldName = world.getName();
-		
-		if (plugin.isFeatureEnabled(worldName, Feature.GIANTS)){
-			int taskID = plugin.scheduler.scheduleSyncRepeatingTask(plugin, new GiantsTask(plugin, world), 0L, 100L);
-			
-			if (taskID != -1){
-				this.worldTasks.put(worldName, taskID);
-			}
-		}
-	}
-	
-	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
-	public void onEnd(BloodMoonEndEvent event){
-		World world = event.getWorld();
-		String worldName = world.getName();
-		
-		Integer taskID = this.worldTasks.get(worldName);
-		
-		if (taskID != null){
-			plugin.scheduler.cancelTask(taskID);
-			this.worldTasks.remove(worldName);
-			
-			for (LivingEntity entity : event.getWorld().getLivingEntities()){
-				if (entity.getType() == EntityType.GIANT){
-					entity.remove();
-				}
-			}
-		}
-	}
-	
+
+    private final HashMap<String, Integer> worldTasks = new HashMap<String, Integer>();
+
+    public GiantsListener(BloodMoon plugin) {
+        super(plugin);
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void onStart(BloodMoonStartEvent event) {
+        CraftWorld world = (CraftWorld) event.getWorld();
+        String worldName = world.getName();
+
+        if (plugin.isFeatureEnabled(worldName, Feature.GIANTS)) {
+            int taskID = plugin.scheduler.scheduleSyncRepeatingTask(plugin, new GiantsTask(plugin, world), 0L, 100L);
+
+            if (taskID != -1) {
+                this.worldTasks.put(worldName, taskID);
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void onEnd(BloodMoonEndEvent event) {
+        World world = event.getWorld();
+        String worldName = world.getName();
+
+        Integer taskID = this.worldTasks.get(worldName);
+
+        if (taskID != null) {
+            plugin.scheduler.cancelTask(taskID);
+            this.worldTasks.remove(worldName);
+
+            for (LivingEntity entity : event.getWorld().getLivingEntities()) {
+                if (entity.getType() == EntityType.GIANT) {
+                    entity.remove();
+                }
+            }
+        }
+    }
+
 }
