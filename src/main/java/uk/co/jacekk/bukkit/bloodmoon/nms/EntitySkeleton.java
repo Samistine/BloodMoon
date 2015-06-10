@@ -132,8 +132,7 @@ public class EntitySkeleton extends net.minecraft.server.v1_8_R3.EntitySkeleton 
         PluginConfig worldConfig = plugin.getConfig(worldName);
 
         if (plugin.isActive(worldName) && worldConfig.getBoolean(Config.FEATURE_FIRE_ARROWS_ENABLED) && (this.random.nextInt(100) < worldConfig.getInt(Config.FEATURE_FIRE_ARROWS_CHANCE))
-                ||     
-                (EnchantmentManager.getEnchantmentLevel(Enchantment.ARROW_FIRE.id, this.bA()) > 0 || this.getSkeletonType() == 1)) {
+                || (EnchantmentManager.getEnchantmentLevel(Enchantment.ARROW_FIRE.id, this.bA()) > 0 || this.getSkeletonType() == 1)) {
             final EntityCombustEvent event = new EntityCombustEvent(entityarrow.getBukkitEntity(), 100);
             this.world.getServer().getPluginManager().callEvent(event);
             if (!event.isCancelled()) {
@@ -146,7 +145,6 @@ public class EntitySkeleton extends net.minecraft.server.v1_8_R3.EntitySkeleton 
 //            //entityarrow.setOnFire(1024);
 //            //}
 //        }
-
         final EntityShootBowEvent event2 = CraftEventFactory.callEntityShootBowEvent(this, this.bA(), entityarrow, 0.8f);
         if (event2.isCancelled()) {
             event2.getProjectile().remove();
