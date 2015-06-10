@@ -3,7 +3,7 @@ package uk.co.jacekk.bukkit.bloodmoon.feature.spawning;
 import java.util.HashMap;
 
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_8_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
