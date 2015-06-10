@@ -112,20 +112,20 @@ public class EntitySkeleton extends net.minecraft.server.v1_8_R3.EntitySkeleton 
 //		}
 //		return true;
 //	}
-//	@Override
-    public void a(net.minecraft.server.v1_8_R2.EntityLiving entityLiving, float f) {
+    @Override
+    public void a(net.minecraft.server.v1_8_R3.EntityLiving entityLiving, float f) {
 
         final EntityArrow entityarrow = new EntityArrow(this.world, this, entityLiving, 1.6f, 14 - this.world.getDifficulty().a() * 4);
-        int i = EnchantmentManager.getEnchantmentLevel(Enchantment.ARROW_DAMAGE.id, bA());//assumming bz()
-        int j = EnchantmentManager.getEnchantmentLevel(Enchantment.ARROW_KNOCKBACK.id, bA()); //assumming bz()
+        int arrow_damage = EnchantmentManager.getEnchantmentLevel(Enchantment.ARROW_DAMAGE.id, bA());//assumming bz()
+        int knockback = EnchantmentManager.getEnchantmentLevel(Enchantment.ARROW_KNOCKBACK.id, bA()); //assumming bz()
         entityarrow.b(f * 2.0F + this.random.nextGaussian() * 0.25D + this.world.getDifficulty().a() * 0.11F);
-        if (i > 0) {
-            entityarrow.b(entityarrow.j() + i * 0.5 + 0.5);
+        if (arrow_damage > 0) {
+            entityarrow.b(entityarrow.j() + arrow_damage * 0.5 + 0.5);
             //set enchantment level
         }
 
-        if (j > 0) {
-            entityarrow.setKnockbackStrength(j);
+        if (knockback > 0) {
+            entityarrow.setKnockbackStrength(knockback);
         }
 
         String worldName = this.world.worldData.getName();
