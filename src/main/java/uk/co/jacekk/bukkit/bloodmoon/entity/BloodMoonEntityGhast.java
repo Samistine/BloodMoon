@@ -12,9 +12,4 @@ public class BloodMoonEntityGhast extends BloodMoonEntityLiving {
         super(plugin, nmsEntity, bukkitEntity, type);
     }
 
-    @Override
-    public void onTick() {
-
-    }
-
 }

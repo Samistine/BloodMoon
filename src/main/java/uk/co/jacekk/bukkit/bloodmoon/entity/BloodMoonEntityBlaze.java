@@ -9,10 +9,5 @@ public class BloodMoonEntityBlaze extends BloodMoonEntityMonster {
     public BloodMoonEntityBlaze(BloodMoon plugin, EntityMonster nmsEntity, CraftLivingEntity bukkitEntity, BloodMoonEntityType type) {
         super(plugin, nmsEntity, bukkitEntity, type);
     }
-
-    @Override
-    public void onTick() {
-
-    }
-
+    
 }
