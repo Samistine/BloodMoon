@@ -17,12 +17,10 @@ import uk.co.jacekk.bukkit.bloodmoon.event.BloodMoonStartEvent;
 
 public class WeatherListener extends BaseListener<BloodMoon> {
 	
-	private Random random;
+	private Random random = new Random();
 	
 	public WeatherListener(BloodMoon plugin){
 		super(plugin);
-		
-		this.random = new Random();
 	}
 	
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
