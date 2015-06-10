@@ -43,12 +43,14 @@ public class EntitySkeleton extends net.minecraft.server.v1_8_R3.EntitySkeleton 
     public EntitySkeleton(net.minecraft.server.v1_8_R3.World world) {
         super(world);
 
-        plugin = (BloodMoon)Bukkit.getPluginManager().getPlugin("BloodMoon");
+        Plugin plugin = Bukkit.getPluginManager().getPlugin("BloodMoon");
 
-        if (plugin == null) {
+        if (plugin == null || !(plugin instanceof BloodMoon)) {
             this.world.removeEntity(this);
             return;
         }
+
+        this.plugin = (BloodMoon) plugin;
 
         this.bukkitEntity = new CraftSkeleton((CraftServer) this.plugin.server, this);
         this.bloodMoonEntity = new BloodMoonEntitySkeleton(this.plugin, this, (CraftLivingEntity) this.bukkitEntity, BloodMoonEntityType.SKELETON);
