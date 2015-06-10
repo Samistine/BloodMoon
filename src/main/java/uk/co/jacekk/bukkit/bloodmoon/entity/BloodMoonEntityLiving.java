@@ -3,12 +3,12 @@ package uk.co.jacekk.bukkit.bloodmoon.entity;
 import java.util.Random;
 import java.util.UUID;
 
-import net.minecraft.server.v1_8_R2.AttributeInstance;
-import net.minecraft.server.v1_8_R2.AttributeModifier;
-import net.minecraft.server.v1_8_R2.EntityLiving;
-import net.minecraft.server.v1_8_R2.GenericAttributes;
+import net.minecraft.server.v1_8_R3.AttributeInstance;
+import net.minecraft.server.v1_8_R3.AttributeModifier;
+import net.minecraft.server.v1_8_R3.EntityLiving;
+import net.minecraft.server.v1_8_R3.GenericAttributes;
 
-import org.bukkit.craftbukkit.v1_8_R2.entity.CraftLivingEntity;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
 
 import uk.co.jacekk.bukkit.baseplugin.util.ReflectionUtils;
 import uk.co.jacekk.bukkit.bloodmoon.BloodMoon;
@@ -46,7 +46,7 @@ public abstract class BloodMoonEntityLiving {
 	}
 	
 	public void setFollowRangeMultiplier(double multiplier){
-		AttributeInstance attributes = this.nmsEntity.getAttributeInstance(GenericAttributes.b);
+		AttributeInstance attributes = this.nmsEntity.getAttributeInstance(GenericAttributes.FOLLOW_RANGE);
 		AttributeModifier modifier = new AttributeModifier(followRangeUID, "BloodMoon follow range multiplier", multiplier, 1);
 		
 		attributes.c(modifier);
@@ -54,7 +54,7 @@ public abstract class BloodMoonEntityLiving {
 	}
 	
 	public void clearFollowRangeMultiplier(){
-		AttributeInstance attributes = this.nmsEntity.getAttributeInstance(GenericAttributes.b);
+		AttributeInstance attributes = this.nmsEntity.getAttributeInstance(GenericAttributes.FOLLOW_RANGE);
 		AttributeModifier modifier = new AttributeModifier(followRangeUID, "BloodMoon follow range multiplier", 1.0d, 1);
 		
 		attributes.c(modifier);
@@ -77,7 +77,7 @@ public abstract class BloodMoonEntityLiving {
 	
 	public void setSpeedMultiplier(double multiplier){
             try {
-                AttributeInstance theAttribute = this.nmsEntity.getAttributeInstance(GenericAttributes.d);
+                AttributeInstance theAttribute = this.nmsEntity.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED);
                 if (theAttribute == null) {
                     System.err.println("That was null, wierd");
                     return;
@@ -99,7 +99,7 @@ public abstract class BloodMoonEntityLiving {
 	}
 	
 	public void clearSpeedMultiplier(){
-		AttributeInstance attributes = this.nmsEntity.getAttributeInstance(GenericAttributes.d);
+		AttributeInstance attributes = this.nmsEntity.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED);
 		AttributeModifier modifier = new AttributeModifier(movementSpeedUID, "BloodMoon movement speed multiplier", 1.0d, 1);
 		
 		attributes.c(modifier);

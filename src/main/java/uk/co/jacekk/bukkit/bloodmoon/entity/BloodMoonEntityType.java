@@ -1,8 +1,8 @@
 package uk.co.jacekk.bukkit.bloodmoon.entity;
 
-import net.minecraft.server.v1_8_R2.*;
+import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_8_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import uk.co.jacekk.bukkit.baseplugin.util.ReflectionUtils;
@@ -13,16 +13,16 @@ import java.util.Map;
 
 public enum BloodMoonEntityType {
 	
-	CREEPER("Creeper", 50, EntityType.CREEPER, net.minecraft.server.v1_8_R2.EntityCreeper.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityCreeper.class),
-	ENDERMAN("Enderman", 58, EntityType.ENDERMAN, net.minecraft.server.v1_8_R2.EntityEnderman.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityEnderman.class),
-	SKELETON("Skeleton", 51, EntityType.SKELETON, net.minecraft.server.v1_8_R2.EntitySkeleton.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntitySkeleton.class),
-	SPIDER("Spider", 52, EntityType.SPIDER, net.minecraft.server.v1_8_R2.EntitySpider.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntitySpider.class),
-	ZOMBIE("Zombie", 54, EntityType.ZOMBIE, net.minecraft.server.v1_8_R2.EntityZombie.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityZombie.class),
-	GHAST("Ghast", 56, EntityType.GHAST, net.minecraft.server.v1_8_R2.EntityGhast.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityGhast.class),
-	BLAZE("Blaze", 61, EntityType.BLAZE, net.minecraft.server.v1_8_R2.EntityBlaze.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityBlaze.class),
-	WITHER("WitherBoss", 64, EntityType.WITHER, net.minecraft.server.v1_8_R2.EntityWither.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityWither.class),
-	WITCH("Witch", 66, EntityType.WITCH, net.minecraft.server.v1_8_R2.EntityWitch.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityWitch.class),
-	GIANT_ZOMBIE("Giant", 53, EntityType.GIANT, net.minecraft.server.v1_8_R2.EntityGiantZombie.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityGiantZombie.class);
+	CREEPER("Creeper", 50, EntityType.CREEPER, net.minecraft.server.v1_8_R3.EntityCreeper.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityCreeper.class),
+	ENDERMAN("Enderman", 58, EntityType.ENDERMAN, net.minecraft.server.v1_8_R3.EntityEnderman.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityEnderman.class),
+	SKELETON("Skeleton", 51, EntityType.SKELETON, net.minecraft.server.v1_8_R3.EntitySkeleton.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntitySkeleton.class),
+	SPIDER("Spider", 52, EntityType.SPIDER, net.minecraft.server.v1_8_R3.EntitySpider.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntitySpider.class),
+	ZOMBIE("Zombie", 54, EntityType.ZOMBIE, net.minecraft.server.v1_8_R3.EntityZombie.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityZombie.class),
+	GHAST("Ghast", 56, EntityType.GHAST, net.minecraft.server.v1_8_R3.EntityGhast.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityGhast.class),
+	BLAZE("Blaze", 61, EntityType.BLAZE, net.minecraft.server.v1_8_R3.EntityBlaze.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityBlaze.class),
+	WITHER("WitherBoss", 64, EntityType.WITHER, net.minecraft.server.v1_8_R3.EntityWither.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityWither.class),
+	WITCH("Witch", 66, EntityType.WITCH, net.minecraft.server.v1_8_R3.EntityWitch.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityWitch.class),
+	GIANT_ZOMBIE("Giant", 53, EntityType.GIANT, net.minecraft.server.v1_8_R3.EntityGiantZombie.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityGiantZombie.class);
 	
 	private String name;
 	private int id;

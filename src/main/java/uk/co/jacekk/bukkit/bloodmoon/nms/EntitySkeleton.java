@@ -1,28 +1,28 @@
 package uk.co.jacekk.bukkit.bloodmoon.nms;
 
 import java.util.List;
-import net.minecraft.server.v1_8_R2.Enchantment;
-import net.minecraft.server.v1_8_R2.EnchantmentManager;
-import net.minecraft.server.v1_8_R2.EntityArrow;
-import net.minecraft.server.v1_8_R2.EntityHuman;
-import net.minecraft.server.v1_8_R2.IRangedEntity;
-import net.minecraft.server.v1_8_R2.Item;
-import net.minecraft.server.v1_8_R2.ItemBow;
-import net.minecraft.server.v1_8_R2.Items;
-import net.minecraft.server.v1_8_R2.NBTTagList;
-import net.minecraft.server.v1_8_R2.PathfinderGoalFleeSun;
-import net.minecraft.server.v1_8_R2.PathfinderGoalFloat;
-import net.minecraft.server.v1_8_R2.PathfinderGoalHurtByTarget;
-import net.minecraft.server.v1_8_R2.PathfinderGoalLookAtPlayer;
-import net.minecraft.server.v1_8_R2.PathfinderGoalNearestAttackableTarget;
-import net.minecraft.server.v1_8_R2.PathfinderGoalRandomLookaround;
-import net.minecraft.server.v1_8_R2.PathfinderGoalRandomStroll;
-import net.minecraft.server.v1_8_R2.PathfinderGoalRestrictSun;
+import net.minecraft.server.v1_8_R3.Enchantment;
+import net.minecraft.server.v1_8_R3.EnchantmentManager;
+import net.minecraft.server.v1_8_R3.EntityArrow;
+import net.minecraft.server.v1_8_R3.EntityHuman;
+import net.minecraft.server.v1_8_R3.IRangedEntity;
+import net.minecraft.server.v1_8_R3.Item;
+import net.minecraft.server.v1_8_R3.ItemBow;
+import net.minecraft.server.v1_8_R3.Items;
+import net.minecraft.server.v1_8_R3.NBTTagList;
+import net.minecraft.server.v1_8_R3.PathfinderGoalFleeSun;
+import net.minecraft.server.v1_8_R3.PathfinderGoalFloat;
+import net.minecraft.server.v1_8_R3.PathfinderGoalHurtByTarget;
+import net.minecraft.server.v1_8_R3.PathfinderGoalLookAtPlayer;
+import net.minecraft.server.v1_8_R3.PathfinderGoalNearestAttackableTarget;
+import net.minecraft.server.v1_8_R3.PathfinderGoalRandomLookaround;
+import net.minecraft.server.v1_8_R3.PathfinderGoalRandomStroll;
+import net.minecraft.server.v1_8_R3.PathfinderGoalRestrictSun;
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_8_R2.CraftServer;
-import org.bukkit.craftbukkit.v1_8_R2.entity.CraftLivingEntity;
-import org.bukkit.craftbukkit.v1_8_R2.entity.CraftSkeleton;
-import org.bukkit.craftbukkit.v1_8_R2.event.CraftEventFactory;
+import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftSkeleton;
+import org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory;
 import org.bukkit.event.entity.EntityCombustEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.inventory.ItemStack;
@@ -35,12 +35,12 @@ import uk.co.jacekk.bukkit.bloodmoon.entity.BloodMoonEntitySkeleton;
 import uk.co.jacekk.bukkit.bloodmoon.entity.BloodMoonEntityType;
 
 //public class EntitySkeleton {
-public class EntitySkeleton extends net.minecraft.server.v1_8_R2.EntitySkeleton implements IRangedEntity {
+public class EntitySkeleton extends net.minecraft.server.v1_8_R3.EntitySkeleton implements IRangedEntity {
 
     private BloodMoon plugin;
     private BloodMoonEntitySkeleton bloodMoonEntity;
 
-    public EntitySkeleton(net.minecraft.server.v1_8_R2.World world) {
+    public EntitySkeleton(net.minecraft.server.v1_8_R3.World world) {
         super(world);
 
         Plugin plugin = Bukkit.getPluginManager().getPlugin("BloodMoon");

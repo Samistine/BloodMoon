@@ -1,8 +1,8 @@
 package uk.co.jacekk.bukkit.bloodmoon.nms;
 
-import net.minecraft.server.v1_8_R2.EntityInsentient;
-import net.minecraft.server.v1_8_R2.EntityLiving;
-import net.minecraft.server.v1_8_R2.IRangedEntity;
+import net.minecraft.server.v1_8_R3.EntityInsentient;
+import net.minecraft.server.v1_8_R3.EntityLiving;
+import net.minecraft.server.v1_8_R3.IRangedEntity;
 import uk.co.jacekk.bukkit.bloodmoon.BloodMoon;
 
 public class PathfinderGoalArrowAttack {

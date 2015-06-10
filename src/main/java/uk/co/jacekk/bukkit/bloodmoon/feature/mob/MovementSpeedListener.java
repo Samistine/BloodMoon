@@ -1,12 +1,9 @@
 package uk.co.jacekk.bukkit.bloodmoon.feature.mob;
 
 import java.util.Random;
-import net.minecraft.server.v1_8_R2.EntityInsentient;
-import net.minecraft.server.v1_8_R2.GenericAttributes;
-import org.bukkit.Bukkit;
 
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_8_R2.entity.CraftLivingEntity;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
