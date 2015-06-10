@@ -11,10 +11,5 @@ public class BloodMoonEntityWither extends BloodMoonEntityMonster {
     public BloodMoonEntityWither(BloodMoon plugin, EntityMonster nmsEntity, CraftLivingEntity bukkitEntity, BloodMoonEntityType type) {
         super(plugin, nmsEntity, bukkitEntity, type);
     }
-
-    @Override
-    public void onTick() {
-
-    }
-
+    
 }
