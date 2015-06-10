@@ -31,8 +31,6 @@ public class SpawnOnSleepListener extends BaseListener<BloodMoon> {
         if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.SPAWN_ON_SLEEP)) {
             String mobName = ListUtils.getRandom(worldConfig.getStringList(Config.FEATURE_SPAWN_ON_SLEEP_SPAWN));
             EntityType creatureType = EntityType.fromName(mobName.toUpperCase());
-            
-
 
             if (creatureType != null) {
                 //world.spawn(location, creatureType.getEntityClass(), SpawnReason.NATURAL);
