@@ -21,7 +21,7 @@ public class MoreExpListener implements Listener {
         this.plugin = plugin;
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onEntityDeath(EntityDeathEvent event) {
         Entity entity = event.getEntity();
         String worldName = entity.getWorld().getName();

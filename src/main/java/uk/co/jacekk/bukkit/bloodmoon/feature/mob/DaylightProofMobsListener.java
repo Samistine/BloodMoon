@@ -22,9 +22,12 @@ public class DaylightProofMobsListener implements Listener {
         String worldName = event.getEntity().getWorld().getName();
         EntityType type = event.getEntityType();
 
-        if ((type == EntityType.ZOMBIE || type == EntityType.SKELETON) && plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.DAYLIGHT_PROOF_MOBS)) {
-            event.setCancelled(true);
+        if (type == EntityType.ZOMBIE || type == EntityType.SKELETON) {
+            if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.DAYLIGHT_PROOF_MOBS)) {
+                event.setCancelled(true);
+            }
         }
+
     }
 
 }

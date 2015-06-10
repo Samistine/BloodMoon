@@ -21,11 +21,10 @@ import uk.co.jacekk.bukkit.bloodmoon.event.BloodMoonStartEvent;
 public class MovementSpeedListener implements Listener {
 
     private final BloodMoon plugin;
-    private final Random random;
+    private final Random random = new Random();
 
     public MovementSpeedListener(BloodMoon plugin) {
         this.plugin = plugin;
-        this.random = new Random();
     }
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
@@ -76,7 +75,7 @@ public class MovementSpeedListener implements Listener {
             if (worldConfig.getStringList(Config.FEATURE_MOVEMENT_SPEED_MOBS).contains(entity.getType().name())) {
                 try {
                     BloodMoonEntityLiving bloodMoonEntity = BloodMoonEntityLiving.getBloodMoonEntity(((CraftLivingEntity) entity).getHandle());
-                                        //EntityInsentient sam = (EntityInsentient)((CraftLivingEntity) entity).getHandle();
+                    //EntityInsentient sam = (EntityInsentient)((CraftLivingEntity) entity).getHandle();
                     //System.err.println(bloodMoonEntity.toString() + "le mob");
                     double multiplier = worldConfig.getDouble((this.random.nextInt(100) < worldConfig.getInt(Config.FEATURE_MOVEMENT_SPEED_FAST_CHANCE)) ? Config.FEATURE_MOVEMENT_SPEED_FAST_MULTIPLIER : Config.FEATURE_MOVEMENT_SPEED_MULTIPLIER);
                     bloodMoonEntity.setSpeedMultiplier(multiplier);

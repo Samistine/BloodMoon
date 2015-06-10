@@ -2,8 +2,8 @@ package uk.co.jacekk.bukkit.bloodmoon.feature.spawning;
 
 import java.util.ArrayList;
 import java.util.Random;
+import org.bukkit.World;
 
-import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -11,7 +11,6 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -25,26 +24,25 @@ import uk.co.jacekk.bukkit.bloodmoon.Feature;
 
 public class SpawnOnKillListener extends BaseListener<BloodMoon> {
 
-    private final Random random;
-    private ArrayList<DamageCause> playerCauses;
+    private final Random random = new Random();
+    private final ArrayList<DamageCause> playerCauses = new ArrayList<DamageCause>() {
+        {
+            add(DamageCause.ENTITY_ATTACK);
+            add(DamageCause.MAGIC);
+            add(DamageCause.POISON);
+            add(DamageCause.FIRE_TICK);
+            add(DamageCause.PROJECTILE);
+        }
+    };
 
     public SpawnOnKillListener(BloodMoon plugin) {
         super(plugin);
-
-        this.random = new Random();
-        this.playerCauses = new ArrayList<DamageCause>();
-
-        this.playerCauses.add(DamageCause.ENTITY_ATTACK);
-        this.playerCauses.add(DamageCause.MAGIC);
-        this.playerCauses.add(DamageCause.POISON);
-        this.playerCauses.add(DamageCause.FIRE_TICK);
-        this.playerCauses.add(DamageCause.PROJECTILE);
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onEntityDeath(EntityDeathEvent event) {
         Entity entity = event.getEntity();
-        CraftWorld world = (CraftWorld) entity.getWorld();
+        World world = entity.getWorld();
         String worldName = world.getName();
         PluginConfig worldConfig = plugin.getConfig(worldName);
 
@@ -59,7 +57,8 @@ public class SpawnOnKillListener extends BaseListener<BloodMoon> {
                     EntityType creatureType = EntityType.fromName(mobName.toUpperCase());
 
                     if (creatureType != null) {
-                        world.spawn(creature.getLocation(), creatureType.getEntityClass(), SpawnReason.NATURAL);
+                        world.spawnEntity(creature.getLocation(), creatureType);
+                        //world.spawn(creature.getLocation(), creatureType.getEntityClass(), SpawnReason.NATURAL);
                     }
                 }
             }

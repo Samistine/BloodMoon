@@ -24,12 +24,10 @@ import uk.co.jacekk.bukkit.bloodmoon.event.BloodMoonStartEvent;
 public class ZombieArmorListener implements Listener {
 
     private final BloodMoon plugin;
-    private final Random random;
+    private final Random random = new Random();
 
     public ZombieArmorListener(BloodMoon plugin) {
         this.plugin = plugin;
-
-        this.random = new Random();
     }
 
     private void giveArmor(LivingEntity entity, PluginConfig worldConfig) {
