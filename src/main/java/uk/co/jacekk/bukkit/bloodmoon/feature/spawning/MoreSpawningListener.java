@@ -2,9 +2,8 @@ package uk.co.jacekk.bukkit.bloodmoon.feature.spawning;
 
 import java.util.Random;
 
-import net.minecraft.server.v1_8_R3.World;
-
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
@@ -36,8 +35,8 @@ public class MoreSpawningListener extends BaseListener<BloodMoon> {
 
         EntityType type = event.getEntityType();
         Location location = event.getLocation();
-        World world = ((CraftWorld) location.getWorld()).getHandle();
-        String worldName = world.getWorldData().getName();
+        World world = location.getWorld();
+        String worldName = world.getName();
         PluginConfig worldConfig = plugin.getConfig(worldName);
 
         if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.MORE_SPAWNING) && worldConfig.getStringList(Config.FEATURE_MORE_SPAWNING_MOBS).contains(type.getName().toUpperCase())) {
