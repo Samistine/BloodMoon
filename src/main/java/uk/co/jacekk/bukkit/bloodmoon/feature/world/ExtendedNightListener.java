@@ -19,7 +19,7 @@ import uk.co.jacekk.bukkit.bloodmoon.event.BloodMoonStartEvent;
 
 public class ExtendedNightListener extends BaseListener<BloodMoon> {
 
-    private HashMap<String, Integer> killCount = new HashMap<String, Integer>();
+    private final HashMap<String, Integer> killCount = new HashMap<String, Integer>();
     private final ArrayList<EntityType> hostileTypes = new ArrayList<EntityType>() {
         {
             add(EntityType.SKELETON);
@@ -32,6 +32,11 @@ public class ExtendedNightListener extends BaseListener<BloodMoon> {
             add(EntityType.BLAZE);
             add(EntityType.GHAST);
             add(EntityType.MAGMA_CUBE);
+            add(EntityType.WITCH);
+            add(EntityType.ENDERMITE);
+            add(EntityType.ENDER_DRAGON);
+            add(EntityType.GUARDIAN);
+            add(EntityType.SILVERFISH);
         }
     };
 
@@ -49,7 +54,7 @@ public class ExtendedNightListener extends BaseListener<BloodMoon> {
             world.setGameRuleValue("doDaylightCycle", "false");
 
             if (!worldConfig.getBoolean(Config.ALWAYS_ON)) {
-                this.killCount.put(worldName, 0);
+                killCount.put(worldName, 0);
             }
         }
     }
@@ -60,22 +65,22 @@ public class ExtendedNightListener extends BaseListener<BloodMoon> {
         String worldName = world.getName();
 
         if (plugin.isFeatureEnabled(worldName, Feature.EXTENDED_NIGHT)) {
-            this.killCount.remove(worldName);
+            killCount.remove(worldName);
             world.setGameRuleValue("doDaylightCycle", "true");
         }
     }
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onEntityDeath(EntityDeathEvent event) {
-        if (this.hostileTypes.contains(event.getEntityType())) {
+        if (hostileTypes.contains(event.getEntityType())) {
             World world = event.getEntity().getWorld();
             String worldName = world.getName();
             PluginConfig worldConfig = plugin.getConfig(worldName);
 
-            if (plugin.isFeatureEnabled(worldName, Feature.EXTENDED_NIGHT) && this.killCount.containsKey(worldName)) {
-                this.killCount.put(worldName, this.killCount.get(worldName) + 1);
+            if (plugin.isFeatureEnabled(worldName, Feature.EXTENDED_NIGHT) && killCount.containsKey(worldName)) {
+                killCount.put(worldName, killCount.get(worldName) + 1);
 
-                if (this.killCount.get(worldName) > worldConfig.getInt(Config.FEATURE_EXTENDED_NIGHT_MIN_KILLS)) {
+                if (killCount.get(worldName) > worldConfig.getInt(Config.FEATURE_EXTENDED_NIGHT_MIN_KILLS)) {
                     world.setGameRuleValue("doDaylightCycle", "true");
                 }
             }
