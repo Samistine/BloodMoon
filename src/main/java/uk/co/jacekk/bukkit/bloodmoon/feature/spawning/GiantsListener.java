@@ -17,12 +17,10 @@ import uk.co.jacekk.bukkit.bloodmoon.event.BloodMoonStartEvent;
 
 public class GiantsListener extends BaseListener<BloodMoon> {
 	
-	private HashMap<String, Integer> worldTasks;
+	private final HashMap<String, Integer> worldTasks = new HashMap<String, Integer>();
 	
 	public GiantsListener(BloodMoon plugin){
 		super(plugin);
-		
-		this.worldTasks = new HashMap<String, Integer>();
 	}
 	
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
@@ -30,7 +28,7 @@ public class GiantsListener extends BaseListener<BloodMoon> {
 		CraftWorld world = (CraftWorld) event.getWorld();
 		String worldName = world.getName();
 		
-		if (plugin.isFeatureEnabled(world.getName(), Feature.GIANTS)){
+		if (plugin.isFeatureEnabled(worldName, Feature.GIANTS)){
 			int taskID = plugin.scheduler.scheduleSyncRepeatingTask(plugin, new GiantsTask(plugin, world), 0L, 100L);
 			
 			if (taskID != -1){

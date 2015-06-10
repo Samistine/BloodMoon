@@ -15,13 +15,12 @@ import java.util.Random;
 public class GiantsTask extends BaseTask<BloodMoon> {
 	
 	private final CraftWorld world;
-	private final Random random;
+	private final Random random = new Random();
 	
 	public GiantsTask(BloodMoon plugin, CraftWorld world){
 		super(plugin);
 		
 		this.world = world;
-		this.random = new Random();
 	}
 	
 	@Override

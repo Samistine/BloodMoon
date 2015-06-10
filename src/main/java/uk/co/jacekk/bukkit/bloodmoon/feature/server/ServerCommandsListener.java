@@ -1,5 +1,6 @@
 package uk.co.jacekk.bukkit.bloodmoon.feature.server;
 
+import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -42,7 +43,7 @@ public class ServerCommandsListener extends BaseListener<BloodMoon> {
 							try {
 								time = Integer.parseInt(group2);
 							} catch(NumberFormatException e) {
-								plugin.getLogger().severe("ERROR PARSING INTEGER, in config, please fix line: " + command);
+								plugin.getLogger().log(Level.SEVERE, "ERROR PARSING INTEGER, in config, please fix line: {0}", command);
 								return;
 							}
 							String replaceRegex = "//(" + time + "//)";
