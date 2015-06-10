@@ -5,14 +5,14 @@ import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
 import uk.co.jacekk.bukkit.bloodmoon.BloodMoon;
 
 public class BloodMoonEntityBlaze extends BloodMoonEntityMonster {
-	
-	public BloodMoonEntityBlaze(BloodMoon plugin, EntityMonster nmsEntity, CraftLivingEntity bukkitEntity, BloodMoonEntityType type){
-		super(plugin, nmsEntity, bukkitEntity, type);
-	}
-	
-	@Override
-	public void onTick(){
-		
-	}
-	
+
+    public BloodMoonEntityBlaze(BloodMoon plugin, EntityMonster nmsEntity, CraftLivingEntity bukkitEntity, BloodMoonEntityType type) {
+        super(plugin, nmsEntity, bukkitEntity, type);
+    }
+
+    @Override
+    public void onTick() {
+
+    }
+
 }
