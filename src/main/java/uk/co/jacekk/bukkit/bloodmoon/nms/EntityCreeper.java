@@ -2,7 +2,7 @@ package uk.co.jacekk.bukkit.bloodmoon.nms;
 
 import net.minecraft.server.v1_8_R3.World;
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_8_R2.CraftServer;
+import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftCreeper;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
 import org.bukkit.plugin.Plugin;
