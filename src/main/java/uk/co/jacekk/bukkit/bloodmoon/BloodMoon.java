@@ -7,6 +7,7 @@ import java.util.HashMap;
 
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
+import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.metadata.MetadataValue;
 
@@ -50,7 +51,7 @@ public class BloodMoon extends BasePlugin {
 
         for (Feature feature : Feature.values()) {
             try {
-                Class<? extends BaseListener<BloodMoon>> listener = feature.getListenerClass();
+                Class<? extends Listener> listener = feature.getListenerClass();
 
                 if (listener != null) {
                     this.pluginManager.registerEvents(listener.getConstructor(BloodMoon.class).newInstance(this), this);

@@ -1,5 +1,6 @@
 package uk.co.jacekk.bukkit.bloodmoon;
 
+import org.bukkit.event.Listener;
 import uk.co.jacekk.bukkit.baseplugin.config.PluginConfigKey;
 import uk.co.jacekk.bukkit.baseplugin.event.BaseListener;
 import uk.co.jacekk.bukkit.bloodmoon.feature.client.ChatMessageListener;
@@ -71,15 +72,25 @@ public enum Feature {
 	CHAT_MESSAGE(ChatMessageListener.class, Config.FEATURE_CHAT_MESSAGE_ENABLED),
 	TEXTURE_PACK(TexturePackListener.class, Config.FEATURE_TEXTURE_PACK_ENABLED);
 	
-	private Class<? extends BaseListener<BloodMoon>> listenerClass;
-	private PluginConfigKey enabledConfigKey;
+	//private Class<? extends BaseListener<BloodMoon>> listenerClass;
+        private final Class<? extends Listener> listenerClass;
+	private final PluginConfigKey enabledConfigKey;
 	
-	private Feature(Class<? extends BaseListener<BloodMoon>> listenerClass, PluginConfigKey enabledConfigKey){
+	/*private Feature(Class<? extends BaseListener<BloodMoon>> listenerClass, PluginConfigKey enabledConfigKey){
 		this.listenerClass = listenerClass;
 		this.enabledConfigKey = enabledConfigKey;
 	}
 	
 	public Class<? extends BaseListener<BloodMoon>> getListenerClass(){
+		return this.listenerClass;
+	}*/
+        
+        private Feature(Class<? extends Listener> listenerClass, PluginConfigKey enabledConfigKey){
+		this.listenerClass = listenerClass;
+		this.enabledConfigKey = enabledConfigKey;
+	}
+	
+	public Class<? extends Listener> getListenerClass(){
 		return this.listenerClass;
 	}
 	
