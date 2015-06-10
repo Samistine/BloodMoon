@@ -19,25 +19,22 @@ import uk.co.jacekk.bukkit.bloodmoon.event.BloodMoonStartEvent;
 
 public class ExtendedNightListener extends BaseListener<BloodMoon> {
 	
-	private HashMap<String, Integer> killCount;
-	private ArrayList<EntityType> hostileTypes;
+	private HashMap<String, Integer> killCount = new HashMap<String, Integer>();
+	private final ArrayList<EntityType> hostileTypes = new ArrayList<EntityType>(){{
+            	add(EntityType.SKELETON);
+		add(EntityType.SPIDER);
+		add(EntityType.CAVE_SPIDER);
+		add(EntityType.ZOMBIE);
+		add(EntityType.PIG_ZOMBIE);
+		add(EntityType.CREEPER);
+		add(EntityType.ENDERMAN);
+		add(EntityType.BLAZE);
+		add(EntityType.GHAST);
+		add(EntityType.MAGMA_CUBE);
+        }};
 	
 	public ExtendedNightListener(BloodMoon plugin){
 		super(plugin);
-		
-		this.killCount = new HashMap<String, Integer>();
-		this.hostileTypes = new ArrayList<EntityType>();
-		
-		this.hostileTypes.add(EntityType.SKELETON);
-		this.hostileTypes.add(EntityType.SPIDER);
-		this.hostileTypes.add(EntityType.CAVE_SPIDER);
-		this.hostileTypes.add(EntityType.ZOMBIE);
-		this.hostileTypes.add(EntityType.PIG_ZOMBIE);
-		this.hostileTypes.add(EntityType.CREEPER);
-		this.hostileTypes.add(EntityType.ENDERMAN);
-		this.hostileTypes.add(EntityType.BLAZE);
-		this.hostileTypes.add(EntityType.GHAST);
-		this.hostileTypes.add(EntityType.MAGMA_CUBE);
 	}
 	
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
