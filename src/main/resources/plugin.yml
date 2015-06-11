@@ -1,4 +1,4 @@
 name: "${project.name}"
-version: "${project.version}"
+version: "${project.version}-Samistine"
 main: "uk.co.jacekk.bukkit.bloodmoon.BloodMoon"
 load: startup
