@@ -25,92 +25,92 @@ import uk.co.jacekk.bukkit.bloodmoon.event.BloodMoonEndEvent;
 import uk.co.jacekk.bukkit.bloodmoon.event.BloodMoonStartEvent;
 
 public class NetherSkyListener extends BaseListener<BloodMoon> {
-	
-	public NetherSkyListener(BloodMoon plugin){
-		super(plugin);
-	}
-	
-	private void sendWorldEnvironment(Player player, Environment environment){
-		CraftPlayer craftPlayer = (CraftPlayer) player;
-		CraftWorld world = (CraftWorld) player.getWorld();
-		Location location = player.getLocation();
-		
-		PacketPlayOutRespawn packet = new PacketPlayOutRespawn(environment.getId(), EnumDifficulty.getById(world.getDifficulty().getValue()), WorldType.NORMAL, WorldSettings.EnumGamemode.getById(player.getGameMode().getValue()));
-		
-		craftPlayer.getHandle().playerConnection.sendPacket(packet);
-		
-		int viewDistance = plugin.server.getViewDistance();
-		
-		int xMin = location.getChunk().getX() - viewDistance;
-		int xMax = location.getChunk().getX() + viewDistance;
-		int zMin = location.getChunk().getZ() - viewDistance;
-		int zMax = location.getChunk().getZ() + viewDistance;
-		
-		for (int x = xMin; x < xMax; ++x){
-			for (int z = zMin; z < zMax; ++z){
-				world.refreshChunk(x, z);
-			}
-		}
-		
-		//player.updateInventory(); Possibly no longer needed
-	}
-	
-	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
-	public void onStart(BloodMoonStartEvent event){
-		String worldName = event.getWorld().getName();
-		
-		if (plugin.isFeatureEnabled(worldName, Feature.NETHER_SKY)){
-			for (Player player : event.getWorld().getPlayers()){
-				this.sendWorldEnvironment(player, Environment.NETHER);
-			}
-		}
-	}
-	
-	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
-	public void onStop(BloodMoonEndEvent event){
-		World world = event.getWorld();
-		Environment environment = world.getEnvironment();
-		String worldName = world.getName();
-		
-		if (plugin.isFeatureEnabled(worldName, Feature.NETHER_SKY)){
-			for (Player player : event.getWorld().getPlayers()){
-				this.sendWorldEnvironment(player, environment);
-			}
-		}
-	}
-	
-	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
-	public void onJoin(PlayerJoinEvent event){
-		String worldName = event.getPlayer().getWorld().getName();
-		
-		if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.NETHER_SKY)){
-			this.sendWorldEnvironment(event.getPlayer(), Environment.NETHER);
-		}
-	}
-	
-	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
-	public void onRespawn(final PlayerRespawnEvent event){
-		String worldName = event.getPlayer().getWorld().getName();
-		
-		if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.NETHER_SKY)){
-			plugin.scheduler.runTask(plugin, new Runnable(){
-				
-				@Override
-				public void run(){
-					sendWorldEnvironment(event.getPlayer(), Environment.NETHER);
-				}
-				
-			});
-		}
-	}
-	
-	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
-	public void onChangeWorlds(PlayerChangedWorldEvent event){
-		String worldName = event.getPlayer().getWorld().getName();
-		
-		if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.NETHER_SKY)){
-			this.sendWorldEnvironment(event.getPlayer(), Environment.NETHER);
-		}
-	}
-	
+
+    public NetherSkyListener(BloodMoon plugin) {
+        super(plugin);
+    }
+
+    private void sendWorldEnvironment(Player player, Environment environment) {
+        CraftPlayer craftPlayer = (CraftPlayer) player;
+        CraftWorld world = (CraftWorld) player.getWorld();
+        Location location = player.getLocation();
+
+        PacketPlayOutRespawn packet = new PacketPlayOutRespawn(environment.getId(), EnumDifficulty.getById(world.getDifficulty().getValue()), WorldType.NORMAL, WorldSettings.EnumGamemode.getById(player.getGameMode().getValue()));
+
+        craftPlayer.getHandle().playerConnection.sendPacket(packet);
+
+        int viewDistance = plugin.server.getViewDistance();
+
+        int xMin = location.getChunk().getX() - viewDistance;
+        int xMax = location.getChunk().getX() + viewDistance;
+        int zMin = location.getChunk().getZ() - viewDistance;
+        int zMax = location.getChunk().getZ() + viewDistance;
+
+        for (int x = xMin; x < xMax; ++x) {
+            for (int z = zMin; z < zMax; ++z) {
+                world.refreshChunk(x, z);
+            }
+        }
+
+        //player.updateInventory(); Possibly no longer needed
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void onStart(BloodMoonStartEvent event) {
+        String worldName = event.getWorld().getName();
+
+        if (plugin.isFeatureEnabled(worldName, Feature.NETHER_SKY)) {
+            for (Player player : event.getWorld().getPlayers()) {
+                this.sendWorldEnvironment(player, Environment.NETHER);
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void onStop(BloodMoonEndEvent event) {
+        World world = event.getWorld();
+        Environment environment = world.getEnvironment();
+        String worldName = world.getName();
+
+        if (plugin.isFeatureEnabled(worldName, Feature.NETHER_SKY)) {
+            for (Player player : event.getWorld().getPlayers()) {
+                this.sendWorldEnvironment(player, environment);
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void onJoin(PlayerJoinEvent event) {
+        String worldName = event.getPlayer().getWorld().getName();
+
+        if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.NETHER_SKY)) {
+            this.sendWorldEnvironment(event.getPlayer(), Environment.NETHER);
+        }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void onRespawn(final PlayerRespawnEvent event) {
+        String worldName = event.getPlayer().getWorld().getName();
+
+        if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.NETHER_SKY)) {
+            plugin.scheduler.runTaskLater(plugin, new Runnable() {
+
+                @Override
+                public void run() {
+                    sendWorldEnvironment(event.getPlayer(), Environment.NETHER);
+                }
+
+            }, 10);
+        }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void onChangeWorlds(PlayerChangedWorldEvent event) {
+        String worldName = event.getPlayer().getWorld().getName();
+
+        if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.NETHER_SKY)) {
+            this.sendWorldEnvironment(event.getPlayer(), Environment.NETHER);
+        }
+    }
+
 }

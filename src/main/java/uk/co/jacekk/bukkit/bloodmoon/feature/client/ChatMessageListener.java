@@ -18,87 +18,87 @@ import uk.co.jacekk.bukkit.bloodmoon.event.BloodMoonEndEvent;
 import uk.co.jacekk.bukkit.bloodmoon.event.BloodMoonStartEvent;
 
 public class ChatMessageListener extends BaseListener<BloodMoon> {
-	
-	public ChatMessageListener(BloodMoon plugin){
-		super(plugin);
-	}
-	
-	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
-	public void onBloodMoonStart(BloodMoonStartEvent event){
-		World world = event.getWorld();
-		String worldName = world.getName();
-		PluginConfig worldConfig = plugin.getConfig(worldName);
-		
-		if (plugin.isFeatureEnabled(worldName, Feature.CHAT_MESSAGE)){
-			String message = worldConfig.getString(Config.FEATURE_CHAT_MESSAGE_START_MESSAGE);
-			
-			if (!message.isEmpty()){
-				for (Player player : world.getPlayers()){
-					player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
-				}
-			}
-		}
-	}
-	
-	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
-	public void onPlayerChangedWorld(PlayerChangedWorldEvent event){
-		Player player = event.getPlayer();
-		String worldName = player.getWorld().getName();
-		PluginConfig worldConfig = plugin.getConfig(worldName);
-		
-		if (plugin.isFeatureEnabled(worldName, Feature.CHAT_MESSAGE)){
-			String message = worldConfig.getString(Config.FEATURE_CHAT_MESSAGE_START_MESSAGE);
-			
-			if (!message.isEmpty()){
-				if (plugin.isActive(worldName)){
-					player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
-				}
-			}
-		}
-	}
-	
-	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
-	public void onPlayerJoin(PlayerJoinEvent event){
-		Player player = event.getPlayer();
-		String worldName = player.getWorld().getName();
-		PluginConfig worldConfig = plugin.getConfig(worldName);
-		
-		if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.CHAT_MESSAGE)){
-			final UUID playerUUID = player.getUniqueId();
-			final String message = worldConfig.getString(Config.FEATURE_CHAT_MESSAGE_START_MESSAGE);
-			
-			if (!message.isEmpty()){
-				plugin.scheduler.scheduleSyncDelayedTask(plugin, new Runnable(){
-					
-                                        @Override
-					public void run(){
-						Player player = plugin.server.getPlayer(playerUUID);
-						
-						if (player != null){
-							player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
-						}
-					}
-					
-				}, 40L);
-			}
-		}
-	}
-	
-	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
-	public void onEnd(BloodMoonEndEvent event){
-		World world = event.getWorld();
-		String worldName = world.getName();
-		PluginConfig worldConfig = plugin.getConfig(worldName);
-		
-		if (plugin.isFeatureEnabled(worldName, Feature.CHAT_MESSAGE)){
-			String message = worldConfig.getString(Config.FEATURE_CHAT_MESSAGE_END_MESSAGE);
-			
-			if (!message.isEmpty()){
-				for (Player player : world.getPlayers()){
-					player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
-				}
-			}
-		}
-	}
-	
+
+    public ChatMessageListener(BloodMoon plugin) {
+        super(plugin);
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void onBloodMoonStart(BloodMoonStartEvent event) {
+        World world = event.getWorld();
+        String worldName = world.getName();
+        PluginConfig worldConfig = plugin.getConfig(worldName);
+
+        if (plugin.isFeatureEnabled(worldName, Feature.CHAT_MESSAGE)) {
+            String message = worldConfig.getString(Config.FEATURE_CHAT_MESSAGE_START_MESSAGE);
+
+            if (!message.isEmpty()) {
+                for (Player player : world.getPlayers()) {
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void onPlayerChangedWorld(PlayerChangedWorldEvent event) {
+        Player player = event.getPlayer();
+        String worldName = player.getWorld().getName();
+        PluginConfig worldConfig = plugin.getConfig(worldName);
+
+        if (plugin.isFeatureEnabled(worldName, Feature.CHAT_MESSAGE)) {
+            String message = worldConfig.getString(Config.FEATURE_CHAT_MESSAGE_START_MESSAGE);
+
+            if (!message.isEmpty()) {
+                if (plugin.isActive(worldName)) {
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+        String worldName = player.getWorld().getName();
+        PluginConfig worldConfig = plugin.getConfig(worldName);
+
+        if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.CHAT_MESSAGE)) {
+            final UUID playerUUID = player.getUniqueId();
+            final String message = worldConfig.getString(Config.FEATURE_CHAT_MESSAGE_START_MESSAGE);
+
+            if (!message.isEmpty()) {
+                plugin.scheduler.scheduleSyncDelayedTask(plugin, new Runnable() {
+
+                    @Override
+                    public void run() {
+                        Player player = plugin.server.getPlayer(playerUUID);
+
+                        if (player != null) {
+                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
+                        }
+                    }
+
+                }, 40L);
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void onEnd(BloodMoonEndEvent event) {
+        World world = event.getWorld();
+        String worldName = world.getName();
+        PluginConfig worldConfig = plugin.getConfig(worldName);
+
+        if (plugin.isFeatureEnabled(worldName, Feature.CHAT_MESSAGE)) {
+            String message = worldConfig.getString(Config.FEATURE_CHAT_MESSAGE_END_MESSAGE);
+
+            if (!message.isEmpty()) {
+                for (Player player : world.getPlayers()) {
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
+                }
+            }
+        }
+    }
+
 }

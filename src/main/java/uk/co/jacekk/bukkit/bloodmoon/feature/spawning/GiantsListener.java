@@ -17,7 +17,7 @@ import uk.co.jacekk.bukkit.bloodmoon.event.BloodMoonStartEvent;
 
 public class GiantsListener extends BaseListener<BloodMoon> {
 
-    private final HashMap<String, Integer> worldTasks = new HashMap<String, Integer>();
+    private final HashMap<String, Integer> worldTasks = new HashMap<>();
 
     public GiantsListener(BloodMoon plugin) {
         super(plugin);

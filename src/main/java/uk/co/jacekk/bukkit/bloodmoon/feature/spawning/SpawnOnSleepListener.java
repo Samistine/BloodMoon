@@ -5,7 +5,6 @@ import org.bukkit.World;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.event.player.PlayerBedEnterEvent;
 
 import uk.co.jacekk.bukkit.baseplugin.config.PluginConfig;

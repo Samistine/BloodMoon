@@ -12,13 +12,12 @@ import java.util.List;
 public class ChunkProviderServer extends net.minecraft.server.v1_8_R3.ChunkProviderServer {
 
     private final BloodMoon plugin;
-    private final List<BiomeBase.BiomeMeta> bloodMoonMobs;
+    private final List<BiomeBase.BiomeMeta> bloodMoonMobs = new ArrayList<>();
 
     public ChunkProviderServer(BloodMoon plugin, WorldServer worldserver, IChunkLoader ichunkloader, IChunkProvider ichunkprovider) {
         super(worldserver, ichunkloader, ichunkprovider);
 
         this.plugin = plugin;
-        this.bloodMoonMobs = new ArrayList<BiomeBase.BiomeMeta>();
 
         PluginConfig worldConfig = this.plugin.getConfig(this.world.worldData.getName());
 

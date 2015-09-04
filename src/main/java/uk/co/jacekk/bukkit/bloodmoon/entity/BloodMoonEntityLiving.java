@@ -7,8 +7,11 @@ import net.minecraft.server.v1_8_R3.AttributeInstance;
 import net.minecraft.server.v1_8_R3.AttributeModifier;
 import net.minecraft.server.v1_8_R3.EntityLiving;
 import net.minecraft.server.v1_8_R3.GenericAttributes;
+import org.bukkit.Location;
+import org.bukkit.World;
 
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 
 import uk.co.jacekk.bukkit.baseplugin.util.ReflectionUtils;
 import uk.co.jacekk.bukkit.bloodmoon.BloodMoon;
@@ -23,18 +26,16 @@ public abstract class BloodMoonEntityLiving {
 
     protected BloodMoon plugin;
     protected EntityLiving nmsEntity;
-    protected CraftLivingEntity bukkitEntity;
+    protected Entity bukkitEntity;
     protected BloodMoonEntityType type;
 
-    protected Random rand;
+    protected Random rand = new Random();
 
-    public BloodMoonEntityLiving(BloodMoon plugin, EntityLiving nmsEntity, CraftLivingEntity bukkitEntity, BloodMoonEntityType type) {
+    public BloodMoonEntityLiving(BloodMoon plugin, EntityLiving nmsEntity, BloodMoonEntityType type) {
         this.plugin = plugin;
         this.nmsEntity = nmsEntity;
-        this.bukkitEntity = bukkitEntity;
+        this.bukkitEntity = nmsEntity.getBukkitEntity();
         this.type = type;
-
-        this.rand = new Random();
     }
 
     public static BloodMoonEntityLiving getBloodMoonEntity(EntityLiving nmsEntity) {
@@ -64,7 +65,7 @@ public abstract class BloodMoonEntityLiving {
         AttributeInstance attributes = this.nmsEntity.getAttributeInstance(GenericAttributes.c);
 		//AttributeModifier modifier = new AttributeModifier(knockbackResistanceUID, "BloodMoon knockback resistance multiplier", multiplier, 1);
 
-		//attributes.c(modifier);
+        //attributes.c(modifier);
         //attributes.b(modifier);
     }
 
@@ -91,9 +92,9 @@ public abstract class BloodMoonEntityLiving {
             System.err.println("Null Exception");
         }
 
-		//AttributeInstance attributes = this.nmsEntity.getAttributeInstance(GenericAttributes.d);
+        //AttributeInstance attributes = this.nmsEntity.getAttributeInstance(GenericAttributes.d);
         //AttributeModifier modifier = new AttributeModifier(movementSpeedUID, "BloodMoon movement speed multiplier", multiplier, 1);
-		//attributes.c(modifier);
+        //attributes.c(modifier);
         //attributes.b(modifier);
     }
 
@@ -106,7 +107,23 @@ public abstract class BloodMoonEntityLiving {
 
     //public abstract void onTick();
     public void onTick() {
-        
+
+    }
+
+    public World getBukkitWorld() {
+        return nmsEntity.getWorld().getWorld();
+    }
+
+    public String getWorldName() {
+        return nmsEntity.getWorld().getWorld().getName();
+    }
+
+    public Location getLocation() {
+        return bukkitEntity.getLocation();
+    }
+
+    public EntityType getEntityType() {
+        return bukkitEntity.getType();
     }
 
 }

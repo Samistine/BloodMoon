@@ -6,7 +6,6 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.inventory.ItemStack;
 import uk.co.jacekk.bukkit.baseplugin.config.PluginConfig;
@@ -17,8 +16,8 @@ public abstract class BloodMoonEntityMonster extends BloodMoonEntityLiving {
 
     protected EntityMonster nmsEntity;
 
-    public BloodMoonEntityMonster(BloodMoon plugin, EntityMonster nmsEntity, CraftLivingEntity bukkitEntity, BloodMoonEntityType type) {
-        super(plugin, nmsEntity, bukkitEntity, type);
+    public BloodMoonEntityMonster(BloodMoon plugin, EntityMonster nmsEntity, BloodMoonEntityType type) {
+        super(plugin, nmsEntity, type);
 
         this.nmsEntity = nmsEntity;
     }

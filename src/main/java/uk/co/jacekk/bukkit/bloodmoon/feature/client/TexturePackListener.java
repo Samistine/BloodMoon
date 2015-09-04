@@ -27,13 +27,13 @@ public class TexturePackListener extends BaseListener<BloodMoon> {
 
         if (plugin.isFeatureEnabled(world.getName(), Feature.TEXTURE_PACK)) {
             plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-                
+
                 @Override
                 public void run() {
                     sendResourcePack(world, true);
                 }
             });
-            
+
         }
     }
 
@@ -49,7 +49,7 @@ public class TexturePackListener extends BaseListener<BloodMoon> {
                     sendResourcePack(world, false);
                 }
             });
-            
+
         }
     }
 

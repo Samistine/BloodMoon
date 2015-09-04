@@ -24,11 +24,11 @@ public enum BloodMoonEntityType {
     WITCH("Witch", 66, EntityType.WITCH, net.minecraft.server.v1_8_R3.EntityWitch.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityWitch.class),
     GIANT_ZOMBIE("Giant", 53, EntityType.GIANT, net.minecraft.server.v1_8_R3.EntityGiantZombie.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityGiantZombie.class);
 
-    private String name;
-    private int id;
-    private EntityType entityType;
-    private Class<? extends EntityInsentient> nmsClass;
-    private Class<? extends EntityInsentient> bloodMoonClass;
+    private final String name;
+    private final int id;
+    private final EntityType entityType;
+    private final Class<? extends EntityInsentient> nmsClass;
+    private final Class<? extends EntityInsentient> bloodMoonClass;
 
     private static boolean registered = false;
 

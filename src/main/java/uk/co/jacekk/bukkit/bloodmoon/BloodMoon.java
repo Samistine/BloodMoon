@@ -13,7 +13,6 @@ import org.bukkit.metadata.MetadataValue;
 
 import uk.co.jacekk.bukkit.baseplugin.BasePlugin;
 import uk.co.jacekk.bukkit.baseplugin.config.PluginConfig;
-import uk.co.jacekk.bukkit.baseplugin.event.BaseListener;
 import uk.co.jacekk.bukkit.bloodmoon.command.BloodMoonExecuter;
 import uk.co.jacekk.bukkit.bloodmoon.entity.BloodMoonEntityType;
 import uk.co.jacekk.bukkit.bloodmoon.event.BloodMoonEndEvent;
@@ -224,10 +223,10 @@ public class BloodMoon extends BasePlugin {
     }
 
     private void initArrays() {
-        this.activeWorlds = new ArrayList<String>();
-        this.forceWorlds = new ArrayList<String>();
+        this.activeWorlds = new ArrayList<>();
+        this.forceWorlds = new ArrayList<>();
 
-        this.worldConfig = new HashMap<String, PluginConfig>();
+        this.worldConfig = new HashMap<>();
     }
 
 }

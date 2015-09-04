@@ -19,7 +19,7 @@ import uk.co.jacekk.bukkit.bloodmoon.event.BloodMoonStartEvent;
 
 public class ExtendedNightListener extends BaseListener<BloodMoon> {
 
-    private final HashMap<String, Integer> killCount = new HashMap<String, Integer>();
+    private final HashMap<String, Integer> killCount = new HashMap<>();
     private final ArrayList<EntityType> hostileTypes = new ArrayList<EntityType>() {
         {
             add(EntityType.SKELETON);
