@@ -52,7 +52,7 @@ public abstract class BloodMoonEntityMonster extends BloodMoonEntityLiving {
                 }
             } else {
                 EntityChangeBlockEvent event = new EntityChangeBlockEvent(bukkitEntity, block, Material.AIR, (byte) 0);
-                plugin.pluginManager.callEvent(event);
+                plugin.getServer().getPluginManager().callEvent(event);
 
                 if (!event.isCancelled()) {
                     nmsEntity.world.getWorld().playEffect(location, Effect.ZOMBIE_DESTROY_DOOR, 0);

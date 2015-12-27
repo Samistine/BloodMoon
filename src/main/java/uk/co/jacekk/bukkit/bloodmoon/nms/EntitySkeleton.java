@@ -46,7 +46,7 @@ public class EntitySkeleton extends net.minecraft.server.v1_8_R3.EntitySkeleton 
 
         this.plugin = (BloodMoon) gPlugin;
 
-        this.bukkitEntity = new CraftSkeleton((CraftServer) this.plugin.server, this);
+        this.bukkitEntity = new CraftSkeleton((CraftServer) this.plugin.getServer(), this);
         this.bloodMoonEntity = new BloodMoonEntitySkeleton(this.plugin, this, BloodMoonEntityType.SKELETON);
 
         try {

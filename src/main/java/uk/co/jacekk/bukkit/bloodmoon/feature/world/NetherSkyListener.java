@@ -39,7 +39,7 @@ public class NetherSkyListener extends BaseListener<BloodMoon> {
 
         craftPlayer.getHandle().playerConnection.sendPacket(packet);
 
-        int viewDistance = plugin.server.getViewDistance();
+        int viewDistance = plugin.getServer().getViewDistance();
 
         int xMin = location.getChunk().getX() - viewDistance;
         int xMax = location.getChunk().getX() + viewDistance;
@@ -93,7 +93,7 @@ public class NetherSkyListener extends BaseListener<BloodMoon> {
         String worldName = event.getPlayer().getWorld().getName();
 
         if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.NETHER_SKY)) {
-            plugin.scheduler.runTaskLater(plugin, new Runnable() {
+            plugin.getServer().getScheduler().runTaskLater(plugin, new Runnable() {
 
                 @Override
                 public void run() {

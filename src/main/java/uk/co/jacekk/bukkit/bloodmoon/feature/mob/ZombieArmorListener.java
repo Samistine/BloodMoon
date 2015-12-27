@@ -1,6 +1,7 @@
 package uk.co.jacekk.bukkit.bloodmoon.feature.mob;
 
 import java.util.Random;
+import java.util.logging.Level;
 
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
@@ -34,7 +35,7 @@ public class ZombieArmorListener implements Listener {
         String name = ListUtils.getRandom(worldConfig.getStringList(Config.FEATURE_ZOMBIE_ARMOR_ARMOR));
 
         if (Material.getMaterial(name + "_BOOTS") == null) {
-            plugin.log.warn(name + " is not a valid armor name");
+            plugin.getLogger().log(Level.WARNING, "{0} is not a valid armor name", name);
             return;
         }
 

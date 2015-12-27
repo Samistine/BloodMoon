@@ -29,7 +29,7 @@ public class EntityEnderman extends net.minecraft.server.v1_8_R3.EntityEnderman 
 
         this.plugin = (BloodMoon) gPlugin;
 
-        this.bukkitEntity = new CraftEnderman((CraftServer) this.plugin.server, this);
+        this.bukkitEntity = new CraftEnderman((CraftServer) this.plugin.getServer(), this);
         this.bloodMoonEntity = new BloodMoonEntityEndermen(this.plugin, this, BloodMoonEntityType.ENDERMAN);
     }
 
@@ -39,7 +39,7 @@ public class EntityEnderman extends net.minecraft.server.v1_8_R3.EntityEnderman 
             this.bloodMoonEntity.onTick();
             super.bL();
         } catch (Exception e) {
-            plugin.log.warn("Exception caught while ticking entity");
+            plugin.getLogger().warning("Exception caught while ticking entity");
             e.printStackTrace();
         }
         return true;

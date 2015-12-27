@@ -55,11 +55,11 @@ public class PlaySoundListener extends BaseListener<BloodMoon> {
         if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.PLAY_SOUND)) {
             final UUID playerUUID = player.getUniqueId();
 
-            plugin.scheduler.scheduleSyncDelayedTask(plugin, new Runnable() {
+            plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 
                 @Override
                 public void run() {
-                    Player player = plugin.server.getPlayer(playerUUID);
+                    Player player = plugin.getServer().getPlayer(playerUUID);
 
                     if (player != null) {
                         player.playSound(player.getLocation(), Sound.valueOf(worldConfig.getString(Config.FEATURE_PLAY_SOUND_SOUND)), (float) worldConfig.getDouble(Config.FEATURE_PLAY_SOUND_VOLUME), (float) worldConfig.getDouble(Config.FEATURE_PLAY_SOUND_PITCH));

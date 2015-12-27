@@ -35,7 +35,7 @@ public class ZombieWeaponListener implements Listener {
         Material type = Material.getMaterial(name);
 
         if (type == null || type.isBlock()) {
-            plugin.log.warn(name + " is not a valid item name");
+            plugin.getLogger().warning(name + " is not a valid item name");
             return;
         }
 

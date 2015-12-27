@@ -26,7 +26,7 @@ public class EntityZombie extends net.minecraft.server.v1_8_R3.EntityZombie {
 
         this.plugin = (BloodMoon) gPlugin;
 
-        this.bukkitEntity = new CraftZombie((CraftServer) this.plugin.server, this);
+        this.bukkitEntity = new CraftZombie((CraftServer) this.plugin.getServer(), this);
         this.bloodMoonEntity = new BloodMoonEntityZombie(this.plugin, this, BloodMoonEntityType.ZOMBIE);
     }
 
@@ -36,7 +36,7 @@ public class EntityZombie extends net.minecraft.server.v1_8_R3.EntityZombie {
             this.bloodMoonEntity.onTick();
             super.bL();
         } catch (Exception e) {
-            plugin.log.warn("Exception caught while ticking entity");
+            plugin.getLogger().warning("Exception caught while ticking entity");
             e.printStackTrace();
         }
         return true;

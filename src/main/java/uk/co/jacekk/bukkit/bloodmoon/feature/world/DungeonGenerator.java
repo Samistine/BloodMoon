@@ -48,7 +48,7 @@ public class DungeonGenerator extends BlockPopulator {
         int worldChunkX = properties.getChunkX();
         int worldChunkZ = properties.getChunkZ();
 
-        plugin.log.info("Generated BloodMoon dungeon at " + worldChunkX + "," + worldChunkZ);
+        plugin.getLogger().info("Generated BloodMoon dungeon at " + worldChunkX + "," + worldChunkZ);
 
         Random rand = properties.getRandom();
 
@@ -279,7 +279,7 @@ public class DungeonGenerator extends BlockPopulator {
                 }
             }
 
-            this.plugin.pluginManager.callEvent(new DungeonChestFillEvent(chest));
+            this.plugin.getServer().getPluginManager().callEvent(new DungeonChestFillEvent(chest));
         }
 
         // Set markers for protection

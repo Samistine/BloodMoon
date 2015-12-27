@@ -26,7 +26,7 @@ public class EntityCreeper extends net.minecraft.server.v1_8_R3.EntityCreeper {
 
         this.plugin = (BloodMoon) gPlugin;
 
-        this.bukkitEntity = new CraftCreeper((CraftServer) this.plugin.server, this);
+        this.bukkitEntity = new CraftCreeper((CraftServer) this.plugin.getServer(), this);
         this.bloodMoonEntity = new BloodMoonEntityCreeper(this.plugin, this, BloodMoonEntityType.CREEPER);
     }
 
@@ -36,7 +36,7 @@ public class EntityCreeper extends net.minecraft.server.v1_8_R3.EntityCreeper {
             this.bloodMoonEntity.onTick();
             super.bL();
         } catch (Exception e) {
-            plugin.log.warn("Exception caught while ticking entity");
+            plugin.getLogger().warning("Exception caught while ticking entity");
             e.printStackTrace();
         }
         return true;

@@ -29,7 +29,7 @@ public class GiantsListener extends BaseListener<BloodMoon> {
         String worldName = world.getName();
 
         if (plugin.isFeatureEnabled(worldName, Feature.GIANTS)) {
-            int taskID = plugin.scheduler.scheduleSyncRepeatingTask(plugin, new GiantsTask(plugin, world), 0L, 100L);
+            int taskID = plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new GiantsTask(plugin, world), 0L, 100L);
 
             if (taskID != -1) {
                 this.worldTasks.put(worldName, taskID);
@@ -45,7 +45,7 @@ public class GiantsListener extends BaseListener<BloodMoon> {
         Integer taskID = this.worldTasks.get(worldName);
 
         if (taskID != null) {
-            plugin.scheduler.cancelTask(taskID);
+            plugin.getServer().getScheduler().cancelTask(taskID);
             this.worldTasks.remove(worldName);
 
             for (LivingEntity entity : event.getWorld().getLivingEntities()) {

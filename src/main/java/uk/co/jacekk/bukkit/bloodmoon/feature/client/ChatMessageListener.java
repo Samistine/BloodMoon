@@ -68,11 +68,11 @@ public class ChatMessageListener extends BaseListener<BloodMoon> {
             final String message = worldConfig.getString(Config.FEATURE_CHAT_MESSAGE_START_MESSAGE);
 
             if (!message.isEmpty()) {
-                plugin.scheduler.scheduleSyncDelayedTask(plugin, new Runnable() {
+                plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 
                     @Override
                     public void run() {
-                        Player player = plugin.server.getPlayer(playerUUID);
+                        Player player = plugin.getServer().getPlayer(playerUUID);
 
                         if (player != null) {
                             player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));

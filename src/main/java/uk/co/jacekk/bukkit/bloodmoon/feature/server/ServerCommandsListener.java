@@ -58,7 +58,7 @@ public class ServerCommandsListener extends BaseListener<BloodMoon> {
 
                                 @Override
                                 public void run() {
-                                    plugin.server.dispatchCommand(plugin.server.getConsoleSender(), finalCommand);
+                                    plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), finalCommand);
                                 }
                             }, time);
                             return;
@@ -66,7 +66,7 @@ public class ServerCommandsListener extends BaseListener<BloodMoon> {
                     }
 
                 }
-                plugin.server.dispatchCommand(plugin.server.getConsoleSender(), command);
+                plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), command);
             }
         }
     }
@@ -79,7 +79,7 @@ public class ServerCommandsListener extends BaseListener<BloodMoon> {
 
         if (plugin.isFeatureEnabled(worldName, Feature.SERVER_COMMANDS)) {
             for (String command : worldConfig.getStringList(Config.FEATURE_SERVER_COMMANDS_END_COMMANDS)) {
-                plugin.server.dispatchCommand(plugin.server.getConsoleSender(), command);
+                plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), command);
             }
         }
     }

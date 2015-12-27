@@ -16,7 +16,7 @@ public class TimeMonitorTask implements Runnable {
 
     @Override
     public void run() {
-        for (World world : plugin.server.getWorlds()) {
+        for (World world : plugin.getServer().getWorlds()) {
             String worldName = world.getName();
 
             if (plugin.isEnabled(worldName)) {

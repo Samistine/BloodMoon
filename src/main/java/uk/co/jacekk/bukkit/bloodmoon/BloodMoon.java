@@ -42,18 +42,18 @@ public class BloodMoon extends BasePlugin {
             this.createConfig(world);
         }
 
-        this.permissionManager.registerPermissions(Permission.class);
-        this.commandManager.registerCommandExecutor(new BloodMoonExecuter(this));
-        this.pluginManager.registerEvents(new WorldInitListener(this), this);
-        this.pluginManager.registerEvents(new SpawnReasonListener(this), this);
-        this.scheduler.scheduleSyncRepeatingTask(this, new TimeMonitorTask(this), 100L, 100L);
+        this.getPermissionManager().registerPermissions(Permission.class);
+        this.getCommandManager().registerCommandExecutor(new BloodMoonExecuter(this));
+        this.getServer().getPluginManager().registerEvents(new WorldInitListener(this), this);
+        this.getServer().getPluginManager().registerEvents(new SpawnReasonListener(this), this);
+        this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new TimeMonitorTask(this), 100L, 100L);
 
         for (Feature feature : Feature.values()) {
             try {
                 Class<? extends Listener> listener = feature.getListenerClass();
 
                 if (listener != null) {
-                    this.pluginManager.registerEvents(listener.getConstructor(BloodMoon.class).newInstance(this), this);
+                    this.getServer().getPluginManager().registerEvents(listener.getConstructor(BloodMoon.class).newInstance(this), this);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -67,7 +67,7 @@ public class BloodMoon extends BasePlugin {
      * @param worldName The name of the world
      */
     public void activate(String worldName) {
-        World world = this.server.getWorld(worldName);
+        World world = this.getServer().getWorld(worldName);
 
         if (world == null || this.isActive(worldName)) {
             return;
@@ -75,7 +75,7 @@ public class BloodMoon extends BasePlugin {
 
         BloodMoonStartEvent event = new BloodMoonStartEvent(world);
 
-        this.pluginManager.callEvent(event);
+        this.getServer().getPluginManager().callEvent(event);
 
         if (!event.isCancelled()) {
             this.activeWorlds.add(worldName);
@@ -104,8 +104,10 @@ public class BloodMoon extends BasePlugin {
         World world = getServer().getWorld(worldName);
 
         if (world != null || this.isActive(worldName)) {
+
             BloodMoonEndEvent event = new BloodMoonEndEvent(world);
-            this.pluginManager.callEvent(event);
+
+            this.getServer().getPluginManager().callEvent(event);
 
             if (!event.isCancelled()) {
                 this.activeWorlds.remove(worldName);
@@ -164,7 +166,7 @@ public class BloodMoon extends BasePlugin {
         String worldName = world.getName();
 
         if (!worldConfig.containsKey(worldName)) {
-            PluginConfig worldConfig = new PluginConfig(new File(this.baseDirPath + File.separator + worldName + ".yml"), Config.class, this.log);
+            PluginConfig worldConfig = new PluginConfig(new File(this.baseDirPath + File.separator + worldName + ".yml"), Config.class, this.getLogger());
 
             this.worldConfig.put(worldName, worldConfig);
 
