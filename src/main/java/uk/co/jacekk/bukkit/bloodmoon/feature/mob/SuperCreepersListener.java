@@ -68,7 +68,7 @@ public class SuperCreepersListener implements Listener {
     }
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
-    public void onExplosionProme(ExplosionPrimeEvent event) {
+    public void onExplosionPrime(ExplosionPrimeEvent event) {
         if (event.getEntity() != null && event.getEntityType() == EntityType.CREEPER) {
             String worldName = event.getEntity().getWorld().getName();
             PluginConfig worldConfig = plugin.getConfig(worldName);
