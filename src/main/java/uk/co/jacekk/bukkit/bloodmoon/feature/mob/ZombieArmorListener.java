@@ -32,7 +32,7 @@ public class ZombieArmorListener implements Listener {
     }
 
     private void giveArmor(LivingEntity entity, PluginConfig worldConfig) {
-        String name = ListUtils.getRandom(worldConfig.getStringList(Config.FEATURE_ZOMBIE_ARMOR_ARMOR));
+        String name = ListUtils.getRandom(worldConfig.getStringList(Config.FEATURE_ZOMBIE_ARMOR_ARMOR)).toUpperCase();
 
         if (Material.getMaterial(name + "_BOOTS") == null) {
             plugin.getLogger().log(Level.WARNING, "{0} is not a valid armor name", name);
