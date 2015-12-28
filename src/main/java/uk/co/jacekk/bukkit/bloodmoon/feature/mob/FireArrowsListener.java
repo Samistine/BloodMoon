@@ -28,12 +28,11 @@ public class FireArrowsListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onProjectileHit(ProjectileHitEvent event) {
-        Entity entity = event.getEntity();
-        String worldName = entity.getWorld().getName();
+        Projectile projectile = event.getEntity();
+        String worldName = projectile.getWorld().getName();
         PluginConfig worldConfig = plugin.getConfig(worldName);
 
         if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.FIRE_ARROWS) && worldConfig.getBoolean(Config.FEATURE_FIRE_ARROWS_IGNITE_TARGET)) {
-            Projectile projectile = (Projectile) entity;
             LivingEntity shooter = (LivingEntity) projectile.getShooter();
             if (shooter.getType() == EntityType.SKELETON) { //Not sure why this is here, or why fire arrows even work with it here
                 return;
