@@ -2,8 +2,6 @@ package uk.co.jacekk.bukkit.bloodmoon.feature.spawning;
 
 import java.util.Random;
 
-import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -17,32 +15,29 @@ import uk.co.jacekk.bukkit.bloodmoon.Config;
 import uk.co.jacekk.bukkit.bloodmoon.Feature;
 import uk.co.jacekk.bukkit.bloodmoon.entity.BloodMoonEntityType;
 
-public class MoreSpawningListener extends BaseListener<BloodMoon> {
+public final class MoreSpawningListener extends BaseListener<BloodMoon> {
 
-    private final Random random;
+    private final Random random = new Random();
 
     public MoreSpawningListener(BloodMoon plugin) {
         super(plugin);
-        this.random = new Random();
     }
 
-    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onCreatureSpawn(CreatureSpawnEvent event) {
         if (event.getSpawnReason() != SpawnReason.NATURAL) { //TODO: Should check for Custom instead of checking against natural?
             return;
         }
 
         EntityType type = event.getEntityType();
-        Location location = event.getLocation();
-        World world = location.getWorld();
-        String worldName = world.getName();
+        String worldName = event.getLocation().getWorld().getName();
         PluginConfig worldConfig = plugin.getConfig(worldName);
 
         if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.MORE_SPAWNING) && worldConfig.getStringList(Config.FEATURE_MORE_SPAWNING_MOBS).contains(type.getName().toUpperCase())) {
             for (int i = 0; i < Math.max(worldConfig.getInt(Config.FEATURE_MORE_SPAWNING_MULTIPLIER), 1); ++i) {
                 for (BloodMoonEntityType bloodMoonEntity : BloodMoonEntityType.values()) {
                     if (type == bloodMoonEntity.getEntityType()) {
-                        bloodMoonEntity.spawnEntity(location.add((random.nextDouble() * 3) - 1.5, (random.nextDouble() * 3) - 1.5, (random.nextDouble() * 3) - 1.5));
+                        bloodMoonEntity.spawnEntity(event.getLocation().add((random.nextDouble() * 3) - 1.5, (random.nextDouble() * 3) - 1.5, (random.nextDouble() * 3) - 1.5));
                         return;
                     }
                 }

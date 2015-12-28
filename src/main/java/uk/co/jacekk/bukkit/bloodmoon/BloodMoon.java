@@ -18,19 +18,21 @@ import uk.co.jacekk.bukkit.bloodmoon.entity.BloodMoonEntityType;
 import uk.co.jacekk.bukkit.bloodmoon.event.BloodMoonEndEvent;
 import uk.co.jacekk.bukkit.bloodmoon.event.BloodMoonStartEvent;
 
-public class BloodMoon extends BasePlugin {
+public final class BloodMoon extends BasePlugin {
+
+    public static boolean DEBUG = false;
 
     private ArrayList<String> activeWorlds;
+    private HashMap<String, PluginConfig> worldConfig;
     protected ArrayList<String> forceWorlds;
-    protected HashMap<String, PluginConfig> worldConfig;
-    public boolean debug;
 
     @Override
     public void onEnable() {
         super.onEnable(true);
-        this.debug = false;
 
-        initArrays();
+        activeWorlds = new ArrayList<>();
+        forceWorlds = new ArrayList<>();
+        worldConfig = new HashMap<>();
 
         try {
             BloodMoonEntityType.registerEntities();
@@ -38,22 +40,21 @@ public class BloodMoon extends BasePlugin {
             e.printStackTrace();//
         }
 
-        for (World world : this.getServer().getWorlds()) {
-            this.createConfig(world);
+        for (World world : getServer().getWorlds()) {
+            createConfig(world);
         }
 
-        this.getPermissionManager().registerPermissions(Permission.class);
-        this.getCommandManager().registerCommandExecutor(new BloodMoonExecuter(this));
-        this.getServer().getPluginManager().registerEvents(new WorldInitListener(this), this);
-        this.getServer().getPluginManager().registerEvents(new SpawnReasonListener(this), this);
-        this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new TimeMonitorTask(this), 100L, 100L);
+        getCommandManager().registerCommandExecutor(new BloodMoonExecuter(this));
+        getServer().getPluginManager().registerEvents(new WorldInitListener(this), this);
+        getServer().getPluginManager().registerEvents(new SpawnReasonListener(this), this);
+        getServer().getScheduler().scheduleSyncRepeatingTask(this, new TimeMonitorTask(this), 100L, 100L);
 
         for (Feature feature : Feature.values()) {
             try {
                 Class<? extends Listener> listener = feature.getListenerClass();
 
                 if (listener != null) {
-                    this.getServer().getPluginManager().registerEvents(listener.getConstructor(BloodMoon.class).newInstance(this), this);
+                    getServer().getPluginManager().registerEvents(listener.getConstructor(BloodMoon.class).newInstance(this), this);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -67,18 +68,18 @@ public class BloodMoon extends BasePlugin {
      * @param worldName The name of the world
      */
     public void activate(String worldName) {
-        World world = this.getServer().getWorld(worldName);
+        World world = getServer().getWorld(worldName);
 
-        if (world == null || this.isActive(worldName)) {
+        if (world == null || isActive(worldName)) {
             return;
         }
 
         BloodMoonStartEvent event = new BloodMoonStartEvent(world);
 
-        this.getServer().getPluginManager().callEvent(event);
+        getServer().getPluginManager().callEvent(event);
 
         if (!event.isCancelled()) {
-            this.activeWorlds.add(worldName);
+            activeWorlds.add(worldName);
         }
     }
 
@@ -103,14 +104,14 @@ public class BloodMoon extends BasePlugin {
     public void deactivate(String worldName) {
         World world = getServer().getWorld(worldName);
 
-        if (world != null || this.isActive(worldName)) {
+        if (world != null || isActive(worldName)) {
 
             BloodMoonEndEvent event = new BloodMoonEndEvent(world);
 
-            this.getServer().getPluginManager().callEvent(event);
+            getServer().getPluginManager().callEvent(event);
 
             if (!event.isCancelled()) {
-                this.activeWorlds.remove(worldName);
+                activeWorlds.remove(worldName);
             }
         }
     }
@@ -166,15 +167,15 @@ public class BloodMoon extends BasePlugin {
         String worldName = world.getName();
 
         if (!worldConfig.containsKey(worldName)) {
-            PluginConfig worldConfig = new PluginConfig(new File(this.baseDirPath + File.separator + worldName + ".yml"), Config.class, this.getLogger());
+            PluginConfig newConfig = new PluginConfig(new File(getBaseDirPath() + File.separator + worldName + ".yml"), Config.class, getLogger());
 
-            this.worldConfig.put(worldName, worldConfig);
+            worldConfig.put(worldName, newConfig);
 
-            if (worldConfig.getBoolean(Config.ALWAYS_ON)) {
-                this.activate(worldName);
+            if (newConfig.getBoolean(Config.ALWAYS_ON)) {
+                activate(worldName);
             }
 
-            return worldConfig;
+            return newConfig;
         }
 
         return null;
@@ -187,15 +188,15 @@ public class BloodMoon extends BasePlugin {
      * @return the {@link PluginConfig} for this world
      */
     public PluginConfig getConfig(String worldName) {
-        if (!this.worldConfig.containsKey(worldName)) {
+        if (!worldConfig.containsKey(worldName)) {
             World world = getServer().getWorld(worldName);
 
             if (world != null) {
-                return this.createConfig(world);
+                return createConfig(world);
             }
         }
 
-        return this.worldConfig.get(worldName);
+        return worldConfig.get(worldName);
     }
 
     /**
@@ -222,13 +223,6 @@ public class BloodMoon extends BasePlugin {
         }
 
         return SpawnReason.DEFAULT;
-    }
-
-    private void initArrays() {
-        this.activeWorlds = new ArrayList<>();
-        this.forceWorlds = new ArrayList<>();
-
-        this.worldConfig = new HashMap<>();
     }
 
 }

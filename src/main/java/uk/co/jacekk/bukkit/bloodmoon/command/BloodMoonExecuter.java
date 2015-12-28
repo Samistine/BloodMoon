@@ -13,6 +13,7 @@ import uk.co.jacekk.bukkit.baseplugin.command.CommandHandler;
 import uk.co.jacekk.bukkit.baseplugin.command.CommandTabCompletion;
 import uk.co.jacekk.bukkit.baseplugin.command.SubCommandHandler;
 import uk.co.jacekk.bukkit.bloodmoon.BloodMoon;
+import uk.co.jacekk.bukkit.bloodmoon.Permission;
 
 public class BloodMoonExecuter extends BaseCommandExecutor<BloodMoon> {
 
@@ -39,16 +40,16 @@ public class BloodMoonExecuter extends BaseCommandExecutor<BloodMoon> {
         sender.sendMessage(plugin.formatMessage(ChatColor.RED + "Usage: /" + label + " [action] [world_name]"));
         sender.sendMessage(ChatColor.RED + "Actions:");
 
-        if (sender.hasPermission("bloodmoon.admin.start")) {
+        if (sender.hasPermission(Permission.ADMIN_START)) {
             sender.sendMessage(ChatColor.RED + "  start - Forces a bloodmoon to start");
             sender.sendMessage(ChatColor.RED + "  next - Forces a bloodmoon to start at the next night");
         }
 
-        if (sender.hasPermission("bloodmoon.admin.stop")) {
+        if (sender.hasPermission(Permission.ADMIN_STOP)) {
             sender.sendMessage(ChatColor.RED + "  stop - Stops a bloodmoon");
         }
 
-        if (sender.hasPermission("bloodmoon.admin.reload")) {
+        if (sender.hasPermission(Permission.ADMIN_RELOAD)) {
             sender.sendMessage(ChatColor.RED + "  reload - Reloads the config.");
         }
     }
@@ -67,7 +68,7 @@ public class BloodMoonExecuter extends BaseCommandExecutor<BloodMoon> {
     @SubCommandHandler(parent = "bloodmoon", name = "start")
     @CommandTabCompletion({"[activeWorldNames]"})
     public void bloodmoonStart(CommandSender sender, String label, String[] args) {
-        if (sender.hasPermission("bloodmoon.admin.start")) {
+        if (sender.hasPermission(Permission.ADMIN_START)) {
             String worldName;
             if (sender instanceof Player) {
                 switch (args.length) {
@@ -108,7 +109,7 @@ public class BloodMoonExecuter extends BaseCommandExecutor<BloodMoon> {
     @SubCommandHandler(parent = "bloodmoon", name = "next")
     @CommandTabCompletion({"[activeWorldNames]"})
     public void bloodmoonNext(CommandSender sender, String label, String[] args) {
-        if (sender.hasPermission("bloodmoon.admin.start")) {
+        if (sender.hasPermission(Permission.ADMIN_START)) {
             String worldName;
             if (sender instanceof Player) {
                 switch (args.length) {
@@ -149,7 +150,7 @@ public class BloodMoonExecuter extends BaseCommandExecutor<BloodMoon> {
     @SubCommandHandler(parent = "bloodmoon", name = "stop")
     @CommandTabCompletion({"[activeWorldNames]"})
     public void bloodmoonStop(CommandSender sender, String label, String[] args) {
-        if (sender.hasPermission("bloodmoon.admin.stop")) {
+        if (sender.hasPermission(Permission.ADMIN_STOP)) {
             String worldName;
             if (sender instanceof Player) {
                 switch (args.length) {
@@ -189,7 +190,7 @@ public class BloodMoonExecuter extends BaseCommandExecutor<BloodMoon> {
 
     @SubCommandHandler(parent = "bloodmoon", name = "reload")
     public void bloodmoonReload(CommandSender sender, String label, String[] args) {
-        if (sender.hasPermission("bloodmoon.admin.reload")) {
+        if (sender.hasPermission(Permission.ADMIN_RELOAD)) {
             plugin.reloadWorldConfig();
             sender.sendMessage(ChatColor.GREEN + "Config reloaded for all worlds.");
         } else {

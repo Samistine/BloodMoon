@@ -2,3 +2,21 @@ name: "${project.name}"
 version: "${project.version}-Samistine"
 main: "uk.co.jacekk.bukkit.bloodmoon.BloodMoon"
 load: startup
+
+permissions:
+  bloodmoon.admin.*:
+      description: All admin permissions for BloodMoon
+      default: op
+      children:
+          bloodmoon.admin.start: true
+          bloodmoon.admin.stop: true
+          bloodmoon.admin.reload: true
+          bloodmoon.admin.ignore-world-lock: true
+  bloodmoon.admin.start:
+      description: Allows the player to manually start a bloodmoon
+  bloodmoon.admin.stop:
+      description: Allows the player to manually stop a bloodmoon
+  bloodmoon.admin.reload:
+      description: Allows the player to reload the config files
+  bloodmoon.admin.ignore-world-lock:
+      description: Allows the player to leave the world even if the bloodmoon is active and the lock-in-world feature is enabled

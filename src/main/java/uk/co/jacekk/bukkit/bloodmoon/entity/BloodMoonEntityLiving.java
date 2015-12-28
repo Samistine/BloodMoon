@@ -85,7 +85,7 @@ public abstract class BloodMoonEntityLiving {
             }
             double oldValue = theAttribute.getValue();
             theAttribute.setValue(oldValue * multiplier);
-            if (plugin.debug) {
+            if (BloodMoon.DEBUG) {
                 System.err.println("Set speed attribute for mob " + this.nmsEntity.getName() + " was " + oldValue + " and is now " + theAttribute.getValue());
             }
         } catch (NullPointerException e) {
