@@ -1,7 +1,7 @@
 package uk.co.jacekk.bukkit.bloodmoon.feature.mob;
 
 import org.bukkit.entity.Creature;
-import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -23,7 +23,7 @@ public class MoreExpListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onEntityDeath(EntityDeathEvent event) {
-        Entity entity = event.getEntity();
+        LivingEntity entity = event.getEntity();
         String worldName = entity.getWorld().getName();
         PluginConfig worldConfig = plugin.getConfig(worldName);
 
