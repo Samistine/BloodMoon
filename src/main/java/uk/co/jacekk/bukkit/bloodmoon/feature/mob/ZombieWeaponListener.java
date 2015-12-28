@@ -1,6 +1,7 @@
 package uk.co.jacekk.bukkit.bloodmoon.feature.mob;
 
 import java.util.Random;
+import java.util.logging.Level;
 
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
@@ -31,11 +32,11 @@ public class ZombieWeaponListener implements Listener {
     }
 
     private void giveWeapon(LivingEntity entity, PluginConfig worldConfig) {
-        String name = ListUtils.getRandom(worldConfig.getStringList(Config.FEATURE_ZOMBIE_WEAPON_WEAPONS));
+        String name = ListUtils.getRandom(worldConfig.getStringList(Config.FEATURE_ZOMBIE_WEAPON_WEAPONS)).toUpperCase();
         Material type = Material.getMaterial(name);
 
         if (type == null || type.isBlock()) {
-            plugin.getLogger().warning(name + " is not a valid item name");
+            plugin.getLogger().log(Level.WARNING, "{0} is not a valid item name", name);
             return;
         }
 
