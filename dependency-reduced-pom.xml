@@ -4,9 +4,10 @@
   <groupId>uk.co.jacekk.bukkit</groupId>
   <artifactId>bloodmoon</artifactId>
   <name>BloodMoon</name>
-  <version>0.55</version>
+  <version>0.56-SNAPSHOT</version>
   <url>http://dev.bukkit.org/bukkit-plugins/bloodmoon/</url>
   <build>
+    <sourceDirectory>src/main/java</sourceDirectory>
     <defaultGoal>install</defaultGoal>
     <resources>
       <resource>
@@ -19,8 +20,21 @@
       </resource>
     </resources>
     <directory>${basedir}/target</directory>
-    <finalName>${project.name}</finalName>
+    <finalName>${plugin.name}</finalName>
     <plugins>
+      <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>2.6.1</version>
+      </plugin>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.3</version>
+        <configuration>
+          <source>${jdk.version}</source>
+          <target>${jdk.version}</target>
+          <optimize>true</optimize>
+        </configuration>
+      </plugin>
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>
         <version>2.4.1</version>
@@ -33,40 +47,29 @@
           </execution>
         </executions>
         <configuration>
-          <finalName>${project.name}</finalName>
-          <artifactSet>
-            <includes>
-              <include>uk.co.jacekk.bukkit:baseplugin</include>
-            </includes>
-          </artifactSet>
+          <finalName>${plugin.name}</finalName>
           <relocations>
             <relocation>
               <pattern>uk.co.jacekk.bukkit.baseplugin</pattern>
               <shadedPattern>uk.co.jacekk.bukkit.baseplugin.v${baseplugin.package}</shadedPattern>
             </relocation>
           </relocations>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.3</version>
-        <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
+          <shadedArtifactAttached>false</shadedArtifactAttached>
         </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-jar-plugin</artifactId>
         <version>2.6</version>
         <configuration>
+          <finalName>${plugin.name}</finalName>
           <archive>
             <addMavenDescriptor>false</addMavenDescriptor>
             <manifestEntries>
-              <Name>${project.name}</Name>
+              <Name>${plugin.name}</Name>
               <Version>${project.version}</Version>
-              <Build-Number>${BUILD_NUMBER}</Build-Number>
             </manifestEntries>
           </archive>
+          <outputDirectory>../../Server/plugins</outputDirectory>
         </configuration>
       </plugin>
     </plugins>
@@ -94,25 +97,17 @@
         </exclusion>
       </exclusions>
     </dependency>
-    <dependency>
-      <groupId>org.bukkit</groupId>
-      <artifactId>bukkit</artifactId>
-      <version>1.8.8-R0.1-SNAPSHOT</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.bukkit</groupId>
-      <artifactId>craftbukkit</artifactId>
-      <version>1.8.8-R0.1-SNAPSHOT</version>
-      <scope>compile</scope>
-    </dependency>
   </dependencies>
   <properties>
-    <upload.dbo.category>bukkit-plugins</upload.dbo.category>
-    <baseplugin.package>13</baseplugin.package>
-    <baseplugin.version>13</baseplugin.version>
-    <upload.dbo.slug>bloodmoon</upload.dbo.slug>
+    <baseplugin.version>14</baseplugin.version>
+    <plugin.version>${project.version}</plugin.version>
+    <baseplugin.package>14</baseplugin.package>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <upload.dbo.slug>bloodmoon</upload.dbo.slug>
+    <upload.dbo.category>bukkit-plugins</upload.dbo.category>
+    <bukkit.version>1.8.8-R0.1-SNAPSHOT</bukkit.version>
+    <jdk.version>1.7</jdk.version>
+    <plugin.name>${project.name}</plugin.name>
   </properties>
 </project>
 

@@ -1,5 +1,6 @@
 package uk.co.jacekk.bukkit.bloodmoon;
 
+import org.bukkit.ChatColor;
 import uk.co.jacekk.bukkit.bloodmoon.exceptions.EntityRegistrationException;
 import java.io.File;
 import java.util.ArrayList;
@@ -167,7 +168,7 @@ public final class BloodMoon extends BasePlugin {
         String worldName = world.getName();
 
         if (!worldConfig.containsKey(worldName)) {
-            PluginConfig newConfig = new PluginConfig(new File(getBaseDirPath() + File.separator + worldName + ".yml"), Config.class, getLogger());
+            PluginConfig newConfig = new PluginConfig(new File(getBaseDirPath() + File.separator + worldName + ".yml"), Config.class, log);
 
             worldConfig.put(worldName, newConfig);
 
@@ -225,4 +226,30 @@ public final class BloodMoon extends BasePlugin {
         return SpawnReason.DEFAULT;
     }
 
+    public String formatMessage(String message) {
+        return this.formatMessage(message, true, false);
+    }
+
+    public String formatMessage(String message, boolean colour) {
+        return this.formatMessage(message, colour, !colour);
+    }
+
+    public String formatMessage(String message, boolean colour, boolean version) {
+        StringBuilder line = new StringBuilder();
+        if(colour) {
+            line.append(ChatColor.BLUE);
+        }
+
+        line.append("[");
+        line.append(this.getDescription().getName());
+        if(version) {
+            line.append(" v");
+            line.append(this.description.getVersion());
+        }
+
+        line.append("] ");
+        line.append(ChatColor.RESET);
+        line.append(message);
+        return line.toString();
+    }
 }
