@@ -42,7 +42,7 @@
         <dependency>
             <groupId>uk.co.jacekk.bukkit</groupId>
             <artifactId>baseplugin</artifactId>
-            <version>15</version>
+            <version>16</version>
             <scope>compile</scope>
         </dependency>
 
