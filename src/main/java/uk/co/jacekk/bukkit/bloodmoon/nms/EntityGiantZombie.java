@@ -15,8 +15,8 @@ public class EntityGiantZombie extends net.minecraft.server.v1_8_R3.EntityGiantZ
     private BloodMoon plugin;
     private BloodMoonEntityGiantZombie bloodMoonEntity;
 
-    public EntityGiantZombie(World world) {
-        super(((CraftWorld) world).getHandle());
+    public EntityGiantZombie(net.minecraft.server.v1_8_R3.World world) {
+        super(world);
 
         Plugin gPlugin = Bukkit.getPluginManager().getPlugin("BloodMoon");
 

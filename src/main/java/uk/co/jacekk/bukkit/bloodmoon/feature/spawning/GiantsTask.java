@@ -45,7 +45,7 @@ public final class GiantsTask extends BaseTask<BloodMoon> {
                     }
                 }
 
-                EntityGiantZombie entity = new EntityGiantZombie(world);
+                EntityGiantZombie entity = new EntityGiantZombie(((CraftWorld) world).getHandle());
 
                 entity.setPositionRotation(x, y, z, 0, 90);
                 ((CraftWorld) world).getHandle().addEntity(entity, SpawnReason.CUSTOM);
