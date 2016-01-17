@@ -3,6 +3,8 @@ version: "${project.version}-Samistine"
 main: "uk.co.jacekk.bukkit.bloodmoon.BloodMoon"
 load: startup
 
+softdepend: [Factions]
+
 permissions:
   bloodmoon.admin.*:
       description: All admin permissions for BloodMoon

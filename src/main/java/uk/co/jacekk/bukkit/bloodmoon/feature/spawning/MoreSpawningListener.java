@@ -2,6 +2,7 @@ package uk.co.jacekk.bukkit.bloodmoon.feature.spawning;
 
 import java.util.Random;
 
+import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -14,6 +15,7 @@ import uk.co.jacekk.bukkit.bloodmoon.BloodMoon;
 import uk.co.jacekk.bukkit.bloodmoon.Config;
 import uk.co.jacekk.bukkit.bloodmoon.Feature;
 import uk.co.jacekk.bukkit.bloodmoon.entity.BloodMoonEntityType;
+import uk.co.jacekk.bukkit.bloodmoon.integrations.Factions;
 
 public final class MoreSpawningListener extends BaseListener<BloodMoon> {
 
@@ -37,7 +39,9 @@ public final class MoreSpawningListener extends BaseListener<BloodMoon> {
             for (int i = 0; i < Math.max(worldConfig.getInt(Config.FEATURE_MORE_SPAWNING_MULTIPLIER), 1); ++i) {
                 for (BloodMoonEntityType bloodMoonEntity : BloodMoonEntityType.values()) {
                     if (type == bloodMoonEntity.getEntityType()) {
-                        bloodMoonEntity.spawnEntity(event.getLocation().add((random.nextDouble() * 3) - 1.5, (random.nextDouble() * 3) - 1.5, (random.nextDouble() * 3) - 1.5));
+                        Location loc = event.getLocation().add((random.nextDouble() * 3) - 1.5, (random.nextDouble() * 3) - 1.5, (random.nextDouble() * 3) - 1.5);
+                        if(plugin.spawnEntityAllowed(type, loc))
+                            bloodMoonEntity.spawnEntity(loc);
                         return;
                     }
                 }

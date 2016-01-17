@@ -137,4 +137,5 @@ public class Config {
     public static final PluginConfigKey FEATURE_GIANTS_ENABLED = new PluginConfigKey("features.giants.enabled", true);
     public static final PluginConfigKey FEATURE_GIANTS_BREAK_BLOCKS = new PluginConfigKey("features.giants.break-blocks", Arrays.asList(Material.GRASS.name(), Material.LEAVES.name(), Material.WOOD.name(), Material.GLASS.name(), Material.CROPS.name(), Material.SOIL.name(), Material.LOG.name(), Material.WOOD_STEP.name(), Material.WOOD_STAIRS.name()));
 
+    public static final PluginConfigKey INTEGRATION_FACTIONS_PREVENT_SPAWING = new PluginConfigKey("features.integration.factions.prevent-spawing", true);
 }

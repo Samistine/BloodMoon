@@ -22,6 +22,7 @@ import uk.co.jacekk.bukkit.baseplugin.util.ListUtils;
 import uk.co.jacekk.bukkit.bloodmoon.BloodMoon;
 import uk.co.jacekk.bukkit.bloodmoon.Config;
 import uk.co.jacekk.bukkit.bloodmoon.Feature;
+import uk.co.jacekk.bukkit.bloodmoon.integrations.Factions;
 
 public final class SpawnOnKillListener extends BaseListener<BloodMoon> {
 
@@ -57,7 +58,7 @@ public final class SpawnOnKillListener extends BaseListener<BloodMoon> {
                     String mobName = ListUtils.getRandom(worldConfig.getStringList(Config.FEATURE_SPAWN_ON_KILL_SPAWN));
                     EntityType creatureType = EntityType.fromName(mobName.toUpperCase());
 
-                    if (creatureType != null) {
+                    if (creatureType != null && plugin.spawnEntityAllowed(creatureType, creature.getLocation())) {
                         world.spawnEntity(creature.getLocation(), creatureType);
                         //world.spawn(creature.getLocation(), creatureType.getEntityClass(), SpawnReason.NATURAL);
                     }
