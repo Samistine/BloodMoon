@@ -1,9 +1,8 @@
 name: "${project.name}"
 version: "${project.version}-Samistine"
 main: "uk.co.jacekk.bukkit.bloodmoon.BloodMoon"
-load: startup
 
-softdepend: [Factions]
+softdepend: [MassiveCore, Factions]
 
 permissions:
   bloodmoon.admin.*:
