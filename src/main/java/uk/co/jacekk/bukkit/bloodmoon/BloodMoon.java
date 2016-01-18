@@ -29,7 +29,7 @@ import static uk.co.jacekk.bukkit.bloodmoon.integrations.Factions.hookFactionsPl
 
 public final class BloodMoon extends BasePlugin {
 
-    public static boolean DEBUG = true;
+    public static boolean DEBUG = false;
 
     private ArrayList<String> activeWorlds;
     private HashMap<String, PluginConfig> worldConfig;
