@@ -62,6 +62,15 @@ public final class BloodMoon extends BasePlugin {
         }
     }
 
+    @Override
+    public void onDisable() {
+        for (World world : getServer().getWorlds()) {
+            if (isActive(world.getName())) {
+                deactivate(world.getName());
+            }
+        }
+    }
+
     /**
      * Starts a bloodmoon in a specific world
      *
