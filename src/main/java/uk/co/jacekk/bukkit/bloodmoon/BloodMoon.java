@@ -2,7 +2,10 @@ package uk.co.jacekk.bukkit.bloodmoon;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
+import uk.co.jacekk.bukkit.bloodmoon.entity.BloodMoonEntityLiving;
 import uk.co.jacekk.bukkit.bloodmoon.exceptions.EntityRegistrationException;
 import java.io.File;
 import java.util.ArrayList;
@@ -26,7 +29,7 @@ import static uk.co.jacekk.bukkit.bloodmoon.integrations.Factions.hookFactionsPl
 
 public final class BloodMoon extends BasePlugin {
 
-    public static boolean DEBUG = false;
+    public static boolean DEBUG = true;
 
     private ArrayList<String> activeWorlds;
     private HashMap<String, PluginConfig> worldConfig;
@@ -69,6 +72,17 @@ public final class BloodMoon extends BasePlugin {
 
         // Factions plugin
         hookFactionsPlugin();
+    }
+
+    @Override
+    public void onDisable()
+    {
+        super.onDisable();
+
+        for (World world : getServer().getWorlds()) {
+            if(isActive(world.getName()))
+                deactivate(world.getName());
+        }
     }
 
     /**
@@ -121,6 +135,16 @@ public final class BloodMoon extends BasePlugin {
 
             if (!event.isCancelled()) {
                 activeWorlds.remove(worldName);
+
+                for (LivingEntity entity : world.getLivingEntities())
+                {
+                    try {
+                        BloodMoonEntityLiving bloodMoonEntity = BloodMoonEntityLiving.getBloodMoonEntity(((CraftLivingEntity) entity).getHandle());
+                        if(bloodMoonEntity!=null)
+                            entity.remove();
+                    } catch (Exception e) {
+                    }
+                }
             }
         }
     }
