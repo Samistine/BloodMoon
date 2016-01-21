@@ -14,8 +14,8 @@
         <upload.dbo.category>bukkit-plugins</upload.dbo.category>
         <upload.dbo.slug>bloodmoon</upload.dbo.slug>
 
-        <baseplugin.version>13</baseplugin.version>
-        <baseplugin.package>13</baseplugin.package>
+        <baseplugin.version>16</baseplugin.version>
+        <baseplugin.package>16</baseplugin.package>
     </properties>
 
     <repositories>
