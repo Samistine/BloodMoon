@@ -1,5 +1,11 @@
 package uk.co.jacekk.bukkit.bloodmoon;
 
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
+import uk.co.jacekk.bukkit.bloodmoon.entity.BloodMoonEntityLiving;
 import uk.co.jacekk.bukkit.bloodmoon.exceptions.EntityRegistrationException;
 import java.io.File;
 import java.util.ArrayList;
@@ -17,6 +23,9 @@ import uk.co.jacekk.bukkit.bloodmoon.command.BloodMoonExecuter;
 import uk.co.jacekk.bukkit.bloodmoon.entity.BloodMoonEntityType;
 import uk.co.jacekk.bukkit.bloodmoon.event.BloodMoonEndEvent;
 import uk.co.jacekk.bukkit.bloodmoon.event.BloodMoonStartEvent;
+import uk.co.jacekk.bukkit.bloodmoon.integrations.Factions;
+
+import static uk.co.jacekk.bukkit.bloodmoon.integrations.Factions.hookFactionsPlugin;
 
 public final class BloodMoon extends BasePlugin {
 
@@ -59,6 +68,20 @@ public final class BloodMoon extends BasePlugin {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+
+        // Factions plugin
+        hookFactionsPlugin();
+    }
+
+    @Override
+    public void onDisable()
+    {
+        super.onDisable();
+
+        for (World world : getServer().getWorlds()) {
+            if(isActive(world.getName()))
+                deactivate(world.getName());
         }
     }
 
@@ -112,6 +135,16 @@ public final class BloodMoon extends BasePlugin {
 
             if (!event.isCancelled()) {
                 activeWorlds.remove(worldName);
+
+                for (LivingEntity entity : world.getLivingEntities())
+                {
+                    try {
+                        BloodMoonEntityLiving bloodMoonEntity = BloodMoonEntityLiving.getBloodMoonEntity(((CraftLivingEntity) entity).getHandle());
+                        if(bloodMoonEntity!=null)
+                            entity.remove();
+                    } catch (Exception e) {
+                    }
+                }
             }
         }
     }
@@ -167,7 +200,7 @@ public final class BloodMoon extends BasePlugin {
         String worldName = world.getName();
 
         if (!worldConfig.containsKey(worldName)) {
-            PluginConfig newConfig = new PluginConfig(new File(getBaseDirPath() + File.separator + worldName + ".yml"), Config.class, getLogger());
+            PluginConfig newConfig = new PluginConfig(new File(getBaseDirPath() + File.separator + worldName + ".yml"), Config.class, log);
 
             worldConfig.put(worldName, newConfig);
 
@@ -225,4 +258,44 @@ public final class BloodMoon extends BasePlugin {
         return SpawnReason.DEFAULT;
     }
 
+    /**
+     * @param type Entity to spawn
+     * @param location Location of spawn
+     * @return true if an entity can spawn at location
+     */
+    public boolean spawnEntityAllowed(EntityType type, Location location)
+    {
+        if(Factions.getPlugin()!=null && worldConfig.get(location.getWorld().getName()).getBoolean(Config.INTEGRATION_FACTIONS_PREVENT_SPAWING)) {
+            if(!Factions.spawnEntityAllowed(type, location))
+                return false;
+        }
+        return true;
+    }
+
+    public String formatMessage(String message) {
+        return this.formatMessage(message, true, false);
+    }
+
+    public String formatMessage(String message, boolean colour) {
+        return this.formatMessage(message, colour, !colour);
+    }
+
+    public String formatMessage(String message, boolean colour, boolean version) {
+        StringBuilder line = new StringBuilder();
+        if(colour) {
+            line.append(ChatColor.BLUE);
+        }
+
+        line.append("[");
+        line.append(this.getDescription().getName());
+        if(version) {
+            line.append(" v");
+            line.append(this.description.getVersion());
+        }
+
+        line.append("] ");
+        line.append(ChatColor.RESET);
+        line.append(message);
+        return line.toString();
+    }
 }

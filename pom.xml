@@ -4,34 +4,50 @@
     <groupId>uk.co.jacekk.bukkit</groupId>
     <artifactId>bloodmoon</artifactId>
     <name>BloodMoon</name>
-    <version>0.55</version>
+    <version>0.56-SNAPSHOT</version>
     <packaging>jar</packaging>
     <url>http://dev.bukkit.org/bukkit-plugins/bloodmoon/</url>
 
+
+    <!-- Project properties -->
     <properties>
+        <plugin.name>${project.name}</plugin.name>
+        <plugin.version>${project.version}</plugin.version>
+
+        <bukkit.version>1.8.8-R0.1-SNAPSHOT</bukkit.version>
+        <jdk.version>1.7</jdk.version>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <upload.dbo.category>bukkit-plugins</upload.dbo.category>
         <upload.dbo.slug>bloodmoon</upload.dbo.slug>
 
-        <baseplugin.version>13</baseplugin.version>
-        <baseplugin.package>13</baseplugin.package>
+        <baseplugin.version>14</baseplugin.version>
+        <baseplugin.package>14</baseplugin.package>
     </properties>
 
+
     <repositories>
+        <!-- bukkit -->
         <repository>
             <id>bukkit-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
         </repository>
-
+        <!-- Jacekk -->
         <repository>
             <id>jacekk-repo</id>
             <url>http://bukkit.jacekk.co.uk:8000/plugin/repository/everything/</url>
+        </repository>
+        <!-- hexosse repository -->
+        <repository>
+            <id>hexosse-repo</id>
+            <url>https://raw.github.com/hexosse/maven-repo/master/</url>
         </repository>
 
     </repositories>
 
     <dependencies>
+        <!-- junit -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -39,34 +55,57 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- BasePlugin -->
         <dependency>
             <groupId>uk.co.jacekk.bukkit</groupId>
             <artifactId>baseplugin</artifactId>
-            <version>16</version>
+            <version>${baseplugin.version}</version>
             <scope>compile</scope>
         </dependency>
 
+        <!-- Bukkit -->
+        <!-- (from local .m2 repo) -->
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
             <version>1.8.8-R0.1-SNAPSHOT</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
             <!--<systemPath>${basedir}\lib\craftbukkit-1.8.8-R0.1-SNAPSHOT.jar\</systemPath>-->
         </dependency>
 
+        <!-- Craftbukkit -->
+        <!-- (from local .m2 repo) -->
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>craftbukkit</artifactId>
             <version>1.8.8-R0.1-SNAPSHOT</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
             <!--<systemPath>${basedir}\lib\craftbukkit-1.8.8-R0.1-SNAPSHOT.jar\</systemPath>-->
+        </dependency>
+
+        <!--MassiveCore-->
+        <dependency>
+            <groupId>3rdParty</groupId>
+            <artifactId>MassiveCore</artifactId>
+            <version>2.8.2</version>
+            <scope>provided</scope>
+            <!--<systemPath>${basedir}\lib\MassiveCore-2.8.2.jar\</systemPath>-->
+        </dependency>
+        <!--Factions-->
+        <dependency>
+            <groupId>3rdParty</groupId>
+            <artifactId>Factions</artifactId>
+            <version>2.8.2</version>
+            <scope>provided</scope>
+            <!--<systemPath>${basedir}\lib\Factions-2.8.2.jar\</systemPath>-->
         </dependency>
     </dependencies>
 
     <build>
         <defaultGoal>install</defaultGoal>
+        <sourceDirectory>src/main/java</sourceDirectory>
         <directory>${basedir}/target</directory>
-        <finalName>${project.name}</finalName>
+        <finalName>${plugin.name}</finalName>
 
         <resources>
             <resource>
@@ -80,10 +119,31 @@
         </resources>
 
         <plugins>
+
+            <!-- maven-clean-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.6.1</version>
+            </plugin>
+
+            <!-- maven-compiler-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                    <optimize>true</optimize>
+                </configuration>
+            </plugin>
+
+            <!-- maven-shade-plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>2.4.1</version> <!--Updated Maven Shade-->
+                <version>2.4.1</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -93,44 +153,33 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <finalName>${project.name}</finalName>
-                    <artifactSet>
-                        <includes>
-                            <include>uk.co.jacekk.bukkit:baseplugin</include>
-                        </includes>
-                    </artifactSet>
+                    <finalName>${plugin.name}</finalName>
                     <relocations>
                         <relocation>
                             <pattern>uk.co.jacekk.bukkit.baseplugin</pattern>
                             <shadedPattern>uk.co.jacekk.bukkit.baseplugin.v${baseplugin.package}</shadedPattern>
                         </relocation>
                     </relocations>
+                    <shadedArtifactAttached>false</shadedArtifactAttached>
                 </configuration>
             </plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.3</version> <!--Updated Maven Compiler-->
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                </configuration>
-            </plugin>
-
+            <!-- maven-jar-plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>2.6</version> <!--Updated Maven Jar-->
+                <version>2.6</version>
                 <configuration>
+                    <finalName>${plugin.name}</finalName>
                     <archive>
                         <addMavenDescriptor>false</addMavenDescriptor>
                         <manifestEntries>
-                            <Name>${project.name}</Name>
+                            <Name>${plugin.name}</Name>
                             <Version>${project.version}</Version>
-                            <Build-Number>${BUILD_NUMBER}</Build-Number>
+                            <!-- <Build-Number>${BUILD_NUMBER}</Build-Number> -->
                         </manifestEntries>
                     </archive>
+                    <outputDirectory>../../Server/plugins</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>

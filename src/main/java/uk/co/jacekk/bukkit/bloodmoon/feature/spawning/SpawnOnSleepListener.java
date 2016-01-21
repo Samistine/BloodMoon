@@ -12,6 +12,7 @@ import uk.co.jacekk.bukkit.baseplugin.util.ListUtils;
 import uk.co.jacekk.bukkit.bloodmoon.BloodMoon;
 import uk.co.jacekk.bukkit.bloodmoon.Config;
 import uk.co.jacekk.bukkit.bloodmoon.Feature;
+import uk.co.jacekk.bukkit.bloodmoon.integrations.Factions;
 
 public final class SpawnOnSleepListener extends BaseListener<BloodMoon> {
 
@@ -29,7 +30,7 @@ public final class SpawnOnSleepListener extends BaseListener<BloodMoon> {
             String mobName = ListUtils.getRandom(worldConfig.getStringList(Config.FEATURE_SPAWN_ON_SLEEP_SPAWN));
             EntityType creatureType = EntityType.fromName(mobName.toUpperCase());
 
-            if (creatureType != null) {
+            if (creatureType != null && plugin.spawnEntityAllowed(creatureType, event.getPlayer().getLocation())) {
                 //world.spawn(location, creatureType.getEntityClass(), SpawnReason.NATURAL);
                 world.spawnEntity(event.getPlayer().getLocation(), creatureType);
             }
