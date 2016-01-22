@@ -2,6 +2,7 @@ package uk.co.jacekk.bukkit.bloodmoon.entity;
 
 import net.minecraft.server.v1_8_R3.EntityHuman;
 import net.minecraft.server.v1_8_R3.EntityMonster;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import uk.co.jacekk.bukkit.baseplugin.config.PluginConfig;
@@ -17,7 +18,7 @@ public class BloodMoonEntitySkeleton extends BloodMoonEntityMonster {
 
     @Override
     public void onTick() {
-        String worldName = getWorldName();
+        World world = getBukkitWorld();
         String entityName = getEntityType().name().toUpperCase();
         PluginConfig worldConfig = plugin.getConfig(worldName);
 

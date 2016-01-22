@@ -26,10 +26,9 @@ public class ServerCommandsListener extends BaseListener<BloodMoon> {
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onBloodMoonStart(BloodMoonStartEvent event) {
         World world = event.getWorld();
-        String worldName = world.getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (plugin.isFeatureEnabled(worldName, Feature.SERVER_COMMANDS)) {
+        if (plugin.isFeatureEnabled(world, Feature.SERVER_COMMANDS)) {
             for (String command : worldConfig.getStringList(Config.FEATURE_SERVER_COMMANDS_START_COMMANDS)) {
                 if (command.startsWith("(")) {
                     String mydata = command;
@@ -74,10 +73,9 @@ public class ServerCommandsListener extends BaseListener<BloodMoon> {
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onBloodMoonStop(BloodMoonEndEvent event) {
         World world = event.getWorld();
-        String worldName = world.getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (plugin.isFeatureEnabled(worldName, Feature.SERVER_COMMANDS)) {
+        if (plugin.isFeatureEnabled(world, Feature.SERVER_COMMANDS)) {
             for (String command : worldConfig.getStringList(Config.FEATURE_SERVER_COMMANDS_END_COMMANDS)) {
                 plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), command);
             }

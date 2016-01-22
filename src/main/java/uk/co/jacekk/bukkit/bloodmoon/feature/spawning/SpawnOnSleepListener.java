@@ -22,10 +22,9 @@ public final class SpawnOnSleepListener extends BaseListener<BloodMoon> {
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onPlayerBedEnter(PlayerBedEnterEvent event) {
         World world = event.getPlayer().getWorld();
-        String worldName = world.getName();
 
-        if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.SPAWN_ON_SLEEP)) {
-            PluginConfig worldConfig = plugin.getConfig(worldName);
+        if (plugin.isActive(world) && plugin.isFeatureEnabled(world, Feature.SPAWN_ON_SLEEP)) {
+            PluginConfig worldConfig = plugin.getConfig(world);
             String mobName = ListUtils.getRandom(worldConfig.getStringList(Config.FEATURE_SPAWN_ON_SLEEP_SPAWN));
             EntityType creatureType = EntityType.fromName(mobName.toUpperCase());
 

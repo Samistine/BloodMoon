@@ -45,10 +45,9 @@ public final class SpawnOnKillListener extends BaseListener<BloodMoon> {
     public void onEntityDeath(EntityDeathEvent event) {
         Entity entity = event.getEntity();
         World world = entity.getWorld();
-        String worldName = world.getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (entity instanceof Creature && plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.SPAWN_ON_KILL)) {
+        if (entity instanceof Creature && plugin.isActive(world) && plugin.isFeatureEnabled(world, Feature.SPAWN_ON_KILL)) {
             Creature creature = (Creature) entity;
             EntityDamageEvent lastDamage = entity.getLastDamageCause();
 

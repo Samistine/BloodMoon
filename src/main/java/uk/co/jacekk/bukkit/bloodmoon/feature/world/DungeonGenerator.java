@@ -37,7 +37,7 @@ public class DungeonGenerator extends BlockPopulator {
         int gridX = (int) (Math.floor(chunk.getX() / 10.0d) * 10);
         int gridZ = (int) (Math.floor(chunk.getZ() / 10.0d) * 10);
 
-        PluginConfig worldConfig = plugin.getConfig(world.getName());
+        PluginConfig worldConfig = plugin.getConfig(world);
 
         DungeonProperties properties = new DungeonProperties(world, worldConfig, gridX, gridZ);
 

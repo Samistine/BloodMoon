@@ -25,10 +25,9 @@ public class MaxHealthListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onStart(BloodMoonStartEvent event) {
         World world = event.getWorld();
-        String worldName = world.getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (plugin.isFeatureEnabled(worldName, Feature.MAX_HEALTH)) {
+        if (plugin.isFeatureEnabled(world, Feature.MAX_HEALTH)) {
             for (LivingEntity entity : world.getLivingEntities()) {
                 if (worldConfig.getStringList(Config.FEATURE_MAX_HEALTH_MOBS).contains(entity.getType().name())) {
                     double newMaxHealth = entity.getMaxHealth() * worldConfig.getDouble(Config.FEATURE_MAX_HEALTH_MULTIPLIER);
@@ -44,10 +43,10 @@ public class MaxHealthListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onCreatureSpawn(CreatureSpawnEvent event) {
         LivingEntity entity = event.getEntity();
-        String worldName = event.getLocation().getWorld().getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        World world = event.getLocation().getWorld();
+        PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.MAX_HEALTH) && worldConfig.getStringList(Config.FEATURE_MAX_HEALTH_MOBS).contains(entity.getType().name())) {
+        if (plugin.isActive(world) && plugin.isFeatureEnabled(world, Feature.MAX_HEALTH) && worldConfig.getStringList(Config.FEATURE_MAX_HEALTH_MOBS).contains(entity.getType().name())) {
             double newMaxHealth = entity.getMaxHealth() * worldConfig.getDouble(Config.FEATURE_MAX_HEALTH_MULTIPLIER);
             double damage = entity.getMaxHealth() - entity.getHealth();
 
@@ -59,10 +58,9 @@ public class MaxHealthListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onStop(BloodMoonEndEvent event) {
         World world = event.getWorld();
-        String worldName = world.getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (plugin.isFeatureEnabled(worldName, Feature.MAX_HEALTH)) {
+        if (plugin.isFeatureEnabled(world, Feature.MAX_HEALTH)) {
             for (LivingEntity entity : world.getLivingEntities()) {
                 if (worldConfig.getStringList(Config.FEATURE_MAX_HEALTH_MOBS).contains(entity.getType().name())) {
                     entity.resetMaxHealth();

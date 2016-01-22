@@ -26,10 +26,9 @@ public class ChatMessageListener extends BaseListener<BloodMoon> {
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onBloodMoonStart(BloodMoonStartEvent event) {
         World world = event.getWorld();
-        String worldName = world.getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (plugin.isFeatureEnabled(worldName, Feature.CHAT_MESSAGE)) {
+        if (plugin.isFeatureEnabled(world, Feature.CHAT_MESSAGE)) {
             String message = worldConfig.getString(Config.FEATURE_CHAT_MESSAGE_START_MESSAGE);
 
             if (!message.isEmpty()) {
@@ -43,14 +42,14 @@ public class ChatMessageListener extends BaseListener<BloodMoon> {
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onPlayerChangedWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
-        String worldName = player.getWorld().getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        World world = player.getWorld();
+        PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (plugin.isFeatureEnabled(worldName, Feature.CHAT_MESSAGE)) {
+        if (plugin.isFeatureEnabled(world, Feature.CHAT_MESSAGE)) {
             String message = worldConfig.getString(Config.FEATURE_CHAT_MESSAGE_START_MESSAGE);
 
             if (!message.isEmpty()) {
-                if (plugin.isActive(worldName)) {
+                if (plugin.isActive(world)) {
                     player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
                 }
             }
@@ -60,10 +59,10 @@ public class ChatMessageListener extends BaseListener<BloodMoon> {
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        String worldName = player.getWorld().getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        World world = player.getWorld();
+        PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.CHAT_MESSAGE)) {
+        if (plugin.isActive(world) && plugin.isFeatureEnabled(world, Feature.CHAT_MESSAGE)) {
             final UUID playerUUID = player.getUniqueId();
             final String message = worldConfig.getString(Config.FEATURE_CHAT_MESSAGE_START_MESSAGE);
 
@@ -87,10 +86,9 @@ public class ChatMessageListener extends BaseListener<BloodMoon> {
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onEnd(BloodMoonEndEvent event) {
         World world = event.getWorld();
-        String worldName = world.getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (plugin.isFeatureEnabled(worldName, Feature.CHAT_MESSAGE)) {
+        if (plugin.isFeatureEnabled(world, Feature.CHAT_MESSAGE)) {
             String message = worldConfig.getString(Config.FEATURE_CHAT_MESSAGE_END_MESSAGE);
 
             if (!message.isEmpty()) {

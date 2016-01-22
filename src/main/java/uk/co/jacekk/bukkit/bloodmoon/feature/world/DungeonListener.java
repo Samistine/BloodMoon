@@ -36,9 +36,8 @@ public class DungeonListener extends BaseListener<BloodMoon> {
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onWorldInit(WorldInitEvent event) {
         World world = event.getWorld();
-        String worldName = world.getName();
 
-        if (plugin.isEnabled(worldName) && plugin.isFeatureEnabled(worldName, Feature.DUNGEONS)) {
+        if (plugin.isEnabled(world) && plugin.isFeatureEnabled(world, Feature.DUNGEONS)) {
             world.getPopulators().add(new DungeonGenerator(plugin));
         }
     }
@@ -47,7 +46,7 @@ public class DungeonListener extends BaseListener<BloodMoon> {
         Chunk chunk = location.getChunk();
         World world = location.getWorld();
 
-        PluginConfig worldConfig = plugin.getConfig(world.getName());
+        PluginConfig worldConfig = plugin.getConfig(world);
 
         int gridX = (int) (Math.floor(chunk.getX() / 10.0d) * 10);
         int gridZ = (int) (Math.floor(chunk.getZ() / 10.0d) * 10);
@@ -84,14 +83,14 @@ public class DungeonListener extends BaseListener<BloodMoon> {
     public void onPlayerCommand(PlayerCommandPreprocessEvent event) {
         Player player = event.getPlayer();
         String message = event.getMessage();
-        String worldName = player.getWorld().getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        World world = player.getWorld();
+        PluginConfig worldConfig = plugin.getConfig(world);
 
         int spaceIndex = message.indexOf(' ');
 
         String command = (spaceIndex > 0) ? message.substring(1, spaceIndex) : message.substring(1);
 
-        if (plugin.isFeatureEnabled(worldName, Feature.DISABLED_COMMANDS) && worldConfig.getStringList(Config.FEATURE_DISABLED_COMMANDS_COMMANDS).contains(command) && this.isProtected(player.getLocation())) {
+        if (plugin.isFeatureEnabled(world, Feature.DISABLED_COMMANDS) && worldConfig.getStringList(Config.FEATURE_DISABLED_COMMANDS_COMMANDS).contains(command) && this.isProtected(player.getLocation())) {
             event.setCancelled(true);
             player.sendMessage(ChatColor.RED + "The /" + command + " is disabled in bloodmoon dungeons!");
         }
@@ -101,12 +100,11 @@ public class DungeonListener extends BaseListener<BloodMoon> {
     public void onBlockBreak(BlockBreakEvent event) {
         Block block = event.getBlock();
         World world = block.getWorld();
-        String worldName = world.getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        PluginConfig worldConfig = plugin.getConfig(world);
 
         List<Material> allowed = Arrays.asList(Material.IRON_FENCE, Material.MOB_SPAWNER, Material.COBBLE_WALL);
 
-        if (plugin.isEnabled(worldName) && worldConfig.getBoolean(Config.FEATURE_DUNGEONS_PROTECTED) && !allowed.contains(block.getType()) && this.isProtected(block.getLocation())) {
+        if (plugin.isEnabled(world) && worldConfig.getBoolean(Config.FEATURE_DUNGEONS_PROTECTED) && !allowed.contains(block.getType()) && this.isProtected(block.getLocation())) {
             event.setCancelled(true);
         }
     }
@@ -116,10 +114,10 @@ public class DungeonListener extends BaseListener<BloodMoon> {
         List<Block> blocks = event.blockList();
 
         if (!blocks.isEmpty()) {
-            String worldName = blocks.get(0).getWorld().getName();
-            PluginConfig worldConfig = plugin.getConfig(worldName);
+            World world = blocks.get(0).getWorld();
+            PluginConfig worldConfig = plugin.getConfig(world);
 
-            if (plugin.isEnabled(worldName) && worldConfig.getBoolean(Config.FEATURE_DUNGEONS_PROTECTED)) {
+            if (plugin.isEnabled(world) && worldConfig.getBoolean(Config.FEATURE_DUNGEONS_PROTECTED)) {
                 Iterator<Block> iterator = blocks.iterator();
 
                 while (iterator.hasNext()) {
@@ -136,10 +134,9 @@ public class DungeonListener extends BaseListener<BloodMoon> {
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onPistonExtend(BlockPistonExtendEvent event) {
         World world = event.getBlock().getWorld();
-        String worldName = world.getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (plugin.isEnabled(worldName) && worldConfig.getBoolean(Config.FEATURE_DUNGEONS_PROTECTED)) {
+        if (plugin.isEnabled(world) && worldConfig.getBoolean(Config.FEATURE_DUNGEONS_PROTECTED)) {
             for (Block moved : event.getBlocks()) {
                 if (this.isProtected(moved.getLocation())) {
                     event.setCancelled(true);
@@ -152,10 +149,9 @@ public class DungeonListener extends BaseListener<BloodMoon> {
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onPistonRetract(BlockPistonRetractEvent event) {
         World world = event.getBlock().getWorld();
-        String worldName = world.getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (plugin.isEnabled(worldName) && worldConfig.getBoolean(Config.FEATURE_DUNGEONS_PROTECTED)) {
+        if (plugin.isEnabled(world) && worldConfig.getBoolean(Config.FEATURE_DUNGEONS_PROTECTED)) {
             if (this.isProtected(event.getRetractLocation())) {
                 event.setCancelled(true);
             }
@@ -166,12 +162,11 @@ public class DungeonListener extends BaseListener<BloodMoon> {
     public void onBlockPlace(BlockPlaceEvent event) {
         Block block = event.getBlock();
         World world = block.getWorld();
-        String worldName = world.getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        PluginConfig worldConfig = plugin.getConfig(world);
 
         List<Material> allowed = Arrays.asList(Material.TORCH);
 
-        if (plugin.isEnabled(worldName) && worldConfig.getBoolean(Config.FEATURE_DUNGEONS_PROTECTED) && !allowed.contains(block.getType()) && this.isProtected(block.getLocation())) {
+        if (plugin.isEnabled(world) && worldConfig.getBoolean(Config.FEATURE_DUNGEONS_PROTECTED) && !allowed.contains(block.getType()) && this.isProtected(block.getLocation())) {
             event.setCancelled(true);
         }
     }

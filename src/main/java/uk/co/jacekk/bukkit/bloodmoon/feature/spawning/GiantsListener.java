@@ -28,7 +28,7 @@ public class GiantsListener extends BaseListener<BloodMoon> {
         World world =  event.getWorld();
         String worldName = world.getName();
 
-        if (plugin.isFeatureEnabled(worldName, Feature.GIANTS)) {
+        if (plugin.isFeatureEnabled(world, Feature.GIANTS)) {
             int taskID = plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new GiantsTask(plugin, world), 0L, 100L);
 
             if (taskID != -1) {

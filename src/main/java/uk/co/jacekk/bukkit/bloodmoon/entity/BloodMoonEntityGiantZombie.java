@@ -21,7 +21,7 @@ public class BloodMoonEntityGiantZombie extends BloodMoonEntityMonster {
     public void onTick() {
         if (this.nmsEntity.locX != this.nmsEntity.lastX || this.nmsEntity.locZ != this.nmsEntity.lastZ) {
             World world = this.getBukkitWorld();
-            PluginConfig worldConfig = plugin.getConfig(world.getName());
+            PluginConfig worldConfig = plugin.getConfig(world);
             Block block = world.getBlockAt((int) this.nmsEntity.locX, (int) this.nmsEntity.locY - 1, (int) this.nmsEntity.locZ);
 
             if (worldConfig.getStringList(Config.FEATURE_GIANTS_BREAK_BLOCKS).contains(block.getType().name())) {

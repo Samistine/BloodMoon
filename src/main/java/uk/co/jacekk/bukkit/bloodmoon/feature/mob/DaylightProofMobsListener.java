@@ -1,5 +1,6 @@
 package uk.co.jacekk.bukkit.bloodmoon.feature.mob;
 
+import org.bukkit.World;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -19,11 +20,11 @@ public class DaylightProofMobsListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onEntityCombust(EntityCombustEvent event) {
-        String worldName = event.getEntity().getWorld().getName();
+        World world = event.getEntity().getWorld();
         EntityType type = event.getEntityType();
 
         if (type == EntityType.ZOMBIE || type == EntityType.SKELETON) {
-            if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.DAYLIGHT_PROOF_MOBS)) {
+            if (plugin.isActive(world) && plugin.isFeatureEnabled(world, Feature.DAYLIGHT_PROOF_MOBS)) {
                 event.setCancelled(true);
             }
         }

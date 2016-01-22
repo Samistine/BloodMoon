@@ -19,23 +19,23 @@ public class TimeMonitorTask implements Runnable {
         for (World world : plugin.getServer().getWorlds()) {
             String worldName = world.getName();
 
-            if (plugin.isEnabled(worldName)) {
-                PluginConfig worldConfig = plugin.getConfig(worldName);
+            if (plugin.isEnabled(world)) {
+                PluginConfig worldConfig = plugin.getConfig(world);
 
                 if (!worldConfig.getBoolean(Config.ALWAYS_ON)) {
                     long worldTime = world.getTime();
 
                     if (worldTime >= 13000 && worldTime <= 13100) {
                         if (plugin.forceWorlds.contains(worldName) || this.random.nextInt(100) < worldConfig.getInt(Config.CHANCE)) {
-                            if (!plugin.isActive(worldName)) {
-                                plugin.activate(worldName);
+                            if (!plugin.isActive(world)) {
+                                plugin.activate(world);
                             }
 
                             plugin.forceWorlds.remove(worldName);
                         }
                     } else if (worldTime >= 23000 && worldTime <= 23100) {
-                        if (plugin.isActive(worldName)) {
-                            plugin.deactivate(worldName);
+                        if (plugin.isActive(world)) {
+                            plugin.deactivate(world);
                         }
                     }
                 }

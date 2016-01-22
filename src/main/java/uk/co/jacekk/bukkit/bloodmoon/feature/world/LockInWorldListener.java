@@ -22,9 +22,7 @@ public class LockInWorldListener extends BaseListener<BloodMoon> {
     }
 
     private boolean canTeleport(Player player, World from, World to) {
-        String worldName = from.getName();
-
-        return (player.hasPermission(Permission.ADMIN_IGNORE_WORLD_LOCK) || from.equals(to) || !plugin.isActive(worldName) || !plugin.isFeatureEnabled(worldName, Feature.LOCK_IN_WORLD));
+        return (player.hasPermission(Permission.ADMIN_IGNORE_WORLD_LOCK) || from.equals(to) || !plugin.isActive(from) || !plugin.isFeatureEnabled(from, Feature.LOCK_IN_WORLD));
     }
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)

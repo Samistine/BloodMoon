@@ -20,7 +20,7 @@ public final class MoreMobsListener extends BaseListener<BloodMoon> {
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onStop(BloodMoonEndEvent event) {
         World world = event.getWorld();
-        PluginConfig worldConfig = plugin.getConfig(world.getName());
+        PluginConfig worldConfig = plugin.getConfig(world);
 
         for (LivingEntity entity : world.getLivingEntities()) {
             if (worldConfig.getStringList(Config.FEATURE_SPAWN_CONTROL_SPAWN).contains(entity.getType().name())) {
