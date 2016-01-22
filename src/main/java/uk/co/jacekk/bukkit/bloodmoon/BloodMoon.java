@@ -113,7 +113,7 @@ public final class BloodMoon extends BasePlugin {
     public void deactivate(String worldName) {
         World world = getServer().getWorld(worldName);
 
-        if (world != null || isActive(worldName)) {
+        if (world != null && isActive(worldName)) {
 
             BloodMoonEndEvent event = new BloodMoonEndEvent(world);
 
