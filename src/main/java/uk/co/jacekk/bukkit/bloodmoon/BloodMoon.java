@@ -79,7 +79,7 @@ public final class BloodMoon extends BasePlugin {
     public void activate(String worldName) {
         World world = getServer().getWorld(worldName);
 
-        if (world == null || isActive(worldName)) {
+        if (world == null && isActive(worldName)) {
             return;
         }
 
