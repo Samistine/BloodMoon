@@ -25,7 +25,7 @@ public class GiantsListener extends BaseListener<BloodMoon> {
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onStart(BloodMoonStartEvent event) {
-        CraftWorld world = (CraftWorld) event.getWorld();
+        World world =  event.getWorld();
         String worldName = world.getName();
 
         if (plugin.isFeatureEnabled(worldName, Feature.GIANTS)) {
