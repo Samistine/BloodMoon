@@ -31,7 +31,7 @@ public class EntityCreeper extends net.minecraft.server.v1_9_R1.EntityCreeper {
     }
 
     @Override
-    public boolean bM() {
+    public boolean co() {
         try {
             this.bloodMoonEntity.onTick();
             super.bL();

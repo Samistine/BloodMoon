@@ -31,10 +31,10 @@ public class EntityBlaze extends net.minecraft.server.v1_9_R1.EntityBlaze {
     }
 
     @Override
-    public boolean bM() {
+    public boolean co() {
         try {
             this.bloodMoonEntity.onTick();
-            super.bL();
+            super.cn();
         } catch (Exception e) {
             plugin.getLogger().warning("Exception caught while ticking entity");
             e.printStackTrace();
