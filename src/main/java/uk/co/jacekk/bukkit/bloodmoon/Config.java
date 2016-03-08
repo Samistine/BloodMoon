@@ -121,7 +121,7 @@ public class Config {
 
     public static final PluginConfigKey FEATURE_DUNGEONS_ENABLED = new PluginConfigKey("features.dungeons.enabled", true);
     public static final PluginConfigKey FEATURE_DUNGEONS_PROTECTED = new PluginConfigKey("features.dungeons.protected", true);
-    public static final PluginConfigKey FEATURE_DUNGEONS_BIOMES = new PluginConfigKey("features.dungeons.biomes", Arrays.asList(Biome.PLAINS.name(), Biome.ICE_PLAINS.name(), Biome.DESERT.name(), Biome.SWAMPLAND.name()));
+    public static final PluginConfigKey FEATURE_DUNGEONS_BIOMES = new PluginConfigKey("features.dungeons.biomes", Arrays.asList(Biome.PLAINS.name(), Biome.ICE_FLATS.name(), Biome.DESERT.name(), Biome.SWAMPLAND.name()));
     public static final PluginConfigKey FEATURE_DUNGEONS_CHANCE = new PluginConfigKey("features.dungeons.chance", 10);
     public static final PluginConfigKey FEATURE_DUNGEONS_MIN_LAYERS = new PluginConfigKey("features.dungeons.min-layers", 3);
     public static final PluginConfigKey FEATURE_DUNGEONS_MAX_LAYERS = new PluginConfigKey("features.dungeons.max-layers", 5);
