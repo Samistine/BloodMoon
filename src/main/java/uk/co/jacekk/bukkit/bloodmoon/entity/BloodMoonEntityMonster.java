@@ -1,6 +1,6 @@
 package uk.co.jacekk.bukkit.bloodmoon.entity;
 
-import net.minecraft.server.v1_8_R3.EntityMonster;
+import net.minecraft.server.v1_9_R1.EntityMonster;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -48,7 +48,7 @@ public abstract class BloodMoonEntityMonster extends BloodMoonEntityLiving {
 
             if (this.rand.nextInt(100) < 80) {
                 if (this.rand.nextInt(100) < 50) {
-                    nmsEntity.world.getWorld().playSound(location, Sound.ZOMBIE_WOOD, Math.min(this.rand.nextFloat() + 0.2f, 1.0f), 1.0f);
+                    nmsEntity.world.getWorld().playSound(location, Sound.ENTITY_ZOMBIE_ATTACK_DOOR_WOOD, Math.min(this.rand.nextFloat() + 0.2f, 1.0f), 1.0f);
                 }
             } else {
                 EntityChangeBlockEvent event = new EntityChangeBlockEvent(bukkitEntity, block, Material.AIR, (byte) 0);

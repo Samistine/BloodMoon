@@ -10,7 +10,7 @@ import uk.co.jacekk.bukkit.bloodmoon.nms.EntityGiantZombie;
 
 import java.util.Random;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_9_R1.CraftWorld;
 
 public final class GiantsTask extends BaseTask<BloodMoon> {
 

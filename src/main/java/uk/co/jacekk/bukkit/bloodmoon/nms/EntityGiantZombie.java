@@ -2,20 +2,20 @@ package uk.co.jacekk.bukkit.bloodmoon.nms;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
-import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftGiant;
+import org.bukkit.craftbukkit.v1_9_R1.CraftServer;
+import org.bukkit.craftbukkit.v1_9_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_9_R1.entity.CraftGiant;
 import org.bukkit.plugin.Plugin;
 import uk.co.jacekk.bukkit.bloodmoon.BloodMoon;
 import uk.co.jacekk.bukkit.bloodmoon.entity.BloodMoonEntityGiantZombie;
 import uk.co.jacekk.bukkit.bloodmoon.entity.BloodMoonEntityType;
 
-public class EntityGiantZombie extends net.minecraft.server.v1_8_R3.EntityGiantZombie {
+public class EntityGiantZombie extends net.minecraft.server.v1_9_R1.EntityGiantZombie {
 
     private BloodMoon plugin;
     private BloodMoonEntityGiantZombie bloodMoonEntity;
 
-    public EntityGiantZombie(net.minecraft.server.v1_8_R3.World world) {
+    public EntityGiantZombie(net.minecraft.server.v1_9_R1.World world) {
         super(world);
 
         Plugin gPlugin = Bukkit.getPluginManager().getPlugin("BloodMoon");

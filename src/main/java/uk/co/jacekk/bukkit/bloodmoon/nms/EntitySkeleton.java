@@ -1,24 +1,24 @@
 package uk.co.jacekk.bukkit.bloodmoon.nms;
 
 import java.util.List;
-import net.minecraft.server.v1_8_R3.Enchantment;
-import net.minecraft.server.v1_8_R3.EnchantmentManager;
-import net.minecraft.server.v1_8_R3.EntityArrow;
-import net.minecraft.server.v1_8_R3.EntityHuman;
-import net.minecraft.server.v1_8_R3.IRangedEntity;
-import net.minecraft.server.v1_8_R3.PathfinderGoalFleeSun;
-import net.minecraft.server.v1_8_R3.PathfinderGoalFloat;
-import net.minecraft.server.v1_8_R3.PathfinderGoalHurtByTarget;
-import net.minecraft.server.v1_8_R3.PathfinderGoalLookAtPlayer;
-import net.minecraft.server.v1_8_R3.PathfinderGoalNearestAttackableTarget;
-import net.minecraft.server.v1_8_R3.PathfinderGoalRandomLookaround;
-import net.minecraft.server.v1_8_R3.PathfinderGoalRandomStroll;
-import net.minecraft.server.v1_8_R3.PathfinderGoalRestrictSun;
+import net.minecraft.server.v1_9_R1.Enchantment;
+import net.minecraft.server.v1_9_R1.EnchantmentManager;
+import net.minecraft.server.v1_9_R1.EntityArrow;
+import net.minecraft.server.v1_9_R1.EntityHuman;
+import net.minecraft.server.v1_9_R1.IRangedEntity;
+import net.minecraft.server.v1_9_R1.PathfinderGoalFleeSun;
+import net.minecraft.server.v1_9_R1.PathfinderGoalFloat;
+import net.minecraft.server.v1_9_R1.PathfinderGoalHurtByTarget;
+import net.minecraft.server.v1_9_R1.PathfinderGoalLookAtPlayer;
+import net.minecraft.server.v1_9_R1.PathfinderGoalNearestAttackableTarget;
+import net.minecraft.server.v1_9_R1.PathfinderGoalRandomLookaround;
+import net.minecraft.server.v1_9_R1.PathfinderGoalRandomStroll;
+import net.minecraft.server.v1_9_R1.PathfinderGoalRestrictSun;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftSkeleton;
-import org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory;
+import org.bukkit.craftbukkit.v1_9_R1.CraftServer;
+import org.bukkit.craftbukkit.v1_9_R1.entity.CraftSkeleton;
+import org.bukkit.craftbukkit.v1_9_R1.event.CraftEventFactory;
 import org.bukkit.event.entity.EntityCombustEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.plugin.Plugin;
@@ -30,12 +30,12 @@ import uk.co.jacekk.bukkit.bloodmoon.entity.BloodMoonEntitySkeleton;
 import uk.co.jacekk.bukkit.bloodmoon.entity.BloodMoonEntityType;
 
 //public class EntitySkeleton {
-public class EntitySkeleton extends net.minecraft.server.v1_8_R3.EntitySkeleton implements IRangedEntity {
+public class EntitySkeleton extends net.minecraft.server.v1_9_R1.EntitySkeleton implements IRangedEntity {
 
     private BloodMoon plugin;
     private BloodMoonEntitySkeleton bloodMoonEntity;
 
-    public EntitySkeleton(net.minecraft.server.v1_8_R3.World world) {
+    public EntitySkeleton(net.minecraft.server.v1_9_R1.World world) {
         super(world);
 
         Plugin gPlugin = Bukkit.getPluginManager().getPlugin("BloodMoon");
@@ -108,7 +108,7 @@ public class EntitySkeleton extends net.minecraft.server.v1_8_R3.EntitySkeleton 
 //		return true;
 //	}
     @Override
-    public void a(net.minecraft.server.v1_8_R3.EntityLiving entityLiving, float f) {
+    public void a(net.minecraft.server.v1_9_R1.EntityLiving entityLiving, float f) {
 
         final EntityArrow entityarrow = new EntityArrow(this.world, this, entityLiving, 1.6f, 14 - this.world.getDifficulty().a() * 4);
         int arrow_damage = EnchantmentManager.getEnchantmentLevel(Enchantment.ARROW_DAMAGE.id, bA());//assumming bz()
