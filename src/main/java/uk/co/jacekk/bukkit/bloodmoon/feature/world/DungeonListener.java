@@ -151,10 +151,8 @@ public class DungeonListener extends BaseListener<BloodMoon> {
         World world = event.getBlock().getWorld();
         PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (plugin.isEnabled(world) && worldConfig.getBoolean(Config.FEATURE_DUNGEONS_PROTECTED)) {
-            if (this.isProtected(event.getRetractLocation())) {
-                event.setCancelled(true);
-            }
+        if (plugin.isEnabled(world) && worldConfig.getBoolean(Config.FEATURE_DUNGEONS_PROTECTED) && this.isProtected(event.getRetractLocation())) {
+            event.setCancelled(true);
         }
     }
 

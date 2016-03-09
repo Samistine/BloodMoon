@@ -9,6 +9,8 @@ import org.bukkit.entity.EntityType;
 import uk.co.jacekk.bukkit.baseplugin.config.PluginConfigKey;
 
 public class Config {
+    
+    private Config() {}
 
     public static final PluginConfigKey ENABLED = new PluginConfigKey("enabled", false);
     public static final PluginConfigKey ALWAYS_ON = new PluginConfigKey("always-on", false);
