@@ -17,21 +17,21 @@ import uk.co.jacekk.bukkit.bloodmoon.Permission;
 
 public class BloodMoonExecuter extends BaseCommandExecutor<BloodMoon> {
 
-    private final String specify_world;
-    private final String invalid_args_l;
-    private final String no_perm;
-    private final String no_perm_start;
-    private final String no_perm_stop;
-    private final String not_enabled_world;
+    private final String specifyWorld;
+    private final String invalidArgsl;
+    private final String noPerm;
+    private final String noPermStart;
+    private final String noPermStop;
+    private final String notEnabledWorld;
 
     public BloodMoonExecuter(BloodMoon plugin) {
         super(plugin);
-        this.specify_world = plugin.formatMessage(ChatColor.RED + "You must specify a world when using the command from the console");
-        this.invalid_args_l = plugin.formatMessage(ChatColor.RED + "Invalid argument length");
-        this.no_perm = plugin.formatMessage(ChatColor.RED + "You do not have permission use this command");
-        this.no_perm_start = plugin.formatMessage(ChatColor.RED + "You do not have permission to start a bloodmoon");
-        this.no_perm_stop = plugin.formatMessage(ChatColor.RED + "You do not have permission to stop a bloodmoon");
-        this.not_enabled_world = plugin.formatMessage(ChatColor.RED + "The blood moon is not enabled for this world");
+        this.specifyWorld = plugin.formatMessage(ChatColor.RED + "You must specify a world when using the command from the console");
+        this.invalidArgsl = plugin.formatMessage(ChatColor.RED + "Invalid argument length");
+        this.noPerm = plugin.formatMessage(ChatColor.RED + "You do not have permission use this command");
+        this.noPermStart = plugin.formatMessage(ChatColor.RED + "You do not have permission to start a bloodmoon");
+        this.noPermStop = plugin.formatMessage(ChatColor.RED + "You do not have permission to stop a bloodmoon");
+        this.notEnabledWorld = plugin.formatMessage(ChatColor.RED + "The blood moon is not enabled for this world");
     }
 
     @CommandHandler(names = {"bloodmoon", "bm"}, description = "Toggles the bloodmoon for the current world.", usage = "[action] [world_name]")
@@ -78,19 +78,19 @@ public class BloodMoonExecuter extends BaseCommandExecutor<BloodMoon> {
                         worldName = args[0];
                         break;
                     default:
-                        sender.sendMessage(invalid_args_l);
+                        sender.sendMessage(invalidArgsl);
                         return;
                 }
             } else {
                 switch (args.length) {
                     case 0:
-                        sender.sendMessage(specify_world);
+                        sender.sendMessage(specifyWorld);
                         return;
                     case 1:
                         worldName = args[0];
                         break;
                     default:
-                        sender.sendMessage(invalid_args_l);
+                        sender.sendMessage(invalidArgsl);
                         return;
                 }
             }
@@ -100,13 +100,13 @@ public class BloodMoonExecuter extends BaseCommandExecutor<BloodMoon> {
                     plugin.activate(world);
                     sender.sendMessage(ChatColor.GREEN + "Bloodmoon started in " + world.getName());
                 } else {
-                    sender.sendMessage(not_enabled_world);
+                    sender.sendMessage(notEnabledWorld);
                 }
             } else {
                 sender.sendMessage(ChatColor.RED + "Invalid World");
             }
         } else {
-            sender.sendMessage(no_perm_start);
+            sender.sendMessage(noPermStart);
         }
     }
 
@@ -124,19 +124,19 @@ public class BloodMoonExecuter extends BaseCommandExecutor<BloodMoon> {
                         worldName = args[0];
                         break;
                     default:
-                        sender.sendMessage(invalid_args_l);
+                        sender.sendMessage(invalidArgsl);
                         return;
                 }
             } else {
                 switch (args.length) {
                     case 0:
-                        sender.sendMessage(specify_world);
+                        sender.sendMessage(specifyWorld);
                         return;
                     case 1:
                         worldName = args[0];
                         break;
                     default:
-                        sender.sendMessage(invalid_args_l);
+                        sender.sendMessage(invalidArgsl);
                         return;
                 }
             }
@@ -146,13 +146,13 @@ public class BloodMoonExecuter extends BaseCommandExecutor<BloodMoon> {
                     plugin.forceNextNight(world);
                     sender.sendMessage(ChatColor.GREEN + "Bloodmoon forced in " + world.getName());
                 } else {
-                    sender.sendMessage(not_enabled_world);
+                    sender.sendMessage(notEnabledWorld);
                 }
             } else {
                 sender.sendMessage(ChatColor.RED + "Invalid World");
             }
         } else {
-            sender.sendMessage(no_perm_start);
+            sender.sendMessage(noPermStart);
         }
     }
 
@@ -170,19 +170,19 @@ public class BloodMoonExecuter extends BaseCommandExecutor<BloodMoon> {
                         worldName = args[0];
                         break;
                     default:
-                        sender.sendMessage(invalid_args_l);
+                        sender.sendMessage(invalidArgsl);
                         return;
                 }
             } else {
                 switch (args.length) {
                     case 0:
-                        sender.sendMessage(specify_world);
+                        sender.sendMessage(specifyWorld);
                         return;
                     case 1:
                         worldName = args[0];
                         break;
                     default:
-                        sender.sendMessage(invalid_args_l);
+                        sender.sendMessage(invalidArgsl);
                         return;
                 }
             }
@@ -192,13 +192,13 @@ public class BloodMoonExecuter extends BaseCommandExecutor<BloodMoon> {
                     plugin.deactivate(world);
                     sender.sendMessage(ChatColor.GREEN + "Bloodmoon stopped in " + world.getName());
                 } else {
-                    sender.sendMessage(not_enabled_world);
+                    sender.sendMessage(notEnabledWorld);
                 }
             } else {
                 sender.sendMessage(ChatColor.RED + "Invalid World");
             }
         } else {
-            sender.sendMessage(no_perm_stop);
+            sender.sendMessage(noPermStop);
         }
     }
 
@@ -208,7 +208,7 @@ public class BloodMoonExecuter extends BaseCommandExecutor<BloodMoon> {
             plugin.reloadWorldConfig();
             sender.sendMessage(ChatColor.GREEN + "Config reloaded for all worlds.");
         } else {
-            sender.sendMessage(no_perm);
+            sender.sendMessage(noPerm);
         }
     }
 
