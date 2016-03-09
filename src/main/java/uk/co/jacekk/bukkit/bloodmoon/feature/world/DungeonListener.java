@@ -73,7 +73,7 @@ public class DungeonListener extends BaseListener<BloodMoon> {
 
             double y = location.getY();
 
-            return (y >= yMin && y <= yMax);
+            return y >= yMin && y <= yMax;
         }
 
         return false;

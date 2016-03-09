@@ -31,7 +31,7 @@ public class ChunkProviderServer extends net.minecraft.server.v1_9_R1.ChunkProvi
     @SuppressWarnings("unchecked")
     public List<BiomeBase.BiomeMeta> getMobsFor(EnumCreatureType creatureType, int x, int y, int z) {
 //        return (this.plugin.isActive(this.world.worldData.getName())) ? this.bloodMoonMobs : super.getMobsFor(creatureType, new BlockPosition(x, y, z));
-        return (this.plugin.isActive(this.world.worldData.world.getWorld())) ? this.bloodMoonMobs : super.chunkGenerator.getMobsFor(creatureType, new BlockPosition(x, y, z));
+        return this.plugin.isActive(this.world.worldData.world.getWorld())) ? this.bloodMoonMobs : super.chunkGenerator.getMobsFor(creatureType, new BlockPosition(x, y, z);
     }
 
 }

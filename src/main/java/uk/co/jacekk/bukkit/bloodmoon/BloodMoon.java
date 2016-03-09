@@ -21,7 +21,7 @@ import uk.co.jacekk.bukkit.bloodmoon.event.BloodMoonStartEvent;
 
 public final class BloodMoon extends BasePlugin {
 
-    public static boolean DEBUG = false;
+    public static final boolean DEBUG = false;
 
     private ArrayList<String> activeWorlds;
     private HashMap<String, PluginConfig> worldConfig;

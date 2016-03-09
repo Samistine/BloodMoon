@@ -14,8 +14,8 @@ public class EntityEnderman extends net.minecraft.server.v1_9_R1.EntityEnderman 
     private BloodMoon plugin;
     private BloodMoonEntityEndermen bloodMoonEntity;
 
-    public int bt;
-    public boolean bv;
+    private int bt;
+    private boolean bv;
 
     public EntityEnderman(World world) {
         super(world);
