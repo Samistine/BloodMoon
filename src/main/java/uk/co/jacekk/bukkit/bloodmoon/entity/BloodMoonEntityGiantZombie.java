@@ -1,12 +1,10 @@
 package uk.co.jacekk.bukkit.bloodmoon.entity;
 
-import net.minecraft.server.v1_8_R3.EntityMonster;
-
+import net.minecraft.server.v1_9_R1.EntityMonster;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-
 import uk.co.jacekk.bukkit.baseplugin.config.PluginConfig;
 import uk.co.jacekk.bukkit.bloodmoon.BloodMoon;
 import uk.co.jacekk.bukkit.bloodmoon.Config;
@@ -26,7 +24,7 @@ public class BloodMoonEntityGiantZombie extends BloodMoonEntityMonster {
 
             if (worldConfig.getStringList(Config.FEATURE_GIANTS_BREAK_BLOCKS).contains(block.getType().name())) {
                 block.setType(Material.AIR);
-                world.playSound(this.getLocation(), Sound.ZOMBIE_WOODBREAK, 1.0f, 1.0f);
+                world.playSound(this.getLocation(), Sound.ENTITY_ZOMBIE_BREAK_DOOR_WOOD, 1.0f, 1.0f);
             }
         }
     }

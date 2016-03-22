@@ -1,8 +1,11 @@
 package uk.co.jacekk.bukkit.bloodmoon.entity;
 
-import net.minecraft.server.v1_8_R3.*;
+import net.minecraft.server.v1_9_R1.BiomeBase;
+import net.minecraft.server.v1_9_R1.EntityInsentient;
+import net.minecraft.server.v1_9_R1.EntityTypes;
+import net.minecraft.server.v1_9_R1.World;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_9_R1.CraftWorld;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import uk.co.jacekk.bukkit.baseplugin.util.ReflectionUtils;
@@ -13,16 +16,16 @@ import java.util.Map;
 
 public enum BloodMoonEntityType {
 
-    CREEPER("Creeper", 50, EntityType.CREEPER, net.minecraft.server.v1_8_R3.EntityCreeper.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityCreeper.class),
-    ENDERMAN("Enderman", 58, EntityType.ENDERMAN, net.minecraft.server.v1_8_R3.EntityEnderman.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityEnderman.class),
-    SKELETON("Skeleton", 51, EntityType.SKELETON, net.minecraft.server.v1_8_R3.EntitySkeleton.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntitySkeleton.class),
-    SPIDER("Spider", 52, EntityType.SPIDER, net.minecraft.server.v1_8_R3.EntitySpider.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntitySpider.class),
-    ZOMBIE("Zombie", 54, EntityType.ZOMBIE, net.minecraft.server.v1_8_R3.EntityZombie.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityZombie.class),
-    GHAST("Ghast", 56, EntityType.GHAST, net.minecraft.server.v1_8_R3.EntityGhast.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityGhast.class),
-    BLAZE("Blaze", 61, EntityType.BLAZE, net.minecraft.server.v1_8_R3.EntityBlaze.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityBlaze.class),
-    WITHER("WitherBoss", 64, EntityType.WITHER, net.minecraft.server.v1_8_R3.EntityWither.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityWither.class),
-    WITCH("Witch", 66, EntityType.WITCH, net.minecraft.server.v1_8_R3.EntityWitch.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityWitch.class),
-    GIANT_ZOMBIE("Giant", 53, EntityType.GIANT, net.minecraft.server.v1_8_R3.EntityGiantZombie.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityGiantZombie.class);
+    CREEPER("Creeper", 50, EntityType.CREEPER, net.minecraft.server.v1_9_R1.EntityCreeper.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityCreeper.class),
+    ENDERMAN("Enderman", 58, EntityType.ENDERMAN, net.minecraft.server.v1_9_R1.EntityEnderman.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityEnderman.class),
+    SKELETON("Skeleton", 51, EntityType.SKELETON, net.minecraft.server.v1_9_R1.EntitySkeleton.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntitySkeleton.class),
+    SPIDER("Spider", 52, EntityType.SPIDER, net.minecraft.server.v1_9_R1.EntitySpider.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntitySpider.class),
+    ZOMBIE("Zombie", 54, EntityType.ZOMBIE, net.minecraft.server.v1_9_R1.EntityZombie.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityZombie.class),
+    GHAST("Ghast", 56, EntityType.GHAST, net.minecraft.server.v1_9_R1.EntityGhast.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityGhast.class),
+    BLAZE("Blaze", 61, EntityType.BLAZE, net.minecraft.server.v1_9_R1.EntityBlaze.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityBlaze.class),
+    WITHER("WitherBoss", 64, EntityType.WITHER, net.minecraft.server.v1_9_R1.EntityWither.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityWither.class),
+    WITCH("Witch", 66, EntityType.WITCH, net.minecraft.server.v1_9_R1.EntityWitch.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityWitch.class),
+    GIANT_ZOMBIE("Giant", 53, EntityType.GIANT, net.minecraft.server.v1_9_R1.EntityGiantZombie.class, uk.co.jacekk.bukkit.bloodmoon.nms.EntityGiantZombie.class);
 
     private final String name;
     private final int id;
@@ -67,13 +70,13 @@ public enum BloodMoonEntityType {
             }
         }
 
-        for (BiomeBase biomeBase : BiomeBase.getBiomes()) {
+        for (BiomeBase biomeBase : BiomeBase.i) {
             if (biomeBase == null) {
                 break;
             }
 
-            //for (String field : new String[]{"as", "at", "au", "av"}){
-            for (String field : new String[]{"at", "au", "av", "aw"}) {
+            for (String field : new String[]{"u", "v", "w", "x"})
+            {
                 try {
                     //System.out.println(field);
                     List<BiomeBase.BiomeMeta> mobList = ReflectionUtils.getFieldValue(BiomeBase.class, field, List.class, biomeBase);
@@ -132,7 +135,7 @@ public enum BloodMoonEntityType {
         EntityInsentient entity = this.createEntity(world);
         entity.setPositionRotation(location.getX(), location.getY(), location.getZ(), location.getYaw(), location.getPitch());
         world.addEntity(entity, SpawnReason.CUSTOM);
-        entity.p(null);
+        entity.z(null);
     }
 
 }

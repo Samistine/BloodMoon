@@ -3,28 +3,24 @@ package uk.co.jacekk.bukkit.bloodmoon;
 import org.apache.commons.lang3.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
-import uk.co.jacekk.bukkit.bloodmoon.entity.BloodMoonEntityLiving;
-import uk.co.jacekk.bukkit.bloodmoon.exceptions.EntityRegistrationException;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.metadata.MetadataValue;
-
 import uk.co.jacekk.bukkit.baseplugin.BasePlugin;
 import uk.co.jacekk.bukkit.baseplugin.config.PluginConfig;
 import uk.co.jacekk.bukkit.bloodmoon.command.BloodMoonExecuter;
 import uk.co.jacekk.bukkit.bloodmoon.entity.BloodMoonEntityType;
 import uk.co.jacekk.bukkit.bloodmoon.event.BloodMoonEndEvent;
 import uk.co.jacekk.bukkit.bloodmoon.event.BloodMoonStartEvent;
+import uk.co.jacekk.bukkit.bloodmoon.exceptions.EntityRegistrationException;
 import uk.co.jacekk.bukkit.bloodmoon.integrations.Factions;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import static uk.co.jacekk.bukkit.bloodmoon.integrations.Factions.hookFactionsPlugin;
 

@@ -1,22 +1,20 @@
 package uk.co.jacekk.bukkit.bloodmoon.feature.spawning;
 
-import java.util.Random;
-import org.bukkit.World;
-
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
-
 import uk.co.jacekk.bukkit.baseplugin.config.PluginConfig;
 import uk.co.jacekk.bukkit.baseplugin.event.BaseListener;
 import uk.co.jacekk.bukkit.bloodmoon.BloodMoon;
 import uk.co.jacekk.bukkit.bloodmoon.Config;
 import uk.co.jacekk.bukkit.bloodmoon.Feature;
 import uk.co.jacekk.bukkit.bloodmoon.entity.BloodMoonEntityType;
-import uk.co.jacekk.bukkit.bloodmoon.integrations.Factions;
+
+import java.util.Random;
 
 public final class MoreSpawningListener extends BaseListener<BloodMoon> {
 

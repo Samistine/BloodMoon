@@ -1,5 +1,5 @@
 name: "${project.name}"
-version: "${project.version}-Samistine"
+version: "${project.version}-Hexosse-1.9"
 main: "uk.co.jacekk.bukkit.bloodmoon.BloodMoon"
 
 softdepend: [MassiveCore, Factions]

@@ -2,6 +2,8 @@ package uk.co.jacekk.bukkit.bloodmoon.feature.spawning;
 
 import org.bukkit.Chunk;
 import org.bukkit.Location;
+import org.bukkit.World;
+import org.bukkit.craftbukkit.v1_9_R1.CraftWorld;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import uk.co.jacekk.bukkit.baseplugin.scheduler.BaseTask;
@@ -9,8 +11,6 @@ import uk.co.jacekk.bukkit.bloodmoon.BloodMoon;
 import uk.co.jacekk.bukkit.bloodmoon.nms.EntityGiantZombie;
 
 import java.util.Random;
-import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 
 public final class GiantsTask extends BaseTask<BloodMoon> {
 
@@ -49,7 +49,7 @@ public final class GiantsTask extends BaseTask<BloodMoon> {
 
                 entity.setPositionRotation(x, y, z, 0, 90);
                 ((CraftWorld) world).getHandle().addEntity(entity, SpawnReason.CUSTOM);
-                entity.p(null);
+                entity.z(null);
             }
         }
     }

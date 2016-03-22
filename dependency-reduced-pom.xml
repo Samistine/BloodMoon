@@ -4,7 +4,7 @@
   <groupId>uk.co.jacekk.bukkit</groupId>
   <artifactId>bloodmoon</artifactId>
   <name>BloodMoon</name>
-  <version>0.57</version>
+  <version>0.60</version>
   <url>http://dev.bukkit.org/bukkit-plugins/bloodmoon/</url>
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
@@ -66,7 +66,7 @@
               <Version>${project.version}</Version>
             </manifestEntries>
           </archive>
-          <outputDirectory>../../Server/plugins</outputDirectory>
+          <outputDirectory>../../ServerTest/plugins</outputDirectory>
         </configuration>
       </plugin>
     </plugins>
@@ -101,7 +101,7 @@
     <dependency>
       <groupId>org.bukkit</groupId>
       <artifactId>bukkit</artifactId>
-      <version>1.8.8-R0.1-SNAPSHOT</version>
+      <version>1.9-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
@@ -133,7 +133,7 @@
     <dependency>
       <groupId>org.bukkit</groupId>
       <artifactId>craftbukkit</artifactId>
-      <version>1.8.8-R0.1-SNAPSHOT</version>
+      <version>1.9-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -156,7 +156,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <upload.dbo.slug>bloodmoon</upload.dbo.slug>
     <upload.dbo.category>bukkit-plugins</upload.dbo.category>
-    <bukkit.version>1.8.8-R0.1-SNAPSHOT</bukkit.version>
+    <bukkit.version>1.9-R0.1-SNAPSHOT</bukkit.version>
     <jdk.version>1.7</jdk.version>
     <plugin.name>${project.name}</plugin.name>
   </properties>

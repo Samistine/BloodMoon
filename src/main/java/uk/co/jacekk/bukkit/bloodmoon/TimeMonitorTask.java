@@ -1,8 +1,9 @@
 package uk.co.jacekk.bukkit.bloodmoon;
 
-import java.util.Random;
 import org.bukkit.World;
 import uk.co.jacekk.bukkit.baseplugin.config.PluginConfig;
+
+import java.util.Random;
 
 public class TimeMonitorTask implements Runnable {
 

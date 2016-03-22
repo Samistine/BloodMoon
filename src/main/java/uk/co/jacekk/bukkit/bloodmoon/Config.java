@@ -1,12 +1,11 @@
 package uk.co.jacekk.bukkit.bloodmoon;
 
-import java.util.Arrays;
-
 import org.bukkit.Material;
 import org.bukkit.block.Biome;
 import org.bukkit.entity.EntityType;
-
 import uk.co.jacekk.bukkit.baseplugin.config.PluginConfigKey;
+
+import java.util.Arrays;
 
 public class Config {
 
@@ -26,7 +25,7 @@ public class Config {
     public static final PluginConfigKey FEATURE_DISABLED_COMMANDS_COMMANDS = new PluginConfigKey("features.disabled-commands.commands", Arrays.asList("spawn", "home"));
 
     public static final PluginConfigKey FEATURE_PLAY_SOUND_ENABLED = new PluginConfigKey("features.play-sound.enabled", true);
-    public static final PluginConfigKey FEATURE_PLAY_SOUND_SOUND = new PluginConfigKey("features.play-sound.sound", "WITHER_SPAWN");
+    public static final PluginConfigKey FEATURE_PLAY_SOUND_SOUND = new PluginConfigKey("features.play-sound.sound", "ENTITY_WITHER_SPAWN");
     public static final PluginConfigKey FEATURE_PLAY_SOUND_PITCH = new PluginConfigKey("features.play-sound.pitch", 1.0d);
     public static final PluginConfigKey FEATURE_PLAY_SOUND_VOLUME = new PluginConfigKey("features.play-sound.volume", 1.0d);
 
@@ -121,7 +120,7 @@ public class Config {
 
     public static final PluginConfigKey FEATURE_DUNGEONS_ENABLED = new PluginConfigKey("features.dungeons.enabled", true);
     public static final PluginConfigKey FEATURE_DUNGEONS_PROTECTED = new PluginConfigKey("features.dungeons.protected", true);
-    public static final PluginConfigKey FEATURE_DUNGEONS_BIOMES = new PluginConfigKey("features.dungeons.biomes", Arrays.asList(Biome.PLAINS.name(), Biome.ICE_PLAINS.name(), Biome.DESERT.name(), Biome.SWAMPLAND.name()));
+    public static final PluginConfigKey FEATURE_DUNGEONS_BIOMES = new PluginConfigKey("features.dungeons.biomes", Arrays.asList(Biome.PLAINS.name(), Biome.ICE_FLATS.name(), Biome.DESERT.name(), Biome.SWAMPLAND.name()));
     public static final PluginConfigKey FEATURE_DUNGEONS_CHANCE = new PluginConfigKey("features.dungeons.chance", 10);
     public static final PluginConfigKey FEATURE_DUNGEONS_MIN_LAYERS = new PluginConfigKey("features.dungeons.min-layers", 3);
     public static final PluginConfigKey FEATURE_DUNGEONS_MAX_LAYERS = new PluginConfigKey("features.dungeons.max-layers", 5);
