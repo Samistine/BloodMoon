@@ -1,6 +1,7 @@
 package uk.co.jacekk.bukkit.bloodmoon.feature.spawning;
 
 import java.util.Random;
+import org.bukkit.World;
 
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
@@ -32,10 +33,10 @@ public final class MoreSpawningListener extends BaseListener<BloodMoon> {
         }
 
         EntityType type = event.getEntityType();
-        String worldName = event.getLocation().getWorld().getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        World world = event.getLocation().getWorld();
+        PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.MORE_SPAWNING) && worldConfig.getStringList(Config.FEATURE_MORE_SPAWNING_MOBS).contains(type.getName().toUpperCase())) {
+        if (plugin.isActive(world) && plugin.isFeatureEnabled(world, Feature.MORE_SPAWNING) && worldConfig.getStringList(Config.FEATURE_MORE_SPAWNING_MOBS).contains(type.getName().toUpperCase())) {
             for (int i = 0; i < Math.max(worldConfig.getInt(Config.FEATURE_MORE_SPAWNING_MULTIPLIER), 1); ++i) {
                 for (BloodMoonEntityType bloodMoonEntity : BloodMoonEntityType.values()) {
                     if (type == bloodMoonEntity.getEntityType()) {

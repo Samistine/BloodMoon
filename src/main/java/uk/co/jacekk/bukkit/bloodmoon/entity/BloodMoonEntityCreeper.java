@@ -2,6 +2,7 @@ package uk.co.jacekk.bukkit.bloodmoon.entity;
 
 import net.minecraft.server.v1_8_R3.EntityHuman;
 import net.minecraft.server.v1_8_R3.EntityMonster;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import uk.co.jacekk.bukkit.baseplugin.config.PluginConfig;
@@ -17,11 +18,11 @@ public class BloodMoonEntityCreeper extends BloodMoonEntityMonster {
 
     @Override
     public void onTick() {
-        String worldName = getWorldName();
+        World world = getBukkitWorld();
         String entityName = getEntityType().name().toUpperCase();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (nmsEntity.getGoalTarget() instanceof EntityHuman && plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.BREAK_BLOCKS) && worldConfig.getStringList(Config.FEATURE_BREAK_BLOCKS_MOBS).contains(entityName) && nmsEntity.world.getTime() % 20 == 0 && nmsEntity.world.worldData.getName().equals(nmsEntity.getGoalTarget().world.worldData.getName())) {
+        if (nmsEntity.getGoalTarget() instanceof EntityHuman && plugin.isActive(world) && plugin.isFeatureEnabled(world, Feature.BREAK_BLOCKS) && worldConfig.getStringList(Config.FEATURE_BREAK_BLOCKS_MOBS).contains(entityName) && nmsEntity.world.getTime() % 20 == 0 && nmsEntity.world.worldData.getName().equals(nmsEntity.getGoalTarget().world.worldData.getName())) {
             Block[] blocks = new Block[2];
 
             blocks[0] = this.getBreakableTargetBlock();

@@ -27,10 +27,9 @@ public class TargetDistanceListener implements Listener {
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onStart(BloodMoonStartEvent event) {
         World world = event.getWorld();
-        String worldName = world.getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (plugin.isFeatureEnabled(worldName, Feature.TARGET_DISTANCE)) {
+        if (plugin.isFeatureEnabled(world, Feature.TARGET_DISTANCE)) {
             for (LivingEntity entity : world.getLivingEntities()) {
                 if (worldConfig.getStringList(Config.FEATURE_TARGET_DISTANCE_MOBS).contains(entity.getType().name())) {
                     try {
@@ -47,9 +46,8 @@ public class TargetDistanceListener implements Listener {
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onStop(BloodMoonEndEvent event) {
         World world = event.getWorld();
-        String worldName = world.getName();
 
-        if (plugin.isFeatureEnabled(worldName, Feature.TARGET_DISTANCE)) {
+        if (plugin.isFeatureEnabled(world, Feature.TARGET_DISTANCE)) {
             for (LivingEntity entity : world.getLivingEntities()) {
                 try {
                     BloodMoonEntityLiving.getBloodMoonEntity(((CraftLivingEntity) entity).getHandle()).clearFollowRangeMultiplier();
@@ -64,10 +62,9 @@ public class TargetDistanceListener implements Listener {
     public void onCreatureSpawn(CreatureSpawnEvent event) {
         LivingEntity entity = event.getEntity();
         World world = entity.getWorld();
-        String worldName = world.getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.TARGET_DISTANCE)) {
+        if (plugin.isActive(world) && plugin.isFeatureEnabled(world, Feature.TARGET_DISTANCE)) {
             if (worldConfig.getStringList(Config.FEATURE_TARGET_DISTANCE_MOBS).contains(entity.getType().name())) {
                 try {
                     //((CraftLivingEntity)entity).setfol

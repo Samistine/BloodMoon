@@ -1,6 +1,7 @@
 package uk.co.jacekk.bukkit.bloodmoon.feature.mob;
 
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
 import org.bukkit.entity.Entity;
@@ -29,10 +30,10 @@ public class FireArrowsListener implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void onProjectileHit(ProjectileHitEvent event) {
         Projectile projectile = event.getEntity();
-        String worldName = projectile.getWorld().getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        World world = projectile.getWorld();
+        PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.FIRE_ARROWS) && worldConfig.getBoolean(Config.FEATURE_FIRE_ARROWS_IGNITE_TARGET)) {
+        if (plugin.isActive(world) && plugin.isFeatureEnabled(world, Feature.FIRE_ARROWS) && worldConfig.getBoolean(Config.FEATURE_FIRE_ARROWS_IGNITE_TARGET)) {
             LivingEntity shooter = (LivingEntity) projectile.getShooter();
             if (shooter.getType() == EntityType.SKELETON) { //Not sure why this is here, or why fire arrows even work with it here
                 return;

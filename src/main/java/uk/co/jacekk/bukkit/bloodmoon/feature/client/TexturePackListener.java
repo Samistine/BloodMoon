@@ -25,7 +25,7 @@ public class TexturePackListener extends BaseListener<BloodMoon> {
     public void onBloodMoonStart(BloodMoonStartEvent event) {
         final World world = event.getWorld();
 
-        if (plugin.isFeatureEnabled(world.getName(), Feature.TEXTURE_PACK)) {
+        if (plugin.isFeatureEnabled(world, Feature.TEXTURE_PACK)) {
             plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 
                 @Override
@@ -41,7 +41,7 @@ public class TexturePackListener extends BaseListener<BloodMoon> {
     public void onBloodMoonEnd(BloodMoonEndEvent event) {
         final World world = event.getWorld();
 
-        if (plugin.isFeatureEnabled(world.getName(), Feature.TEXTURE_PACK)) {
+        if (plugin.isFeatureEnabled(world, Feature.TEXTURE_PACK)) {
             plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 
                 @Override
@@ -56,14 +56,14 @@ public class TexturePackListener extends BaseListener<BloodMoon> {
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onPlayerChangedWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
-        String fromName = event.getFrom().getName();
-        String toName = player.getWorld().getName();
-        PluginConfig worldConfig = plugin.getConfig(toName);
+        World from = event.getFrom();
+        World to = player.getWorld();
+        PluginConfig worldConfig = plugin.getConfig(to);
 
-        if (plugin.isFeatureEnabled(toName, Feature.TEXTURE_PACK)) {
-            if (!plugin.isActive(fromName) && plugin.isActive(toName)) {
+        if (plugin.isFeatureEnabled(to, Feature.TEXTURE_PACK)) {
+            if (!plugin.isActive(from) && plugin.isActive(to)) {
                 player.setResourcePack(worldConfig.getString(Config.FEATURE_TEXTURE_PACK_BLOODMOON));
-            } else if (plugin.isActive(fromName) && !plugin.isActive(toName)) {
+            } else if (plugin.isActive(from) && !plugin.isActive(to)) {
                 player.setResourcePack(worldConfig.getString(Config.FEATURE_TEXTURE_PACK_NORMAL));
             }
         }
@@ -72,10 +72,10 @@ public class TexturePackListener extends BaseListener<BloodMoon> {
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        String worldName = player.getWorld().getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        World world = player.getWorld();
+        PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.TEXTURE_PACK)) {
+        if (plugin.isActive(world) && plugin.isFeatureEnabled(world, Feature.TEXTURE_PACK)) {
             player.setResourcePack(worldConfig.getString(Config.FEATURE_TEXTURE_PACK_BLOODMOON));
         }
     }
@@ -87,7 +87,7 @@ public class TexturePackListener extends BaseListener<BloodMoon> {
      * @param special true:TEXTURE_PACK_BLOODMOON false:TEXTURE_PACK_NORMAL
      */
     public void sendResourcePack(World world, boolean special) {
-        PluginConfig worldConfig = plugin.getConfig(world.getName());
+        PluginConfig worldConfig = plugin.getConfig(world);
         String resource;
         if (special) {
             resource = worldConfig.getString(Config.FEATURE_TEXTURE_PACK_BLOODMOON);

@@ -15,6 +15,7 @@ import net.minecraft.server.v1_8_R3.PathfinderGoalRandomLookaround;
 import net.minecraft.server.v1_8_R3.PathfinderGoalRandomStroll;
 import net.minecraft.server.v1_8_R3.PathfinderGoalRestrictSun;
 import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftSkeleton;
 import org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory;
@@ -122,10 +123,12 @@ public class EntitySkeleton extends net.minecraft.server.v1_8_R3.EntitySkeleton 
             entityarrow.setKnockbackStrength(knockback);
         }
 
-        String worldName = this.world.worldData.getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        //String worldName = this.world.worldData.getName();
+        //PluginConfig worldConfig = plugin.getConfig(worldName);
+        World bukkitWorld = this.world.worldData.world.getWorld();
+        PluginConfig worldConfig = plugin.getConfig(bukkitWorld);
 
-        if (plugin.isActive(worldName) && worldConfig.getBoolean(Config.FEATURE_FIRE_ARROWS_ENABLED) && (this.random.nextInt(100) < worldConfig.getInt(Config.FEATURE_FIRE_ARROWS_CHANCE))
+        if (plugin.isActive(bukkitWorld) && worldConfig.getBoolean(Config.FEATURE_FIRE_ARROWS_ENABLED) && (this.random.nextInt(100) < worldConfig.getInt(Config.FEATURE_FIRE_ARROWS_CHANCE))
                 || (EnchantmentManager.getEnchantmentLevel(Enchantment.ARROW_FIRE.id, this.bA()) > 0 || this.getSkeletonType() == 1)) {
             final EntityCombustEvent event = new EntityCombustEvent(entityarrow.getBukkitEntity(), 100);
             this.world.getServer().getPluginManager().callEvent(event);

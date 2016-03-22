@@ -47,14 +47,13 @@ public class ExtendedNightListener extends BaseListener<BloodMoon> {
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onStart(BloodMoonStartEvent event) {
         World world = event.getWorld();
-        String worldName = world.getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (plugin.isFeatureEnabled(worldName, Feature.EXTENDED_NIGHT)) {
+        if (plugin.isFeatureEnabled(world, Feature.EXTENDED_NIGHT)) {
             world.setGameRuleValue("doDaylightCycle", "false");
 
             if (!worldConfig.getBoolean(Config.ALWAYS_ON)) {
-                killCount.put(worldName, 0);
+                killCount.put(world.getName(), 0);
             }
         }
     }
@@ -62,10 +61,9 @@ public class ExtendedNightListener extends BaseListener<BloodMoon> {
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onStop(BloodMoonEndEvent event) {
         World world = event.getWorld();
-        String worldName = world.getName();
 
-        if (plugin.isFeatureEnabled(worldName, Feature.EXTENDED_NIGHT)) {
-            killCount.remove(worldName);
+        if (plugin.isFeatureEnabled(world, Feature.EXTENDED_NIGHT)) {
+            killCount.remove(world.getName());
             world.setGameRuleValue("doDaylightCycle", "true");
         }
     }
@@ -75,9 +73,9 @@ public class ExtendedNightListener extends BaseListener<BloodMoon> {
         if (hostileTypes.contains(event.getEntityType())) {
             World world = event.getEntity().getWorld();
             String worldName = world.getName();
-            PluginConfig worldConfig = plugin.getConfig(worldName);
+            PluginConfig worldConfig = plugin.getConfig(world);
 
-            if (plugin.isFeatureEnabled(worldName, Feature.EXTENDED_NIGHT) && killCount.containsKey(worldName)) {
+            if (plugin.isFeatureEnabled(world, Feature.EXTENDED_NIGHT) && killCount.containsKey(worldName)) {
                 killCount.put(worldName, killCount.get(worldName) + 1);
 
                 if (killCount.get(worldName) > worldConfig.getInt(Config.FEATURE_EXTENDED_NIGHT_MIN_KILLS)) {

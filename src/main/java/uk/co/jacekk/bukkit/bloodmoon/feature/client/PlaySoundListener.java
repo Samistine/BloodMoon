@@ -25,10 +25,9 @@ public class PlaySoundListener extends BaseListener<BloodMoon> {
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onBloodMoonStart(BloodMoonStartEvent event) {
         World world = event.getWorld();
-        String worldName = world.getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (plugin.isFeatureEnabled(worldName, Feature.PLAY_SOUND)) {
+        if (plugin.isFeatureEnabled(world, Feature.PLAY_SOUND)) {
             for (Player player : event.getWorld().getPlayers()) {
                 player.playSound(player.getLocation(), Sound.valueOf(worldConfig.getString(Config.FEATURE_PLAY_SOUND_SOUND)), (float) worldConfig.getDouble(Config.FEATURE_PLAY_SOUND_VOLUME), (float) worldConfig.getDouble(Config.FEATURE_PLAY_SOUND_PITCH));
             }
@@ -38,10 +37,10 @@ public class PlaySoundListener extends BaseListener<BloodMoon> {
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onPlayerChangedWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
-        String worldName = player.getWorld().getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        World world = player.getWorld();
+        PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.PLAY_SOUND)) {
+        if (plugin.isActive(world) && plugin.isFeatureEnabled(world, Feature.PLAY_SOUND)) {
             player.playSound(player.getLocation(), Sound.valueOf(worldConfig.getString(Config.FEATURE_PLAY_SOUND_SOUND)), (float) worldConfig.getDouble(Config.FEATURE_PLAY_SOUND_VOLUME), (float) worldConfig.getDouble(Config.FEATURE_PLAY_SOUND_PITCH));
         }
     }
@@ -49,10 +48,10 @@ public class PlaySoundListener extends BaseListener<BloodMoon> {
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        String worldName = player.getWorld().getName();
-        final PluginConfig worldConfig = plugin.getConfig(worldName);
+        World world = player.getWorld();
+        final PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.PLAY_SOUND)) {
+        if (plugin.isActive(world) && plugin.isFeatureEnabled(world, Feature.PLAY_SOUND)) {
             final UUID playerUUID = player.getUniqueId();
 
             plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {

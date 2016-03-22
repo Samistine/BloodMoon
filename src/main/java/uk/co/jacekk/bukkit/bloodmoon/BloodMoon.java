@@ -1,5 +1,6 @@
 package uk.co.jacekk.bukkit.bloodmoon;
 
+import org.apache.commons.lang3.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
@@ -80,20 +81,21 @@ public final class BloodMoon extends BasePlugin {
         super.onDisable();
 
         for (World world : getServer().getWorlds()) {
-            if(isActive(world.getName()))
-                deactivate(world.getName());
+            if (isActive(world)) {
+                deactivate(world);
+            }
         }
     }
 
     /**
      * Starts a bloodmoon in a specific world
      *
-     * @param worldName The name of the world
+     * @param world The world
      */
-    public void activate(String worldName) {
-        World world = getServer().getWorld(worldName);
+    public void activate(World world) {
+        Validate.notNull(world);
 
-        if (world == null || isActive(worldName)) {
+        if (isActive(world)) {
             return;
         }
 
@@ -102,49 +104,35 @@ public final class BloodMoon extends BasePlugin {
         getServer().getPluginManager().callEvent(event);
 
         if (!event.isCancelled()) {
-            activeWorlds.add(worldName);
+            activeWorlds.add(world.getName());
         }
     }
 
     /**
      * Starts a bloodmoon the next time night is reached in a specific world
      *
-     * @param worldName The name of the world
+     * @param world The world
      */
-    public void forceNextNight(String worldName) {
-        World world = getServer().getWorld(worldName);
-
-        if (world != null) {
-            forceWorlds.add(worldName);
-        }
+    public void forceNextNight(World world) {
+        Validate.notNull(world);
+        forceWorlds.add(world.getName());
     }
 
     /**
      * Stops an existing bloodmoon in a world
      *
-     * @param worldName The name of the world
+     * @param world The world
      */
-    public void deactivate(String worldName) {
-        World world = getServer().getWorld(worldName);
-
-        if (world != null || isActive(worldName)) {
+    public void deactivate(World world) {
+        Validate.notNull(world);
+        if (isActive(world)) {
 
             BloodMoonEndEvent event = new BloodMoonEndEvent(world);
 
             getServer().getPluginManager().callEvent(event);
 
             if (!event.isCancelled()) {
-                activeWorlds.remove(worldName);
-
-                for (LivingEntity entity : world.getLivingEntities())
-                {
-                    try {
-                        BloodMoonEntityLiving bloodMoonEntity = BloodMoonEntityLiving.getBloodMoonEntity(((CraftLivingEntity) entity).getHandle());
-                        if(bloodMoonEntity!=null)
-                            entity.remove();
-                    } catch (Exception e) {
-                    }
-                }
+                activeWorlds.remove(world.getName());
             }
         }
     }
@@ -152,40 +140,43 @@ public final class BloodMoon extends BasePlugin {
     /**
      * Checks if a bloodmoon is currently active in a world
      *
-     * @param worldName The name of the world
+     * @param world The world
      * @return true if a bloodmoon is active false if not
      */
-    public boolean isActive(String worldName) {
-        return activeWorlds.contains(worldName);
+    public boolean isActive(World world) {
+        Validate.notNull(world);
+        return activeWorlds.contains(world.getName());
     }
 
     /**
      * Checks if the bloodmoon is enabled for a world
      *
-     * @param worldName The name of the world
+     * @param world The world
      * @return true if the bloodmoon is enabled false if not
      */
-    public boolean isEnabled(String worldName) {
-        if (!worldConfig.containsKey(worldName)) {
+    public boolean isEnabled(World world) {
+        Validate.notNull(world);
+        if (!worldConfig.containsKey(world.getName())) {
             return false;
         }
 
-        return worldConfig.get(worldName).getBoolean(Config.ENABLED);
+        return worldConfig.get(world.getName()).getBoolean(Config.ENABLED);
     }
 
     /**
      * Checks if a specific feature is enabled in a world.
      *
-     * @param worldName The name of the world
+     * @param world The world
      * @param feature The {@link Feature} to check
      * @return true if the feature is enabled false if not
      */
-    public boolean isFeatureEnabled(String worldName, Feature feature) {
-        if (!worldConfig.containsKey(worldName)) {
+    public boolean isFeatureEnabled(World world, Feature feature) {
+        Validate.notNull(world);
+        if (!worldConfig.containsKey(world.getName())) {
             return false;
         }
 
-        return worldConfig.get(worldName).getBoolean(feature.getEnabledConfigKey());
+        return worldConfig.get(world.getName()).getBoolean(feature.getEnabledConfigKey());
     }
 
     /**
@@ -197,6 +188,7 @@ public final class BloodMoon extends BasePlugin {
      * already existed.
      */
     public PluginConfig createConfig(World world) {
+        Validate.notNull(world);
         String worldName = world.getName();
 
         if (!worldConfig.containsKey(worldName)) {
@@ -205,7 +197,7 @@ public final class BloodMoon extends BasePlugin {
             worldConfig.put(worldName, newConfig);
 
             if (newConfig.getBoolean(Config.ALWAYS_ON)) {
-                activate(worldName);
+                activate(world);
             }
 
             return newConfig;
@@ -217,19 +209,16 @@ public final class BloodMoon extends BasePlugin {
     /**
      * Gets the config for a world
      *
-     * @param worldName The name of the world
+     * @param world The world
      * @return the {@link PluginConfig} for this world
      */
-    public PluginConfig getConfig(String worldName) {
-        if (!worldConfig.containsKey(worldName)) {
-            World world = getServer().getWorld(worldName);
-
-            if (world != null) {
-                return createConfig(world);
-            }
+    public PluginConfig getConfig(World world) {
+        Validate.notNull(world);
+        if (!worldConfig.containsKey(world.getName())) {
+            return createConfig(world);
         }
 
-        return worldConfig.get(worldName);
+        return worldConfig.get(world.getName());
     }
 
     /**

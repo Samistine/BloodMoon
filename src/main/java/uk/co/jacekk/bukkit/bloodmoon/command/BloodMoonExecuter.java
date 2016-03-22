@@ -57,9 +57,8 @@ public class BloodMoonExecuter extends BaseCommandExecutor<BloodMoon> {
     private List<String> activeWorldNames() {
         ArrayList<String> names = new ArrayList<>(plugin.getServer().getWorlds().size());
         for (World world : plugin.getServer().getWorlds()) {
-            String worldName = world.getName();
-            if (plugin.isEnabled(worldName)) {
-                names.add(worldName);
+            if (plugin.isEnabled(world)) {
+                names.add(world.getName());
             }
         }
         return names;
@@ -95,11 +94,16 @@ public class BloodMoonExecuter extends BaseCommandExecutor<BloodMoon> {
                         return;
                 }
             }
-            if (plugin.isEnabled(worldName)) {
-                plugin.activate(worldName);
-                sender.sendMessage(ChatColor.GREEN + "Bloodmoon started in " + worldName);
+            World world = plugin.getServer().getWorld(worldName);
+            if (world != null) {
+                if (plugin.isEnabled(world)) {
+                    plugin.activate(world);
+                    sender.sendMessage(ChatColor.GREEN + "Bloodmoon started in " + world.getName());
+                } else {
+                    sender.sendMessage(not_enabled_world);
+                }
             } else {
-                sender.sendMessage(not_enabled_world);
+                sender.sendMessage(ChatColor.RED + "Invalid World");
             }
         } else {
             sender.sendMessage(no_perm_start);
@@ -136,11 +140,16 @@ public class BloodMoonExecuter extends BaseCommandExecutor<BloodMoon> {
                         return;
                 }
             }
-            if (plugin.isEnabled(worldName)) {
-                plugin.forceNextNight(worldName);
-                sender.sendMessage(ChatColor.GREEN + "Bloodmoon forced in " + worldName);
+            World world = plugin.getServer().getWorld(worldName);
+            if (world != null) {
+                if (plugin.isEnabled(world)) {
+                    plugin.forceNextNight(world);
+                    sender.sendMessage(ChatColor.GREEN + "Bloodmoon forced in " + world.getName());
+                } else {
+                    sender.sendMessage(not_enabled_world);
+                }
             } else {
-                sender.sendMessage(not_enabled_world);
+                sender.sendMessage(ChatColor.RED + "Invalid World");
             }
         } else {
             sender.sendMessage(no_perm_start);
@@ -177,11 +186,16 @@ public class BloodMoonExecuter extends BaseCommandExecutor<BloodMoon> {
                         return;
                 }
             }
-            if (plugin.isEnabled(worldName)) {
-                plugin.deactivate(worldName);
-                sender.sendMessage(ChatColor.GREEN + "Bloodmoon stopped in " + worldName);
+            World world = plugin.getServer().getWorld(worldName);
+            if (world != null) {
+                if (plugin.isEnabled(world)) {
+                    plugin.deactivate(world);
+                    sender.sendMessage(ChatColor.GREEN + "Bloodmoon stopped in " + world.getName());
+                } else {
+                    sender.sendMessage(not_enabled_world);
+                }
             } else {
-                sender.sendMessage(not_enabled_world);
+                sender.sendMessage(ChatColor.RED + "Invalid World");
             }
         } else {
             sender.sendMessage(no_perm_stop);

@@ -19,7 +19,8 @@ public class ChunkProviderServer extends net.minecraft.server.v1_8_R3.ChunkProvi
 
         this.plugin = plugin;
 
-        PluginConfig worldConfig = this.plugin.getConfig(this.world.worldData.getName());
+        //PluginConfig worldConfig = this.plugin.getConfig(this.world.worldData.getName());
+        PluginConfig worldConfig = this.plugin.getConfig(this.world.worldData.world.getWorld());
 
         for (String name : worldConfig.getStringList(Config.FEATURE_SPAWN_CONTROL_SPAWN)) {
             Class<? extends Entity> entityClass = EntityTypes.a(EntityType.valueOf(name).getTypeId());
@@ -29,7 +30,8 @@ public class ChunkProviderServer extends net.minecraft.server.v1_8_R3.ChunkProvi
 
     @SuppressWarnings("unchecked")
     public List<BiomeBase.BiomeMeta> getMobsFor(EnumCreatureType creatureType, int x, int y, int z) {
-        return (this.plugin.isActive(this.world.worldData.getName())) ? this.bloodMoonMobs : super.getMobsFor(creatureType, new BlockPosition(x, y, z));
+//        return (this.plugin.isActive(this.world.worldData.getName())) ? this.bloodMoonMobs : super.getMobsFor(creatureType, new BlockPosition(x, y, z));
+        return (this.plugin.isActive(this.world.worldData.world.getWorld())) ? this.bloodMoonMobs : super.getMobsFor(creatureType, new BlockPosition(x, y, z));
     }
 
 }

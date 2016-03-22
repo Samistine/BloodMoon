@@ -30,10 +30,9 @@ public class MovementSpeedListener implements Listener {
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onStart(BloodMoonStartEvent event) {
         World world = event.getWorld();
-        String worldName = world.getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (plugin.isFeatureEnabled(worldName, Feature.MOVEMENT_SPEED)) {
+        if (plugin.isFeatureEnabled(world, Feature.MOVEMENT_SPEED)) {
             for (LivingEntity entity : world.getLivingEntities()) {
                 if (worldConfig.getStringList(Config.FEATURE_MOVEMENT_SPEED_MOBS).contains(entity.getType().name())) {
                     try {
@@ -51,9 +50,8 @@ public class MovementSpeedListener implements Listener {
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onStop(BloodMoonEndEvent event) {
         World world = event.getWorld();
-        String worldName = world.getName();
 
-        if (plugin.isFeatureEnabled(worldName, Feature.MOVEMENT_SPEED)) {
+        if (plugin.isFeatureEnabled(world, Feature.MOVEMENT_SPEED)) {
             for (LivingEntity entity : world.getLivingEntities()) {
                 try {
                     BloodMoonEntityLiving.getBloodMoonEntity(((CraftLivingEntity) entity).getHandle()).clearSpeedMultiplier();
@@ -68,10 +66,9 @@ public class MovementSpeedListener implements Listener {
     public void onCreatureSpawn(CreatureSpawnEvent event) {
         LivingEntity entity = event.getEntity();
         World world = entity.getWorld();
-        String worldName = world.getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.MOVEMENT_SPEED)) {
+        if (plugin.isActive(world) && plugin.isFeatureEnabled(world, Feature.MOVEMENT_SPEED)) {
             if (worldConfig.getStringList(Config.FEATURE_MOVEMENT_SPEED_MOBS).contains(entity.getType().name())) {
                 try {
                     BloodMoonEntityLiving bloodMoonEntity = BloodMoonEntityLiving.getBloodMoonEntity(((CraftLivingEntity) entity).getHandle());

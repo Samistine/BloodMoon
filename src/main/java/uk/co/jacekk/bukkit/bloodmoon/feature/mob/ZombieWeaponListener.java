@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.logging.Level;
 
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
@@ -48,10 +49,10 @@ public class ZombieWeaponListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onStart(BloodMoonStartEvent event) {
-        String worldName = event.getWorld().getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        World world = event.getWorld();
+        PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (plugin.isFeatureEnabled(worldName, Feature.ZOMBIE_WEAPON)) {
+        if (plugin.isFeatureEnabled(world, Feature.ZOMBIE_WEAPON)) {
             for (LivingEntity entity : event.getWorld().getLivingEntities()) {
                 if (!worldConfig.getBoolean(Config.FEATURE_ZOMBIE_WEAPON_IGNORE_SPAWNERS) || plugin.getSpawnReason(entity) != SpawnReason.SPAWNER) {
                     if (entity.getType() == EntityType.ZOMBIE && this.random.nextInt(100) < worldConfig.getInt(Config.FEATURE_ZOMBIE_WEAPON_CHANCE)) {
@@ -64,10 +65,10 @@ public class ZombieWeaponListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onCreatureSpawn(CreatureSpawnEvent event) {
-        String worldName = event.getLocation().getWorld().getName();
-        PluginConfig worldConfig = plugin.getConfig(worldName);
+        World world = event.getLocation().getWorld();
+        PluginConfig worldConfig = plugin.getConfig(world);
 
-        if (plugin.isActive(worldName) && plugin.isFeatureEnabled(worldName, Feature.ZOMBIE_WEAPON)) {
+        if (plugin.isActive(world) && plugin.isFeatureEnabled(world, Feature.ZOMBIE_WEAPON)) {
             LivingEntity entity = event.getEntity();
 
             if (!worldConfig.getBoolean(Config.FEATURE_ZOMBIE_WEAPON_IGNORE_SPAWNERS) || event.getSpawnReason() != SpawnReason.SPAWNER) {
@@ -80,10 +81,10 @@ public class ZombieWeaponListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onStop(BloodMoonEndEvent event) {
-        String worldName = event.getWorld().getName();
+        World world = event.getWorld();
 
-        if (plugin.isFeatureEnabled(worldName, Feature.ZOMBIE_WEAPON)) {
-            for (LivingEntity entity : event.getWorld().getLivingEntities()) {
+        if (plugin.isFeatureEnabled(world, Feature.ZOMBIE_WEAPON)) {
+            for (LivingEntity entity : world.getLivingEntities()) {
                 if (entity.getType() == EntityType.ZOMBIE) {
                     EntityEquipment equipment = entity.getEquipment();
 
