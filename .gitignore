@@ -1,34 +1,16 @@
-# Eclipse
-/.classpath
-/.project
-/.settings
+## IntelliJ : https://github.com/github/gitignore/blob/master/Global/JetBrains.gitignore
+## Maven : https://github.com/github/gitignore/blob/master/Maven.gitignore
 
-# Netbeans
-/nbproject
+# User-specific stuff:
+.idea/dictionaries
+.idea/libraries
+.idea/workspace.xml
+.idea/vcs.xml
 
-# We use maven!
-/build.xml
+# Sensitive or high-churn files:
+.idea/uiDesigner.xml
 
-# Maven
-/target
+# Maven:
+target/
 
-# Vim
-.*.sw[a-p]
-
-# Various other potential build files
-/build
-/bin
-/dist
-/manifest.mf
-
-/world
-
-# Mac filesystem dust
-.DS_Store
-
-# IntelliJ
-*.iml
-*.ipr
-*.iws
-.idea/
-/bin1
+## Plugin-specific files:
