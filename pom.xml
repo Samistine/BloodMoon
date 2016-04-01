@@ -226,7 +226,7 @@
                             <!--<Implementation-Build>${buildNumber}</Implementation-Build>-->
                         </manifestEntries>
                     </archive>
-                    <outputDirectory>../../ServerTest/plugins</outputDirectory>
+                    <!--<outputDirectory>../../ServerTest/plugins</outputDirectory>-->
                 </configuration>
             </plugin>
         </plugins>
