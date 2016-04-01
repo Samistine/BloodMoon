@@ -23,10 +23,15 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="BloodMoon" />
+        <module name="pluginframework" />
+        <module name="PluginFramework" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.7">
       <module name="BloodMoon" target="1.7" />
+      <module name="PluginFramework" target="1.7" />
+      <module name="pluginframework" target="1.7" />
+      <module name="PuginFramework" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

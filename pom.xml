@@ -1,94 +1,115 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>uk.co.jacekk.bukkit</groupId>
+    <groupId>com.github.hexosse</groupId>
     <artifactId>bloodmoon</artifactId>
     <name>BloodMoon</name>
-    <version>0.60</version>
+    <version>0.60-Hexosse</version>
     <packaging>jar</packaging>
-    <url>http://dev.bukkit.org/bukkit-plugins/bloodmoon/</url>
+    <url>https://github.com/hexosse/bloodmoon/</url>
+
+
+    <!-- License -->
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+
+    <!-- scm -->
+    <scm>
+        <url>http://github.com/hexosse/bloodmoon</url>
+        <connection>scm:git:git://github.com/hexosse/bloodmoon.git</connection>
+        <developerConnection>scm:git:git@github.com:hexosse/bloodmoon.git</developerConnection>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/hexosse/bloodmoon/issues</url>
+    </issueManagement>
 
 
     <!-- Project properties -->
     <properties>
         <plugin.name>${project.name}</plugin.name>
         <plugin.version>${project.version}</plugin.version>
-
-        <bukkit.version>1.9-R0.1-SNAPSHOT</bukkit.version>
+        <spigot.version>1.9-R0.1-SNAPSHOT</spigot.version>
         <jdk.version>1.7</jdk.version>
-
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <upload.dbo.category>bukkit-plugins</upload.dbo.category>
-        <upload.dbo.slug>bloodmoon</upload.dbo.slug>
-
-        <baseplugin.version>14</baseplugin.version>
-        <baseplugin.package>14</baseplugin.package>
     </properties>
 
 
+    <!-- Développeurs -->
+    <developers>
+        <developer>
+            <id>hexosse</id>
+            <name>hexosse</name>
+            <url>https://github.com/hexosse</url>
+        </developer>
+    </developers>
+
+
+    <!-- Mettre ici la liste des repositories permettant de récupérer les dépendances du projet-->
     <repositories>
-        <!-- bukkit -->
+        <!-- Spigot -->
         <repository>
-            <id>bukkit-repo</id>
+            <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
-        </repository>
-        <!-- Jacekk -->
-        <repository>
-            <id>jacekk-repo</id>
-            <url>http://bukkit.jacekk.co.uk:8000/plugin/repository/everything/</url>
         </repository>
         <!-- hexosse repository -->
         <repository>
             <id>hexosse-repo</id>
             <url>https://raw.github.com/hexosse/maven-repo/master/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
-
     </repositories>
 
     <dependencies>
-        <!-- junit -->
+        <!--Spigot-API-->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version> <!--Updated junit-->
-            <scope>test</scope>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>${spigot.version}</version>
+            <scope>provided</scope>
         </dependency>
-
-        <!-- BasePlugin -->
-        <dependency>
-            <groupId>uk.co.jacekk.bukkit</groupId>
-            <artifactId>baseplugin</artifactId>
-            <version>${baseplugin.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
         <!-- Bukkit -->
         <!-- (from local .m2 repo) -->
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>${bukkit.version}</version>
+            <version>${spigot.version}</version>
             <scope>provided</scope>
         </dependency>
-
         <!-- Craftbukkit -->
         <!-- (from local .m2 repo) -->
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>craftbukkit</artifactId>
-            <version>${bukkit.version}</version>
+            <version>${spigot.version}</version>
             <scope>provided</scope>
         </dependency>
 
-        <!--MassiveCore-->
+        <!-- hexosse PluginFramework -->
+        <dependency>
+            <groupId>com.github.hexosse</groupId>
+            <artifactId>pluginframework</artifactId>
+            <version>0.5.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- MassiveCore -->
         <dependency>
             <groupId>3rdParty</groupId>
             <artifactId>MassiveCore</artifactId>
             <version>2.8.7</version>
             <scope>provided</scope>
         </dependency>
-        <!--Factions-->
+        <!-- Factions -->
         <dependency>
             <groupId>3rdParty</groupId>
             <artifactId>Factions</artifactId>
@@ -97,22 +118,27 @@
         </dependency>
     </dependencies>
 
+
+    <!-- Options de build -->
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
         <directory>${basedir}/target</directory>
         <finalName>${plugin.name}-${plugin.version}</finalName>
 
+        <!-- Ressources -->
         <resources>
             <resource>
                 <targetPath>.</targetPath>
                 <filtering>true</filtering>
                 <directory>${basedir}/src/main/resources/</directory>
                 <includes>
-                    <include>plugin.yml</include>
+                    <include>**/*</include>
                 </includes>
             </resource>
         </resources>
 
+        <!-- Liste des plugins -->
+        <!-- http://mvnrepository.com/artifact/org.apache.maven.plugins -->
         <plugins>
 
             <!-- maven-clean-plugin -->
@@ -134,6 +160,29 @@
                 </configuration>
             </plugin>
 
+            <!-- buildnumber-maven-plugin -->
+            <!--<plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>create</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <doCheck>false</doCheck>
+                    <doUpdate>false</doUpdate>
+                    <format>b{0,number}</format>
+                    <items>
+                        <item>buildNumber</item>
+                    </items>
+                </configuration>
+            </plugin>-->
+
             <!-- maven-shade-plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -145,17 +194,22 @@
                         <goals>
                             <goal>shade</goal>
                         </goals>
+                        <configuration>
+                            <relocations>
+                                <relocation>
+                                    <pattern>com.github.hexosse.pluginframework</pattern>
+                                    <shadedPattern>com.github.hexosse.${project.artifactId}.framework</shadedPattern>
+                                </relocation>
+                            </relocations>
+                            <!-- remove unnecessary stuff -->
+                            <minimizeJar>true</minimizeJar>
+                            <!-- utterly useless artifact from shade 2.x -->
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <!-- Le fichier jar d'origine est renommé en original-XXXX.jar -->
+                            <shadedArtifactAttached>false</shadedArtifactAttached>
+                        </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <relocations>
-                        <relocation>
-                            <pattern>uk.co.jacekk.bukkit.baseplugin</pattern>
-                            <shadedPattern>uk.co.jacekk.bukkit.baseplugin.v${baseplugin.package}</shadedPattern>
-                        </relocation>
-                    </relocations>
-                    <shadedArtifactAttached>false</shadedArtifactAttached>
-                </configuration>
             </plugin>
 
             <!-- maven-jar-plugin -->
@@ -169,7 +223,7 @@
                         <manifestEntries>
                             <Name>${plugin.name}</Name>
                             <Version>${project.version}</Version>
-                            <!-- <Build-Number>${BUILD_NUMBER}</Build-Number> -->
+                            <!--<Implementation-Build>${buildNumber}</Implementation-Build>-->
                         </manifestEntries>
                     </archive>
                     <outputDirectory>../../ServerTest/plugins</outputDirectory>

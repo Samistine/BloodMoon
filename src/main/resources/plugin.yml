@@ -1,7 +1,8 @@
 name: "${project.name}"
-version: "${project.version}-Hexosse-1.9"
-main: "uk.co.jacekk.bukkit.bloodmoon.BloodMoon"
+version: "${project.version}-1.9"
+main: "com.github.hexosse.bloodmoon.BloodMoon"
 
+load: STARTUP
 softdepend: [MassiveCore, Factions]
 
 permissions:
