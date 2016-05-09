@@ -26,7 +26,7 @@ public class Config {
     public static final PluginConfigKey FEATURE_DISABLED_COMMANDS_COMMANDS = new PluginConfigKey("features.disabled-commands.commands", Arrays.asList("spawn", "home"));
 
     public static final PluginConfigKey FEATURE_PLAY_SOUND_ENABLED = new PluginConfigKey("features.play-sound.enabled", true);
-    public static final PluginConfigKey FEATURE_PLAY_SOUND_SOUND = new PluginConfigKey("features.play-sound.sound", "WITHER_SPAWN");
+    public static final PluginConfigKey FEATURE_PLAY_SOUND_SOUND = new PluginConfigKey("features.play-sound.sound", "ENTITY_WITHER_SPAWN");
     public static final PluginConfigKey FEATURE_PLAY_SOUND_PITCH = new PluginConfigKey("features.play-sound.pitch", 1.0d);
     public static final PluginConfigKey FEATURE_PLAY_SOUND_VOLUME = new PluginConfigKey("features.play-sound.volume", 1.0d);
 
@@ -134,7 +134,7 @@ public class Config {
     public static final PluginConfigKey FEATURE_DUNGEONS_MAX_STACK_SIZE = new PluginConfigKey("features.dungeons.max-stack-size", 8);
     public static final PluginConfigKey FEATURE_DUNGEONS_ITEMS_PER_CHEST = new PluginConfigKey("features.dungeons.items-per-chest", 12);
 
-    public static final PluginConfigKey FEATURE_GIANTS_ENABLED = new PluginConfigKey("features.giants.enabled", true);
+    public static final PluginConfigKey FEATURE_GIANTS_ENABLED = new PluginConfigKey("features.giants.enabled", false);
     public static final PluginConfigKey FEATURE_GIANTS_BREAK_BLOCKS = new PluginConfigKey("features.giants.break-blocks", Arrays.asList(Material.GRASS.name(), Material.LEAVES.name(), Material.WOOD.name(), Material.GLASS.name(), Material.CROPS.name(), Material.SOIL.name(), Material.LOG.name(), Material.WOOD_STEP.name(), Material.WOOD_STAIRS.name()));
 
 }
