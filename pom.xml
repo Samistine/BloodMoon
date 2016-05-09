@@ -4,7 +4,7 @@
     <groupId>uk.co.jacekk.bukkit</groupId>
     <artifactId>bloodmoon</artifactId>
     <name>BloodMoon</name>
-    <version>0.55</version>
+    <version>0.60-Beta</version>
     <packaging>jar</packaging>
     <url>http://dev.bukkit.org/bukkit-plugins/bloodmoon/</url>
 
