@@ -1,10 +1,8 @@
 package uk.co.jacekk.bukkit.bloodmoon.nms;
 
-import java.util.List;
-import net.minecraft.server.v1_9_R1.Enchantment;
+import java.util.Set;
 import net.minecraft.server.v1_9_R1.EnchantmentManager;
 import net.minecraft.server.v1_9_R1.Enchantments;
-import net.minecraft.server.v1_9_R1.EntityArrow;
 import net.minecraft.server.v1_9_R1.EntityHuman;
 import net.minecraft.server.v1_9_R1.EntityTippedArrow;
 import net.minecraft.server.v1_9_R1.IRangedEntity;
@@ -22,9 +20,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_9_R1.CraftServer;
 import org.bukkit.craftbukkit.v1_9_R1.entity.CraftSkeleton;
-import org.bukkit.craftbukkit.v1_9_R1.event.CraftEventFactory;
 import org.bukkit.event.entity.EntityCombustEvent;
-import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.plugin.Plugin;
 import uk.co.jacekk.bukkit.baseplugin.config.PluginConfig;
 import uk.co.jacekk.bukkit.baseplugin.util.ReflectionUtils;
@@ -55,8 +51,10 @@ public class EntitySkeleton extends net.minecraft.server.v1_9_R1.EntitySkeleton 
         this.bloodMoonEntity = new BloodMoonEntitySkeleton(this.plugin, this, BloodMoonEntityType.SKELETON);
 
         try {
-            ReflectionUtils.getFieldValue(this.goalSelector.getClass(), "b", List.class, this.goalSelector).clear();
-            ReflectionUtils.getFieldValue(this.targetSelector.getClass(), "b", List.class, this.targetSelector).clear();
+            ReflectionUtils.getFieldValue(this.goalSelector.getClass(), "b", Set.class, this.goalSelector).clear();
+            ReflectionUtils.getFieldValue(this.goalSelector.getClass(), "c", Set.class, this.goalSelector).clear();
+            ReflectionUtils.getFieldValue(this.targetSelector.getClass(), "b", Set.class, this.targetSelector).clear();
+            ReflectionUtils.getFieldValue(this.targetSelector.getClass(), "c", Set.class, this.targetSelector).clear();
 
             this.goalSelector.a(1, new PathfinderGoalFloat(this));
             this.goalSelector.a(2, new PathfinderGoalRestrictSun(this));
@@ -122,7 +120,7 @@ public class EntitySkeleton extends net.minecraft.server.v1_9_R1.EntitySkeleton 
         entitytippedarrow.shoot(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, (float) (14 - this.world.getDifficulty().a() * 4));
         int i = EnchantmentManager.a(Enchantments.ARROW_DAMAGE, this);
         int j = EnchantmentManager.a(Enchantments.ARROW_KNOCKBACK, this);
-        
+
         entitytippedarrow.c((double) (f * 2.0F) + this.random.nextGaussian() * 0.25D + (double) ((float) this.world.getDifficulty().a() * 0.11F));
         if (i > 0) {//set enchantment level
             entitytippedarrow.c(entitytippedarrow.k() + i * 0.5D + 0.5D);
@@ -140,7 +138,7 @@ public class EntitySkeleton extends net.minecraft.server.v1_9_R1.EntitySkeleton 
             // CraftBukkit start - call EntityCombustEvent
             EntityCombustEvent event = new EntityCombustEvent(entitytippedarrow.getBukkitEntity(), 100);
             this.world.getServer().getPluginManager().callEvent(event);
-            
+
             if (!event.isCancelled()) {
                 entitytippedarrow.setOnFire(event.getDuration());
             }
@@ -152,19 +150,18 @@ public class EntitySkeleton extends net.minecraft.server.v1_9_R1.EntitySkeleton 
 //            //entityarrow.setOnFire(1024);
 //            //}
 //        }
-        
         // CraftBukkit start
         org.bukkit.event.entity.EntityShootBowEvent event = org.bukkit.craftbukkit.v1_9_R1.event.CraftEventFactory.callEntityShootBowEvent(this, this.getItemInMainHand(), entitytippedarrow, 0.8f);
         if (event.isCancelled()) {
             event.getProjectile().remove();
             return;
         }
-        
+
         if (event.getProjectile() == entitytippedarrow.getBukkitEntity()) {
             world.addEntity(entitytippedarrow);
         }
         // CraftBukkit end
-        
+
         this.a(SoundEffects.fn, 1.0f, 1.0f / (this.getRandom().nextFloat() * 0.4f + 0.8f));
     }
 }

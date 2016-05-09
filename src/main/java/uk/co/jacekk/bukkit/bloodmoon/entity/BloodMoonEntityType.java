@@ -73,9 +73,9 @@ public enum BloodMoonEntityType {
             }
 
             //for (String field : new String[]{"as", "at", "au", "av"}){
-            for (String field : new String[]{"at", "au", "av", "aw"}) {
+            //for (String field : new String[]{"at", "au", "av", "aw"}) {
+            for (String field : new String[]{"u", "v", "w", "x"}) {
                 try {
-                    //System.out.println(field);
                     List<BiomeBase.BiomeMeta> mobList = ReflectionUtils.getFieldValue(BiomeBase.class, field, List.class, biomeBase);
 //					@SuppressWarnings("unchecked")
                     //List<BiomeMeta> mobList = (List<BiomeMeta>) ReflectionUtils.getFieldValue(BiomeBase.class, field, BiomeBase.class, biomeBase);
