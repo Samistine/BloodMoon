@@ -49,7 +49,7 @@ public final class GiantsTask extends BaseTask<BloodMoon> {
 
                 entity.setPositionRotation(x, y, z, 0, 90);
                 ((CraftWorld) world).getHandle().addEntity(entity, SpawnReason.CUSTOM);
-                entity.p(null);
+                entity.z(null);
             }
         }
     }

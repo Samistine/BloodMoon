@@ -67,7 +67,7 @@ public enum BloodMoonEntityType {
             }
         }
 
-        for (BiomeBase biomeBase : BiomeBase.getBiomes()) {
+        for (BiomeBase biomeBase : BiomeBase.i) {
             if (biomeBase == null) {
                 break;
             }
@@ -132,7 +132,7 @@ public enum BloodMoonEntityType {
         EntityInsentient entity = this.createEntity(world);
         entity.setPositionRotation(location.getX(), location.getY(), location.getZ(), location.getYaw(), location.getPitch());
         world.addEntity(entity, SpawnReason.CUSTOM);
-        entity.p(null);
+        entity.z(null);
     }
 
 }
