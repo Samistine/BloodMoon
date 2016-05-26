@@ -1,7 +1,7 @@
 package uk.co.jacekk.bukkit.bloodmoon.entity;
 
-import net.minecraft.server.v1_9_R1.EntityHuman;
-import net.minecraft.server.v1_9_R1.EntityMonster;
+import net.minecraft.server.v1_9_R2.EntityHuman;
+import net.minecraft.server.v1_9_R2.EntityMonster;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;

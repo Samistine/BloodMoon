@@ -1,6 +1,6 @@
 package uk.co.jacekk.bukkit.bloodmoon.nms;
 
-import net.minecraft.server.v1_9_R1.*;
+import net.minecraft.server.v1_9_R2.*;
 import org.bukkit.entity.EntityType;
 import uk.co.jacekk.bukkit.baseplugin.config.PluginConfig;
 import uk.co.jacekk.bukkit.bloodmoon.BloodMoon;
@@ -9,7 +9,7 @@ import uk.co.jacekk.bukkit.bloodmoon.Config;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChunkProviderServer extends net.minecraft.server.v1_9_R1.ChunkProviderServer {
+public class ChunkProviderServer extends net.minecraft.server.v1_9_R2.ChunkProviderServer {
 
     private final BloodMoon plugin;
     private final List<BiomeBase.BiomeMeta> bloodMoonMobs = new ArrayList<>();

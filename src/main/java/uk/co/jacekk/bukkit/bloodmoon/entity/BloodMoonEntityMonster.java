@@ -1,6 +1,6 @@
 package uk.co.jacekk.bukkit.bloodmoon.entity;
 
-import net.minecraft.server.v1_9_R1.EntityMonster;
+import net.minecraft.server.v1_9_R2.EntityMonster;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;

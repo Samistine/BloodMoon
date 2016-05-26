@@ -3,7 +3,7 @@ package uk.co.jacekk.bukkit.bloodmoon.feature.mob;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.v1_9_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_9_R2.entity.CraftEntity;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;

@@ -1,25 +1,25 @@
 package uk.co.jacekk.bukkit.bloodmoon.nms;
 
 import java.util.Set;
-import net.minecraft.server.v1_9_R1.EnchantmentManager;
-import net.minecraft.server.v1_9_R1.Enchantments;
-import net.minecraft.server.v1_9_R1.EntityHuman;
-import net.minecraft.server.v1_9_R1.EntityTippedArrow;
-import net.minecraft.server.v1_9_R1.IRangedEntity;
-import net.minecraft.server.v1_9_R1.MathHelper;
-import net.minecraft.server.v1_9_R1.PathfinderGoalFleeSun;
-import net.minecraft.server.v1_9_R1.PathfinderGoalFloat;
-import net.minecraft.server.v1_9_R1.PathfinderGoalHurtByTarget;
-import net.minecraft.server.v1_9_R1.PathfinderGoalLookAtPlayer;
-import net.minecraft.server.v1_9_R1.PathfinderGoalNearestAttackableTarget;
-import net.minecraft.server.v1_9_R1.PathfinderGoalRandomLookaround;
-import net.minecraft.server.v1_9_R1.PathfinderGoalRandomStroll;
-import net.minecraft.server.v1_9_R1.PathfinderGoalRestrictSun;
-import net.minecraft.server.v1_9_R1.SoundEffects;
+import net.minecraft.server.v1_9_R2.EnchantmentManager;
+import net.minecraft.server.v1_9_R2.Enchantments;
+import net.minecraft.server.v1_9_R2.EntityHuman;
+import net.minecraft.server.v1_9_R2.EntityTippedArrow;
+import net.minecraft.server.v1_9_R2.IRangedEntity;
+import net.minecraft.server.v1_9_R2.MathHelper;
+import net.minecraft.server.v1_9_R2.PathfinderGoalFleeSun;
+import net.minecraft.server.v1_9_R2.PathfinderGoalFloat;
+import net.minecraft.server.v1_9_R2.PathfinderGoalHurtByTarget;
+import net.minecraft.server.v1_9_R2.PathfinderGoalLookAtPlayer;
+import net.minecraft.server.v1_9_R2.PathfinderGoalNearestAttackableTarget;
+import net.minecraft.server.v1_9_R2.PathfinderGoalRandomLookaround;
+import net.minecraft.server.v1_9_R2.PathfinderGoalRandomStroll;
+import net.minecraft.server.v1_9_R2.PathfinderGoalRestrictSun;
+import net.minecraft.server.v1_9_R2.SoundEffects;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_9_R1.CraftServer;
-import org.bukkit.craftbukkit.v1_9_R1.entity.CraftSkeleton;
+import org.bukkit.craftbukkit.v1_9_R2.CraftServer;
+import org.bukkit.craftbukkit.v1_9_R2.entity.CraftSkeleton;
 import org.bukkit.event.entity.EntityCombustEvent;
 import org.bukkit.plugin.Plugin;
 import uk.co.jacekk.bukkit.baseplugin.config.PluginConfig;
@@ -30,12 +30,12 @@ import uk.co.jacekk.bukkit.bloodmoon.entity.BloodMoonEntitySkeleton;
 import uk.co.jacekk.bukkit.bloodmoon.entity.BloodMoonEntityType;
 
 //public class EntitySkeleton {
-public class EntitySkeleton extends net.minecraft.server.v1_9_R1.EntitySkeleton implements IRangedEntity {
+public class EntitySkeleton extends net.minecraft.server.v1_9_R2.EntitySkeleton implements IRangedEntity {
 
     private BloodMoon plugin;
     private BloodMoonEntitySkeleton bloodMoonEntity;
 
-    public EntitySkeleton(net.minecraft.server.v1_9_R1.World world) {
+    public EntitySkeleton(net.minecraft.server.v1_9_R2.World world) {
         super(world);
 
         Plugin gPlugin = Bukkit.getPluginManager().getPlugin("BloodMoon");
@@ -98,19 +98,20 @@ public class EntitySkeleton extends net.minecraft.server.v1_9_R1.EntitySkeleton 
 //
 //		return entityData;
 //	}
-//	@Override
-//	public boolean bL(){
-//		try{
-//			this.bloodMoonEntity.onTick();
-//			super.bL();
-//		}catch (Exception e){
-//			plugin.log.warn("Exception caught while ticking entity");
-//			e.printStackTrace();
-//		}
-//		return true;
-//	}
     @Override
-    public void a(net.minecraft.server.v1_9_R1.EntityLiving entityLiving, float f) {
+    public boolean cp() {
+        try {
+            this.bloodMoonEntity.onTick();
+            super.co();
+        } catch (Exception e) {
+            plugin.getLogger().warning("Exception caught while ticking entity");
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    @Override
+    public void a(net.minecraft.server.v1_9_R2.EntityLiving entityLiving, float f) {
         EntityTippedArrow entitytippedarrow = new EntityTippedArrow(this.world, this);
         double d0 = entityLiving.locX - this.locX;
         double d1 = entityLiving.getBoundingBox().b + (double) (entityLiving.length / 3.0F) - entitytippedarrow.locY;
@@ -151,7 +152,7 @@ public class EntitySkeleton extends net.minecraft.server.v1_9_R1.EntitySkeleton 
 //            //}
 //        }
         // CraftBukkit start
-        org.bukkit.event.entity.EntityShootBowEvent event = org.bukkit.craftbukkit.v1_9_R1.event.CraftEventFactory.callEntityShootBowEvent(this, this.getItemInMainHand(), entitytippedarrow, 0.8f);
+        org.bukkit.event.entity.EntityShootBowEvent event = org.bukkit.craftbukkit.v1_9_R2.event.CraftEventFactory.callEntityShootBowEvent(this, this.getItemInMainHand(), entitytippedarrow, 0.8f);
         if (event.isCancelled()) {
             event.getProjectile().remove();
             return;
