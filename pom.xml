@@ -25,8 +25,8 @@
         </repository>
 
         <repository>
-            <id>jacekk-repo</id>
-            <url>http://bukkit.jacekk.co.uk:8000/plugin/repository/everything/</url>
+            <id>Samistine-repo</id>
+            <url>http://ci.samistine.com/plugin/repository/</url>
         </repository>
 
     </repositories>
