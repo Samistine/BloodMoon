@@ -81,22 +81,35 @@ public class TexturePackListener extends BaseListener<BloodMoon> {
     }
 
     /**
-     * Send the resource pack to all players in the specified world True
+     * Send the resource pack to all players in the specified world
      *
-     * @param world
-     * @param special true:TEXTURE_PACK_BLOODMOON false:TEXTURE_PACK_NORMAL
+     * @param world the world to send the texture pack to
+     * @param bloodmoon true to send BloodMoon texture pack, false to send
+     * normal texture pack
      */
-    public void sendResourcePack(World world, boolean special) {
+    public void sendResourcePack(World world, boolean bloodmoon) {
         PluginConfig worldConfig = plugin.getConfig(world);
-        String resource;
-        if (special) {
-            resource = worldConfig.getString(Config.FEATURE_TEXTURE_PACK_BLOODMOON);
-        } else {
-            resource = worldConfig.getString(Config.FEATURE_TEXTURE_PACK_NORMAL);
-        }
+        String resource = bloodmoon
+                ? worldConfig.getString(Config.FEATURE_TEXTURE_PACK_BLOODMOON)
+                : worldConfig.getString(Config.FEATURE_TEXTURE_PACK_NORMAL);
 
         for (Player player : world.getPlayers()) {
             player.setResourcePack(resource);
         }
+    }
+
+    /**
+     * Send the resource pack to the specified player
+     *
+     * @param player the player to send the resource pack to
+     * @param bloodmoon true to send BloodMoon texture pack, false to send
+     * normal texture pack
+     */
+    public void sendResourcePack(Player player, boolean bloodmoon) {
+        PluginConfig worldConfig = plugin.getConfig(player.getWorld());
+        String resource = bloodmoon
+                ? worldConfig.getString(Config.FEATURE_TEXTURE_PACK_BLOODMOON)
+                : worldConfig.getString(Config.FEATURE_TEXTURE_PACK_NORMAL);
+        player.setResourcePack(resource);
     }
 }
