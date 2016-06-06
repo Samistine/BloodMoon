@@ -45,7 +45,7 @@ public class BmCommandReload extends CommandReload<BloodMoon>
 
 				// Message
 				Message message = new Message();
-				message.setPrefix("§4[§b" + BloodMoon.instance.getDescription().getName() + " " + BloodMoon.instance.getDescription().getVersion() + "§4]§r");
+				message.setPrefix("§4[§c" + BloodMoon.instance.getDescription().getName() + " " + BloodMoon.instance.getDescription().getVersion() + "§4]§r");
 				message.add(ChatColor.GREEN + "WorldConfig reloaded for all worlds.");
 				messageManager.send(player, message);
 			}
