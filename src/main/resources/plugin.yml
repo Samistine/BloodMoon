@@ -1,5 +1,5 @@
 name: "${project.name}"
-version: "${project.version}-1.9"
+version: "${project.version}-1.9.4"
 main: "com.github.hexosse.bloodmoon.BloodMoon"
 
 load: STARTUP

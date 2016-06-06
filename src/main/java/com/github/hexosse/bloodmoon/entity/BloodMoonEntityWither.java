@@ -1,7 +1,7 @@
 package com.github.hexosse.bloodmoon.entity;
 
 import com.github.hexosse.bloodmoon.BloodMoon;
-import net.minecraft.server.v1_9_R1.EntityMonster;
+import net.minecraft.server.v1_9_R2.EntityMonster;
 
 public class BloodMoonEntityWither extends BloodMoonEntityMonster {
 

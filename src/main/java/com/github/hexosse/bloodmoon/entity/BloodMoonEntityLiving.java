@@ -2,10 +2,10 @@ package com.github.hexosse.bloodmoon.entity;
 
 import com.github.hexosse.bloodmoon.BloodMoon;
 import com.github.hexosse.pluginframework.pluginapi.reflexion.Reflexion;
-import net.minecraft.server.v1_9_R1.AttributeInstance;
-import net.minecraft.server.v1_9_R1.AttributeModifier;
-import net.minecraft.server.v1_9_R1.EntityLiving;
-import net.minecraft.server.v1_9_R1.GenericAttributes;
+import net.minecraft.server.v1_9_R2.AttributeInstance;
+import net.minecraft.server.v1_9_R2.AttributeModifier;
+import net.minecraft.server.v1_9_R2.EntityLiving;
+import net.minecraft.server.v1_9_R2.GenericAttributes;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;

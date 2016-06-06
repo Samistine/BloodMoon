@@ -3,13 +3,13 @@ package com.github.hexosse.bloodmoon.nms;
 import com.github.hexosse.bloodmoon.BloodMoon;
 import com.github.hexosse.bloodmoon.entity.BloodMoonEntityGhast;
 import com.github.hexosse.bloodmoon.entity.BloodMoonEntityType;
-import net.minecraft.server.v1_9_R1.World;
+import net.minecraft.server.v1_9_R2.World;
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_9_R1.CraftServer;
-import org.bukkit.craftbukkit.v1_9_R1.entity.CraftGhast;
+import org.bukkit.craftbukkit.v1_9_R2.CraftServer;
+import org.bukkit.craftbukkit.v1_9_R2.entity.CraftGhast;
 import org.bukkit.plugin.Plugin;
 
-public class EntityGhast extends net.minecraft.server.v1_9_R1.EntityGhast {
+public class EntityGhast extends net.minecraft.server.v1_9_R2.EntityGhast {
 
     private BloodMoon plugin;
     private BloodMoonEntityGhast bloodMoonEntity;
@@ -31,10 +31,10 @@ public class EntityGhast extends net.minecraft.server.v1_9_R1.EntityGhast {
     }
 
     @Override
-    public boolean co() {
+    public boolean cp() {
         try {
             this.bloodMoonEntity.onTick();
-            super.cn();
+            super.co();
         } catch (Exception e) {
             plugin.getLogger().warning("Exception caught while ticking entity");
             e.printStackTrace();

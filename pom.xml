@@ -4,7 +4,7 @@
     <groupId>com.github.hexosse</groupId>
     <artifactId>bloodmoon</artifactId>
     <name>BloodMoon</name>
-    <version>0.60-Hexosse</version>
+    <version>0.70-Hexosse</version>
     <packaging>jar</packaging>
     <url>https://github.com/hexosse/bloodmoon/</url>
 
@@ -36,7 +36,7 @@
     <properties>
         <plugin.name>${project.name}</plugin.name>
         <plugin.version>${project.version}</plugin.version>
-        <spigot.version>1.9-R0.1-SNAPSHOT</spigot.version>
+        <spigot.version>1.9.4-R0.1-SNAPSHOT</spigot.version>
         <jdk.version>1.7</jdk.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>

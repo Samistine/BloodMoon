@@ -2,13 +2,13 @@ package com.github.hexosse.bloodmoon.nms;
 
 import com.github.hexosse.bloodmoon.BloodMoon;
 import com.github.hexosse.bloodmoon.configuration.WorldConfig;
-import net.minecraft.server.v1_9_R1.*;
+import net.minecraft.server.v1_9_R2.*;
 import org.bukkit.entity.EntityType;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChunkProviderServer extends net.minecraft.server.v1_9_R1.ChunkProviderServer {
+public class ChunkProviderServer extends net.minecraft.server.v1_9_R2.ChunkProviderServer {
 
     private final BloodMoon plugin;
     private final List<BiomeBase.BiomeMeta> bloodMoonMobs = new ArrayList<>();

@@ -5,23 +5,23 @@ import com.github.hexosse.bloodmoon.configuration.WorldConfig;
 import com.github.hexosse.bloodmoon.entity.BloodMoonEntitySkeleton;
 import com.github.hexosse.bloodmoon.entity.BloodMoonEntityType;
 import com.github.hexosse.pluginframework.pluginapi.reflexion.Reflexion;
-import net.minecraft.server.v1_9_R1.*;
+import net.minecraft.server.v1_9_R2.*;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_9_R1.CraftServer;
-import org.bukkit.craftbukkit.v1_9_R1.entity.CraftSkeleton;
+import org.bukkit.craftbukkit.v1_9_R2.CraftServer;
+import org.bukkit.craftbukkit.v1_9_R2.entity.CraftSkeleton;
 import org.bukkit.event.entity.EntityCombustEvent;
 import org.bukkit.plugin.Plugin;
 
 import java.util.Set;
 
 //public class EntitySkeleton {
-public class EntitySkeleton extends net.minecraft.server.v1_9_R1.EntitySkeleton implements IRangedEntity {
+public class EntitySkeleton extends net.minecraft.server.v1_9_R2.EntitySkeleton implements IRangedEntity {
 
     private BloodMoon plugin;
     private BloodMoonEntitySkeleton bloodMoonEntity;
 
-    public EntitySkeleton(net.minecraft.server.v1_9_R1.World world) {
+    public EntitySkeleton(net.minecraft.server.v1_9_R2.World world) {
         super(world);
 
         Plugin gPlugin = Bukkit.getPluginManager().getPlugin("BloodMoon");
@@ -94,7 +94,7 @@ public class EntitySkeleton extends net.minecraft.server.v1_9_R1.EntitySkeleton 
 //		return true;
 //	}
     @Override
-    public void a(net.minecraft.server.v1_9_R1.EntityLiving entityLiving, float f) {
+    public void a(net.minecraft.server.v1_9_R2.EntityLiving entityLiving, float f) {
         EntityTippedArrow entitytippedarrow = new EntityTippedArrow(this.world, this);
         double d0 = entityLiving.locX - this.locX;
         double d1 = entityLiving.getBoundingBox().b + (double) (entityLiving.length / 3.0F) - entitytippedarrow.locY;
@@ -136,7 +136,7 @@ public class EntitySkeleton extends net.minecraft.server.v1_9_R1.EntitySkeleton 
 //        }
         
         // CraftBukkit start
-        org.bukkit.event.entity.EntityShootBowEvent event = org.bukkit.craftbukkit.v1_9_R1.event.CraftEventFactory.callEntityShootBowEvent(this, this.getItemInMainHand(), entitytippedarrow, 0.8f);
+        org.bukkit.event.entity.EntityShootBowEvent event = org.bukkit.craftbukkit.v1_9_R2.event.CraftEventFactory.callEntityShootBowEvent(this, this.getItemInMainHand(), entitytippedarrow, 0.8f);
         if (event.isCancelled()) {
             event.getProjectile().remove();
             return;
