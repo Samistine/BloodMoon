@@ -48,10 +48,8 @@ public class ChatMessageListener extends BaseListener<BloodMoon> {
         if (plugin.isFeatureEnabled(world, Feature.CHAT_MESSAGE)) {
             String message = worldConfig.getString(Config.FEATURE_CHAT_MESSAGE_START_MESSAGE);
 
-            if (!message.isEmpty()) {
-                if (plugin.isActive(world)) {
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
-                }
+            if (!message.isEmpty() && plugin.isActive(world)) {
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
             }
         }
     }

@@ -33,10 +33,8 @@ public class TimeMonitorTask implements Runnable {
 
                             plugin.forceWorlds.remove(worldName);
                         }
-                    } else if (worldTime >= 23000 && worldTime <= 23100) {
-                        if (plugin.isActive(world)) {
-                            plugin.deactivate(world);
-                        }
+                    } else if (worldTime >= 23000 && worldTime <= 23100 && plugin.isActive(world)) {
+                        plugin.deactivate(world);
                     }
                 }
             }
