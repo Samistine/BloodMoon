@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" build-on-make="true" name="BloodMoon">
-    <output-path>$PROJECT_DIR$/../../ServerTest/plugins</output-path>
+    <output-path>$PROJECT_DIR$/../../Serveurs/Tests/plugins</output-path>
     <root id="archive" name="BloodMoon.jar">
       <element id="module-output" name="BloodMoon" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/github/hexosse/pluginframework/0.5.0/pluginframework-0.5.0.jar" path-in-jar="/" />
