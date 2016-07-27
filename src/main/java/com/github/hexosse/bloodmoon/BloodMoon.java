@@ -144,12 +144,12 @@ public final class BloodMoon extends Plugin
      *
      * @param world The world
      */
-    public void activate(World world)
+    public boolean activate(World world)
 	{
         Validate.notNull(world);
 
 		if(isActive(world))
-			return;
+			return false;
 
         BloodMoonStartEvent event = new BloodMoonStartEvent(world);
 
@@ -158,6 +158,8 @@ public final class BloodMoon extends Plugin
         if (!event.isCancelled()) {
             activeWorlds.add(world.getName());
         }
+
+		return true;
     }
 
 	/**

@@ -4,16 +4,16 @@ import com.github.hexosse.bloodmoon.BloodMoon;
 import com.github.hexosse.bloodmoon.entity.BloodMoonEntityGiantZombie;
 import com.github.hexosse.bloodmoon.entity.BloodMoonEntityType;
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_9_R2.CraftServer;
-import org.bukkit.craftbukkit.v1_9_R2.entity.CraftGiant;
+import org.bukkit.craftbukkit.v1_10_R1.CraftServer;
+import org.bukkit.craftbukkit.v1_10_R1.entity.CraftGiant;
 import org.bukkit.plugin.Plugin;
 
-public class EntityGiantZombie extends net.minecraft.server.v1_9_R2.EntityGiantZombie {
+public class EntityGiantZombie extends net.minecraft.server.v1_10_R1.EntityGiantZombie {
 
     private BloodMoon plugin;
     private BloodMoonEntityGiantZombie bloodMoonEntity;
 
-    public EntityGiantZombie(net.minecraft.server.v1_9_R2.World world) {
+    public EntityGiantZombie(net.minecraft.server.v1_10_R1.World world) {
         super(world);
 
         Plugin gPlugin = Bukkit.getPluginManager().getPlugin("BloodMoon");
@@ -30,7 +30,7 @@ public class EntityGiantZombie extends net.minecraft.server.v1_9_R2.EntityGiantZ
     }
 
     @Override
-    public boolean cp() {
+    public boolean ct() {
         try {
             this.bloodMoonEntity.onTick();
             super.co();

@@ -3,13 +3,13 @@ package com.github.hexosse.bloodmoon.nms;
 import com.github.hexosse.bloodmoon.BloodMoon;
 import com.github.hexosse.bloodmoon.entity.BloodMoonEntityType;
 import com.github.hexosse.bloodmoon.entity.BloodMoonEntityZombie;
-import net.minecraft.server.v1_9_R2.World;
+import net.minecraft.server.v1_10_R1.World;
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_9_R2.CraftServer;
-import org.bukkit.craftbukkit.v1_9_R2.entity.CraftZombie;
+import org.bukkit.craftbukkit.v1_10_R1.CraftServer;
+import org.bukkit.craftbukkit.v1_10_R1.entity.CraftZombie;
 import org.bukkit.plugin.Plugin;
 
-public class EntityZombie extends net.minecraft.server.v1_9_R2.EntityZombie {
+public class EntityZombie extends net.minecraft.server.v1_10_R1.EntityZombie {
 
     private BloodMoon plugin;
     private BloodMoonEntityZombie bloodMoonEntity;
@@ -31,7 +31,7 @@ public class EntityZombie extends net.minecraft.server.v1_9_R2.EntityZombie {
     }
     
     @Override
-    public boolean cp() {
+    public boolean ct() {
         try {
             this.bloodMoonEntity.onTick();
             super.co();

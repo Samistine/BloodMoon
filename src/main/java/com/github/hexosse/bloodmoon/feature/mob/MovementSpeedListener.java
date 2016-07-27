@@ -7,7 +7,7 @@ import com.github.hexosse.bloodmoon.events.BloodMoonEndEvent;
 import com.github.hexosse.bloodmoon.events.BloodMoonStartEvent;
 import com.github.hexosse.pluginframework.pluginapi.PluginListener;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_9_R2.entity.CraftLivingEntity;
+import org.bukkit.craftbukkit.v1_10_R1.entity.CraftLivingEntity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

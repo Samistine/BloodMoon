@@ -2,12 +2,12 @@ package com.github.hexosse.bloodmoon.entity;
 
 import com.github.hexosse.bloodmoon.exceptions.EntityRegistrationException;
 import com.github.hexosse.pluginframework.pluginapi.reflexion.Reflexion;
-import net.minecraft.server.v1_9_R2.BiomeBase;
-import net.minecraft.server.v1_9_R2.EntityInsentient;
-import net.minecraft.server.v1_9_R2.EntityTypes;
-import net.minecraft.server.v1_9_R2.World;
+import net.minecraft.server.v1_10_R1.BiomeBase;
+import net.minecraft.server.v1_10_R1.EntityInsentient;
+import net.minecraft.server.v1_10_R1.EntityTypes;
+import net.minecraft.server.v1_10_R1.World;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_9_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_10_R1.CraftWorld;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 
@@ -16,16 +16,16 @@ import java.util.Map;
 
 public enum BloodMoonEntityType {
 
-    CREEPER("Creeper", 50, EntityType.CREEPER, net.minecraft.server.v1_9_R2.EntityCreeper.class, com.github.hexosse.bloodmoon.nms.EntityCreeper.class),
-	SKELETON("Skeleton", 51, EntityType.SKELETON, net.minecraft.server.v1_9_R2.EntitySkeleton.class, com.github.hexosse.bloodmoon.nms.EntitySkeleton.class),
-	SPIDER("Spider", 52, EntityType.SPIDER, net.minecraft.server.v1_9_R2.EntitySpider.class, com.github.hexosse.bloodmoon.nms.EntitySpider.class),
-	GIANT_ZOMBIE("Giant", 53, EntityType.GIANT, net.minecraft.server.v1_9_R2.EntityGiantZombie.class, com.github.hexosse.bloodmoon.nms.EntityGiantZombie.class),
-	ZOMBIE("Zombie", 54, EntityType.ZOMBIE, net.minecraft.server.v1_9_R2.EntityZombie.class, com.github.hexosse.bloodmoon.nms.EntityZombie.class),
-	GHAST("Ghast", 56, EntityType.GHAST, net.minecraft.server.v1_9_R2.EntityGhast.class, com.github.hexosse.bloodmoon.nms.EntityGhast.class),
-	ENDERMAN("Enderman", 58, EntityType.ENDERMAN, net.minecraft.server.v1_9_R2.EntityEnderman.class, com.github.hexosse.bloodmoon.nms.EntityEnderman.class),
-	BLAZE("Blaze", 61, EntityType.BLAZE, net.minecraft.server.v1_9_R2.EntityBlaze.class, com.github.hexosse.bloodmoon.nms.EntityBlaze.class),
-	WITHER("WitherBoss", 64, EntityType.WITHER, net.minecraft.server.v1_9_R2.EntityWither.class, com.github.hexosse.bloodmoon.nms.EntityWither.class),
-	WITCH("Witch", 66, EntityType.WITCH, net.minecraft.server.v1_9_R2.EntityWitch.class, com.github.hexosse.bloodmoon.nms.EntityWitch.class);
+    CREEPER("Creeper", 50, EntityType.CREEPER, net.minecraft.server.v1_10_R1.EntityCreeper.class, com.github.hexosse.bloodmoon.nms.EntityCreeper.class),
+	SKELETON("Skeleton", 51, EntityType.SKELETON, net.minecraft.server.v1_10_R1.EntitySkeleton.class, com.github.hexosse.bloodmoon.nms.EntitySkeleton.class),
+	SPIDER("Spider", 52, EntityType.SPIDER, net.minecraft.server.v1_10_R1.EntitySpider.class, com.github.hexosse.bloodmoon.nms.EntitySpider.class),
+	GIANT_ZOMBIE("Giant", 53, EntityType.GIANT, net.minecraft.server.v1_10_R1.EntityGiantZombie.class, com.github.hexosse.bloodmoon.nms.EntityGiantZombie.class),
+	ZOMBIE("Zombie", 54, EntityType.ZOMBIE, net.minecraft.server.v1_10_R1.EntityZombie.class, com.github.hexosse.bloodmoon.nms.EntityZombie.class),
+	GHAST("Ghast", 56, EntityType.GHAST, net.minecraft.server.v1_10_R1.EntityGhast.class, com.github.hexosse.bloodmoon.nms.EntityGhast.class),
+	ENDERMAN("Enderman", 58, EntityType.ENDERMAN, net.minecraft.server.v1_10_R1.EntityEnderman.class, com.github.hexosse.bloodmoon.nms.EntityEnderman.class),
+	BLAZE("Blaze", 61, EntityType.BLAZE, net.minecraft.server.v1_10_R1.EntityBlaze.class, com.github.hexosse.bloodmoon.nms.EntityBlaze.class),
+	WITHER("WitherBoss", 64, EntityType.WITHER, net.minecraft.server.v1_10_R1.EntityWither.class, com.github.hexosse.bloodmoon.nms.EntityWither.class),
+	WITCH("Witch", 66, EntityType.WITCH, net.minecraft.server.v1_10_R1.EntityWitch.class, com.github.hexosse.bloodmoon.nms.EntityWitch.class);
 
     private static boolean registered = false;
     private final String name;

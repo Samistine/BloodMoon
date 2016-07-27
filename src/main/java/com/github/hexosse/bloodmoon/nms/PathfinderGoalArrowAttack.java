@@ -1,9 +1,9 @@
 package com.github.hexosse.bloodmoon.nms;
 
 import com.github.hexosse.bloodmoon.BloodMoon;
-import net.minecraft.server.v1_9_R2.EntityInsentient;
-import net.minecraft.server.v1_9_R2.EntityLiving;
-import net.minecraft.server.v1_9_R2.IRangedEntity;
+import net.minecraft.server.v1_10_R1.EntityInsentient;
+import net.minecraft.server.v1_10_R1.EntityLiving;
+import net.minecraft.server.v1_10_R1.IRangedEntity;
 
 public class PathfinderGoalArrowAttack {
 //public class PathfinderGoalArrowAttack extends PathfinderGoal {

@@ -36,8 +36,8 @@
     <properties>
         <plugin.name>${project.name}</plugin.name>
         <plugin.version>${project.version}</plugin.version>
-        <minecraft.version>1.9.4</minecraft.version>
-        <spigot.version>1.9.4-R0.1-SNAPSHOT</spigot.version>
+        <minecraft.version>1.10.2</minecraft.version>
+        <spigot.version>1.10.2-R0.1-SNAPSHOT</spigot.version>
         <jdk.version>1.7</jdk.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>

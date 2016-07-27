@@ -2,7 +2,7 @@ package com.github.hexosse.bloodmoon.entity;
 
 import com.github.hexosse.bloodmoon.BloodMoon;
 import com.github.hexosse.bloodmoon.configuration.WorldConfig;
-import net.minecraft.server.v1_9_R2.EntityMonster;
+import net.minecraft.server.v1_10_R1.EntityMonster;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.World;
